@@ -1,3 +1,7 @@
+<?php
+    include('outils/connexionBdd.php');
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
