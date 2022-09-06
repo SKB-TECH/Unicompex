@@ -7,12 +7,12 @@
         private $dns="mysql:localhost,dbname=nyalukemba_db";
         private $user="root";
         private $pass="";
-        private $connexion;
+        private $conn;
 
         public function __construct()
             { 
                 try {
-                    $this->connexion=new PDO($this->dns,$this->user,$this->pass);
+                    $this->conn=new PDO($this->dns,$this->user,$this->pass);
                     echo("connexion succefuly");
                 } 
                 catch (PDOException $msg) {
