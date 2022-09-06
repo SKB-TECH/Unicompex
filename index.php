@@ -1,3 +1,7 @@
+<?php
+    include('outils/connexionBdd.php');
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +12,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1 class="text-red-400 font-bold text-2xl">Bonjour</h1>
+    <h1 class="text-secvar font-bold text-2xl">Bonjou</h1>
 </body>
 </html>
