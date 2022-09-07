@@ -51,12 +51,14 @@ a {
 
 #sidebar{
     display: flex ;
-    flex-direction: column;    gap: 15px;
+    flex-direction: column;  
+    gap: 15px;
     width: 15%;
     align-items: flex-start;
     background-color: #3e65e9;
     height:100vh;
     position: fixed;
+
 }
 
 #principal{
@@ -69,9 +71,10 @@ a {
 }
 
 .btn{
-    margin-right:15px;
     padding: 2px;
     text-align: left;
+    justify-content: center;
+
 }
 
 .container-card{
@@ -131,12 +134,18 @@ tbody tr:nth-child(even){
     padding: 8px;
     position: relative;
 }
-.container_card{
+.container-card1{
+    margin-top: 50px;
     display: flex;
     flex-direction: row;
     gap: 50px;
 }
 
+.container_card2{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
 .card2{
     width: 400px;
     height:150px;
@@ -147,7 +156,28 @@ tbody tr:nth-child(even){
 }
 .btn-h{
     font-size: 12px;
+    width: 80%;
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #ffffff;
+    
+}
+.logo{
+    color: #f3f3f3;
+    font-size: 14px;
+    
+}
+img{
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
+}
+
+.log{
+    display: flex;
+    gap: 5px;
+}
+
+.btn:hover{
+   
 }

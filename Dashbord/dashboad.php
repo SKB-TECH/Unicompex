@@ -6,15 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Styles/style.css">
-    <link rel="stylesheet" href="../fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../font/all.min.css">
     <title>menu</title>
 </head>
 
 <body>
 
     <header class="head">
-        <span class="logo">
-        <i class="fas fa-search"></i>
+        <span class="log">
+          <!-- <img src="../assets/ecolier.jpeg" alt=""> -->
+          <h3>INST. NYALUKEMBA</h3>
         </span>
             <nav id="nav">
                 <ul class="list1 text-red-400" >
@@ -30,15 +31,15 @@
                     <span>username profil</span>
                     <a class="btn">G Eleve</a>
                     <a class="btn">G Enseignants</a>
-                    <a class="btn">G Frais s</a>
-                    <a class="btn">G Prime</a>
-                    <a class="btn">G Paiement</a>
+                    <a class="btn">G Frais Scolaire</a>
+                    <a class="btn">G Prime Ensei</a>
+                    <a class="btn">G Paiement Ense</a>
                     <a class="btn">G Classes</a>
                     <a class="btn">G Options</a>
                 </div>
            </div>
         <section id="principal">
-            <div class="container-card">
+            <div class="container-card1">
                     <div class="card">
                         card
                     </div>
@@ -126,7 +127,7 @@
                     </table>
                 </div>
             </div>
-            <div class="container_card">
+            <div class="container_card2">
                 <div class="card2"></div>
                 <div class="card2"></div>
             </div>
