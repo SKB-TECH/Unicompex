@@ -1,11 +1,4 @@
-<?php
-    error_reporting( E_ALL );
-	ini_set( 'display_errors', 1);
-    include('outils/connexionBdd.php');
-  
 
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,14 +11,19 @@
 <body class="grid ">
     <header>
             <div>logo</div>
-            <nav>Menu</nav>
+            <nav>notification</nav>
     </header>
     <main>
         <aside>
-            side bar
+            side bar menu principale
         </aside>
         <section id="content">
-                content
+                <article>
+                    formulaire
+                </article>
+                <article>
+                    tableau de donnees
+                </article>
         </section>
     </main>
 </body>
