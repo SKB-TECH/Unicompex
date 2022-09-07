@@ -7,7 +7,7 @@
         private $dns="mysql:localhost,dbname=nyalukemba_db";
         private $user="root";
         private $pass="";
-        private $conn;
+        private $conn="";
 
         public function __construct()
             { 
