@@ -8,6 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1 class="text-red-400 font-bold text-2xl">Bonjour</h1>
+    <h1 class="text-yellow-400 font-bold text-2xl">Bonjour</h1>
+    <h2 class="text-green-500">TITRE</h2>
 </body>
 </html>
