@@ -13,16 +13,16 @@
 <body>
 
     <header class="head">
-    <span class="logo">
+        <span class="logo">
         <i class="fas fa-search"></i>
-    </span>
-        <nav id="nav">
-            <ul class="list1 text-red-400" >
-                <li><a href="#">Accueil</a></li>
-                <li><a href="">Apropos</a></li>
-                <li><a href="">About</a></li>
-            </ul>
-        </nav>
+        </span>
+            <nav id="nav">
+                <ul class="list1 text-red-400" >
+                    <li><a href="#" class="btn-h">Accueil</a></li>
+                    <li><a href="" class="btn-h">Apropos</a></li>
+                    <li><a href=""  class="btn-h">About</a></li>
+                </ul>
+            </nav>
     </header>
     <main id="main">
            <div>
@@ -57,14 +57,20 @@
             </div>
             <div class="tableau">
                 <div>
-                    <form action="" >
-                        <input type="text">
-                        <input type="date" name="" id="">
-                        <select name="" id="">
+                    <div class="container-form">
+                    <form action="" class="form" >
+                        <input type="text" class="text" id="search" autocomplete="off">
+                        <input type="date" name="" id="date">
+                        <select name="" id="" class="combobox">
+                            <option value="">Tout</option>
                             <option value="">Noms eleve</option>
+                            <option value="">Classe</option>
+                            <option value="">Annee-Scolaire</option>
+                            <option value="">Date</option>
                         </select>
                     </form>
-                    <table>
+                    </div>
+                    <table class="tableau-style">
                         <thead>
                             <tr>
                             <th>Noms</th>
@@ -119,6 +125,10 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div class="container_card">
+                <div class="card2"></div>
+                <div class="card2"></div>
             </div>
         </section>
     </main>
