@@ -16,7 +16,6 @@
          
          if(!isset($this-> connection)) 
          { 
-                     
                 $this->connection = new PDO("mysql:host=".$this->_localhost.";dbname=".$this->_dbname."", $this->_user , $this->_password); 
          
          } 

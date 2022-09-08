@@ -30,26 +30,24 @@
              { 
                          $sel= "SELECT * FROM $table where $labelId=$id"; 
                          $sel1=$this->connection->query($sel); 
-                         return $sel1->fetch(); 
-                         
+                         return $sel1->fetch();           
              } 
-             
              public function insert($data,$table) 
              {           
-                         foreach($data as $this->column => $this->value) 
-                         { 
+                         foreach($data as $this->column => $this->value) { 
                                      
                                      $this->columns .= ($this->columns == "") ? "" : ", "; 
-                                     $this->columns .= $this->column; 
-                         
+                                     $this->columns .= "".$this->column."";                          
                                      $this->values .= ($this->values == "") ? "" : ", "; 
                                      $this->values .= "'".$this->value ."'"; 
                          } 
-                         
-                         $insert= ("INSERT into $table ($this->columns) values ($this->values)"); 
-                         $insert1= $this->connection->query($insert); 
-             } 
-             
+                         echo $this->values;
+                         $insert='INSERT into '.$table.' '.($this->columns).' values ('.$this->values.')';
+                         echo $insert;
+                         $insert1 = $this->connection->query($insert);
+
+                        //  $insert1= $this->connection->query("INSERT INTO `User` (`code_user`, `noms`, `fonction`, `password`, `login`) VALUES (NULL, 'doddy2', 'Secretaire AVEC', 'admin', 'admin');"); 
+             }
               public function update($data,$table,$labelId,$id) 
                 { 
                     foreach ($data as $this->column => $this->value) 
