@@ -1,5 +1,6 @@
-<?php
-
+<?php 
+   
+ 
 include_once('Connexion/Database.php');
 
 class Crud extends Database
@@ -9,7 +10,6 @@ class Crud extends Database
         public $values = "";
         public $column = "";
         public $value = "";
-
 
 
         public function __construct()
@@ -67,4 +67,5 @@ class Crud extends Database
         {
                 return $this->connection->quote($value);
         }
-}
+
+        }
