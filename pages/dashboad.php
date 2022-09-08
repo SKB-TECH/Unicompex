@@ -1,3 +1,7 @@
+<?php
+         error_reporting( E_ALL );
+         ini_set( 'display_errors', 1);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,51 +18,12 @@
 
 <body>
 
-    <header class="head">
-        <span class="log">
-            <i class="fa fa-graduation-cap logo-icon" aria-hidden="true"></i>
-          <img src="../assets/logo3.png" alt="Logo">
-         
-        </span>
-            <nav id="nav">
-                <ul class="list1 text-red-400" >
-                    <li><a href="#" class="btn-h">Accueil</a></li>
-                    <li><a href="" class="btn-h">Apropos</a></li>
-                    <li><a href=""  class="btn-h">About</a></li>
-                </ul>
-            </nav>
-    </header>
+             <?php include("static/header.php") ?>
     <main id="main">
-           <div>
-                <div id="sidebar">
-                    <span>username profil</span>
-                    <a class="btn">G Eleve</a>
-                    <a class="btn">G Enseignants</a>
-                    <a class="btn">G Frais Scolaire</a>
-                    <a class="btn">G Prime Ensei</a>
-                    <a class="btn">G Paiement Ense</a>
-                    <a class="btn">G Classes</a>
-                    <a class="btn">G Options</a>
-                </div>
-           </div>
+             <?php include("static/sidebar.php") ?>
         <section id="principal">
-            <div class="container-card1">
-                    <div class="card">
-                        card
-                    </div>
-                    <div class="card">
-                        card
-                    </div>
-                    <div class="card">
-                        card
-                    </div>
-                    <div class="card">
-                        card
-                    </div>
-                    <div class="card">
-                        card
-                    </div>
-            </div>
+             <?php include("static/topcard.php") ?>
+            
             <div class="tableau">
                 <div>
                     <div class="container-form">
