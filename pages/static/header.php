@@ -2,7 +2,6 @@
         <span class="log">
             <i class="fa fa-graduation-cap logo-icon" aria-hidden="true"></i>
           <img src="../assets/logo3.png" alt="Logo">
-         
         </span>
             <nav id="nav">
                 <ul class="list1 text-red-400" >
