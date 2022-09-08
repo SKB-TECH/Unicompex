@@ -7,7 +7,6 @@ class Crud extends Database
 
         public $columns = "";
         public $values = "";
-
         public $column = "";
         public $value = "";
 
