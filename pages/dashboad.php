@@ -23,7 +23,6 @@
              <?php include("static/sidebar.php") ?>
         <section id="principal">
              <?php include("static/topcard.php") ?>
-            
             <div class="tableau">
                 <div>
                     <div class="container-form">
@@ -37,6 +36,8 @@
                             <option value="">Annee-Scolaire</option>
                             <option value="">Date</option>
                         </select>
+                            <button class="btne">Exporter</button>
+                            <button class="btne">Importer</button>
                     </form>
                     </div>
                     <table class="tableau-style">

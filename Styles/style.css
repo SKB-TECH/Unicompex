@@ -160,6 +160,7 @@ tbody tr:nth-child(even){
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #ffffff;
+   
     
 }
 .logo-icon{
@@ -179,4 +180,11 @@ tbody tr:nth-child(even){
 }
 .btn:hover{
    
+}
+
+.btne{
+    font-size: 12px;
+    border-radius: 1px;
+    border: 1px solid #ffffff;
+    background-color: green;
 }
