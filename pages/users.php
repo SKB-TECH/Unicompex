@@ -1,48 +1,42 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+    error_reporting( E_ALL );
+    ini_set( 'display_errors', 1);
+    include_once ("../Classes/crud.php"); 
 
+$crud= new crud(); 
 
-include_once("Classes/crud.php");
+if(isset($_POST['submit'])){ 
+          $data= array( 
+              "noms"  => $crud->escape_string($_POST['noms']),            
+                      "fonction"  => $crud->escape_string($_POST['fonction']), 
+                                        "password"  => $crud->escape_string($_POST['password']), 
+                                                   "login"  => $crud->escape_string($_POST['login']) 
+            ); 
+            $crud->insert($data,"User"); 
 
-$crud = new crud();
+          if($data) { 
+            echo 'insert successfully'; 
+            header('location:users.php'); 
+          }else { 
+             echo 'try again' ; 
+          }          
+} 
 
-if (isset($_POST['submit'])) {
-  $data = array(
+if(!empty($_GET['delid'])){ 
+  $id=$_GET['delid']; 
 
-    "noms"  => $crud->escape_string($_POST['noms']),
-    "fonction"  => $crud->escape_string($_POST['fonction']),
-    "password"  => $crud->escape_string($_POST['password']),
-    "login"  => $crud->escape_string($_POST['login'])
+  $crud= new crud(); 
+  $crud->deletedata("User","code_user",$id); 
+  header('location:users.php'); 
+  } 
 
-  );
-
-
-  $crud->insert($data, 'User');
-
-
-  if ($data) {
-    echo 'insert successfully';
-    header('location:users.php');
-  } else {
-    echo 'try again';
-  }
-}
-
-if (!empty($_GET['delid'])) {
-
-  $id = $_GET['delid'];
-
-  $crud = new crud();
-  $crud->deletedata("User", "code_user", $id);
-  header('location:users.php');
-}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
