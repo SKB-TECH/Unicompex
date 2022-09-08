@@ -1,18 +1,16 @@
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./*.{html,js,php}"],
   theme: {
-    colors: {
-      prim: '#1b223e',
-      primvar:'#434559',
-      font: '#ffffff',
-      fontvar: '#beb5b5',
-      sec: '#3e65e9',
-      secvar: '#596286'
-      },
     extend: {
-
+      colors: {
+        "primary": '#1b223e',
+        "secondaire": '#434559',
+        "colorText": '#ffffff',
+        "gris": '#beb5b5',
+        "bleciel":'#3e65e9',
+        "grise": '#596286',
+        },
     },
   },
   plugins: [],

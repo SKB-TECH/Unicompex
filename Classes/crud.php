@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php 
    
  include_once ('Connexion/Database.php'); 
