@@ -110,14 +110,21 @@
         <div class="overlay modal-trigger">
         </div>
         <div class="modal">
-            <button class="close-modal modal-trigger">X</button>
-            <form action="" class="form-control">
-                <input type="text" name="" id="" class="inputs">
-                <input type="text" name="" id="" class="inputs">
-                <input type="text" name="" id="" class="inputs">
-                <input type="text" name="" id="" class="inputs">
-                <input type="text" name="" id="" class="inputs">
-                <input type="text" name="" id="" class="inputs">
+            <span class="close-modal modal-trigger">X</span>
+            <h3>NOUVEAU ENSEIGNANT</h3>
+            <form action="../../pages/Enseignants.php" method="POST" class="form-control">
+                <input type="text" name="noms" id="" class="inputs" placeholder="noms de l'enseignant">
+                <input type="text" name="grade" id="" class="inputs" placeholder="grade">
+                <select name="sexe" id="" class="inputs" >
+                    <option value="" class="inputs">Selectionner le sexe...</option>
+                    <option value="Homme" class="inputs">Homme</option>
+                    <option value="Femme" class="inputs">Femme</option>
+                </select>
+            
+                <input type="text" name="adresse" id="" class="inputs" placeholder="adresse">
+                <input type="text" name="telephone" id="" class="inputs" placeholder="telephone">
+                <input type="text" name="domaine" id="" class="inputs">
+                <input type="submit" name="" id="" class="inputs" value="ENREGISTRER" placeholder="domaine">
             </form>
         </div>
     </div>
