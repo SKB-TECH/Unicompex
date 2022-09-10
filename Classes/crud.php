@@ -46,7 +46,12 @@ class Crud extends Database
                 $insert = ("INSERT into $table ($this->columns) values ($this->values)");
                 $insert1 = $this->connection->query($insert);
         }
-
+        public function insert2($sql)
+        {       
+                if($sql != ""){
+                        $insert1 = $this->connection->query($sql);
+                }
+        }
         public function update($data, $table, $labelId, $id)
         {
                 foreach ($data as $this->column => $this->value) {
