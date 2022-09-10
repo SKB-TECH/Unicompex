@@ -7,4 +7,3 @@ modalTriggers.forEach(trigger =>trigger.addEventListener("click",(e)=>{
 }))
 
 
-console.log("bonjour le monde");

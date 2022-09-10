@@ -59,8 +59,6 @@ a {
     background-color: #3e65e9;
     height:100vh;
     position: fixed;
-    
-
 }
 
 #principal{
@@ -68,8 +66,8 @@ a {
     flex-direction: column;
     justify-content: space-between;
     margin-left: 170px;
-    margin-top: 20px;
-    z-index:0;
+    margin-top: 30px;
+    gap: 15px;
 }
 
 .btn{
@@ -80,7 +78,7 @@ a {
 }
 
 .container-card{
-    margin-top: 40px;
+    margin-top: 10px;
     display: flex;
     flex-direction: row;
     gap: 50px;
@@ -111,7 +109,7 @@ thead tr{
 }
 
 th,td{
-    padding: 10px 10px;
+    padding: 10px 5px;
 }
 
 tbody tr:nth-child(even){
@@ -192,7 +190,7 @@ tbody tr:nth-child(even){
     background-color: rgb(55, 187, 55);
     color: #ffffff;
     font-weight: 600;
-    padding: 8px;
+    padding: 5px;
     box-shadow: 0 30px 50px rgba(0,0,0,0.15);
 }
 
@@ -204,7 +202,7 @@ tbody tr:nth-child(even){
     background-color: #ff365e;
     color: #ffffff;
     font-weight: 600;
-    padding: 8px;
+    padding: 5px;
     box-shadow: 0 30px 50px rgba(0,0,0,0.15);
 }
 .btnim{
@@ -218,7 +216,7 @@ tbody tr:nth-child(even){
     box-shadow: 0 30px 50px rgba(0,0,0,0.15);
 }
 
-.modal-container{
+.modal-container,.modal-container1{
     /* display: none; */
     visibility: hidden;
     position: fixed;

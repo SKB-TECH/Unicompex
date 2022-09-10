@@ -49,7 +49,7 @@
                 public function insert2($sql)
                 {       
                         if($sql != ""){
-                                $insert1 = $this->connection->query($sql);
+                           $insert1 = $this->connection->query($sql);
                         }
                 }
 
