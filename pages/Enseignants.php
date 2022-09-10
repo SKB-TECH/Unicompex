@@ -1,6 +1,11 @@
 <?php
          error_reporting( E_ALL );
          ini_set( 'display_errors', 1);
+
+
+         if(isset($_POST['submit'])){
+            echo("bonjour le monde");
+         }
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Styles/style.css">
     <link rel="stylesheet" href="../Styles/styleII.css">
+    
     <link rel="stylesheet" href="../font/font-awesome-4.7.0/css/font-awesome.min.css">
     <title>Enseignant</title>
 </head>
@@ -49,6 +55,7 @@
                             <th>Postnom</th>
                             <th>Postnom</th>
                             <th>Postnom</th>
+                            <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,6 +66,14 @@
                             <td>Postnom</td>
                             <td>Postnom</td>
                             <td>Postnom</td>
+                            <td>
+                                <a href="" class="btni">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a>
+                                <a href="" class="btne">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </a>
+                            </td>
                             </tr>
                             <tr>
                             <td>Noms</td>
@@ -67,6 +82,14 @@
                             <td>Postnom</td>
                             <td>Postnom</td>
                             <td>Postnom</td>
+                            <td>
+                                <a href="" class="btni">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a>
+                                <a href="" class="btne">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </a>
+                            </td>
                             </tr>
                             <tr>
                             <td>Noms</td>
@@ -75,6 +98,14 @@
                             <td>Postnom</td>
                             <td>Postnom</td>
                             <td>Postnom</td>
+                            <td>
+                                <a href="" class="btni">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a>
+                                <a href="" class="btne">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </a>
+                            </td>
                             </tr>
                             <tr>
                             <td>Noms</td>
@@ -83,6 +114,14 @@
                             <td>Postnom</td>
                             <td>Postnom</td>
                             <td>Postnom</td>
+                            <td>
+                                <a href="" class="btni">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a>
+                                <a href="" class="btne">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </a>
+                            </td>
                             </tr>
                             <tr>
                             <td>Noms</td>
@@ -91,6 +130,14 @@
                             <td>Postnom</td>
                             <td>Postnom</td>
                             <td>Postnom</td>
+                            <td>
+                                <a href="" class="btni">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a>
+                                <a href="" class="btne">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </a>
+                            </td>
                             </tr>
                         </tbody>
                     </table>
@@ -110,7 +157,7 @@
         <div class="modal">
             <span class="close-modal modal-trigger">X</span>
             <h3>NOUVEAU ENSEIGNANT</h3>
-            <form action="../../pages/Enseignants.php" method="POST" class="form-control">
+            <form action="../pages/Enseignants.php" method="POST" class="form-control">
                 <input type="text" name="noms" id="" class="inputs" placeholder="noms de l'enseignant">
                 <input type="text" name="grade" id="" class="inputs" placeholder="grade">
                 <select name="sexe" id="" class="inputs" >
