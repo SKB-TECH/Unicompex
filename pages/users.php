@@ -53,7 +53,7 @@ if(!empty($_GET['delid'])){
     <aside>
       side bar menu principale
     </aside>
-    <section id="content">
+    <secte ion id="content">
       <article>
         <form method="POST" name="form">
 

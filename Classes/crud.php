@@ -30,10 +30,6 @@
                         return $sel1->fetch();
                 }
 
-                public function insert($sql)
-                {
-                        $insert1 = $this->connection->query($sql);
-                }
 
                 public function update($data, $table, $labelId, $id)
                 {
@@ -49,6 +45,12 @@
                         $delete = ("DELETE FROM $table WHERE $labelId=$where");
                         $this->connection->query($delete);
                         return true;
+        }
+                public function insert2($sql)
+                {       
+                        if($sql != ""){
+                                $insert1 = $this->connection->query($sql);
+                        }
                 }
 
                 public function escape_string($value)
