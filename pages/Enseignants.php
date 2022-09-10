@@ -4,7 +4,7 @@
 
 
          if(isset($_POST['submit'])){
-            echo("bonjour le monde");
+            
          }
 ?>
 
