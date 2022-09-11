@@ -11,7 +11,7 @@ if(isset($_POST['submit'])){
               "fonction"  => $crud->escape_string($_POST['fonction']), 
               "password"  => $crud->escape_string($_POST['password']), 
               "login"  => $crud->escape_string($_POST['login']) 
-            ); 
+          ); 
           
           $crud->insert($data,"User"); 
           if($data) { 

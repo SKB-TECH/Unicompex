@@ -1,4 +1,8 @@
 <?php 
+
+error_reporting( E_ALL );
+ini_set( 'display_errors', 1);
+
         include_once('Connexion/Database.php');
 
         class Crud extends Database
@@ -47,7 +51,7 @@
                         return true;
         }
                 public function insert2($sql)
-                {       
+                {   
                         if($sql != ""){
                            $insert1 = $this->connection->query($sql);
                         }
@@ -58,4 +62,31 @@
                         return $this->connection->quote($value);
                 }
 
+                public function total($tab){
+                    $sql=("SELECT * FROM $tab");
+                    $stms=$this->connection->prepare($sql);
+                    $stms->execute();
+                    return $tot=$stms->rowCount();
+                }
+
+                public function read($tab){
+                    $data =array();
+
+                    $sql="SELECT * FROM $tab";
+                    $stmt=$this->connection->prepare($sql);
+                    $stmt->execute();
+                    $resultat=$stmt->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($resultat as $row) {
+                        $data=$row;
+                    }
+
+                    return $data;
+                }
+
+
+
 }
+
+// $taches=new Crud();
+//         $taches->insert2("INSERT INTO enseignants(noms,sexe,grade,domaine,adresse,telephone) values('Gourou','M','Gourou','M','Gourou','M')");
+?>
