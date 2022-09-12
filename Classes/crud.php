@@ -27,11 +27,11 @@ ini_set( 'display_errors', 1);
                         return $select1;
                 }
                 // affichier les donnees de la table par id
-                public function selectbyid($table, $labelId, $id)
+                public function selectbyid($id,$tab)
                 {
-                        $sel = "SELECT * FROM $table where $labelId=$id";
-                        $sel1 = $this->connection->query($sel);
-                        return $sel1->fetch();
+                        $sel = "SELECT * FROM $tab WHERE id=$id";
+                        $res = $this->connection->query($sel);
+                        return $res->fetch();
                 }
 
 
@@ -69,20 +69,16 @@ ini_set( 'display_errors', 1);
                     return $tot=$stms->rowCount();
                 }
 
-                public function read($tab){
-                    $data =array();
+        
+                public function Modification($id,$nm,$se,$gr,$do,$ad,$te){
+                   $sql="UPDATE enseignants SET noms=:nm,sexe=:se,grade=:gr,domaine=:do,adresse=:ad,telephone=:te WHERE id=:id";
+                   $stms=$this->connection->prepare($sql);
+                   $stms->execute((['nm'=>$nm,'se'=>$se,'gr'=>$gr,'do'=>$do,'ad'=>$ad,'te'=>$te,'id'=>$id
+                   ]));
 
-                    $sql="SELECT * FROM $tab";
-                    $stmt=$this->connection->prepare($sql);
-                    $stmt->execute();
-                    $resultat=$stmt->fetchAll(PDO::FETCH_ASSOC);
-                    foreach ($resultat as $row) {
-                        $data=$row;
-                    }
-
-                    return $data;
+                        return true;
                 }
-
+              
 
 
 }

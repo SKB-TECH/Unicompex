@@ -8,7 +8,6 @@
     if(isset($_POST['action']) && $_POST['action']=="view"){
         $output="";
         $resultat=$db->selectalldata('enseignants');
-        
         if($res=$db->total('enseignants')){
             $output .='
             <table class="table table-striped table-sm table-bordered">
@@ -27,7 +26,7 @@
             while ($data=$resultat->fetch()) {
                 $output .='
                 <tr class="text-center text-secondary">
-                <td>'.$data['code_enseignants'].'</td>
+                <td>'.$data['id'].'</td>
                 <td>'.$data['noms'].'</td>
                 <td>'.$data['sexe'].'</td>
                 <td>'.$data['grade'].'</td>
@@ -35,15 +34,15 @@
                 <td>'.$data['adresse'].'</td>
                 <td>'.$data['telephone'].'</td>
                 <td>
-                    <a href="action.php" class="text-success infoBtn" title="Info plus id="'.$data['code_enseignants'].'">
+                    <a href="action.php" class="text-success infoBtn" title="Info plus id="'.$data['id'].'">
                         <i class="fa fa-info-circle fa-lg "></i>
                     </a>
 
-                    <a href="" class="text-primary editBtn" title="Modifier" data-toggle="modal" data-target="#editModal" id="'.$data['code_enseignants'].'">
+                    <a href="" class="text-primary editBtn" title="Modifier" data-toggle="modal" data-target="#editModal" id="'.$data['id'].'">
                         <i class="fa fa-edit fa-lg"></i>
                     </a>
 
-                    <a href="" class="text-danger deleteBtn" title="Supprimer" id="'.$data['code_enseignants'].'">
+                    <a href="" class="text-danger deleteBtn" title="Supprimer" id="'.$data['id'].'">
                         <i class="fa fa-trash fa-lg"></i>
                     </a>
                 </td>
@@ -77,4 +76,26 @@
         $db->insert2($sql);
     }
 
+    /** Fonction modification de la table  enseignants*/
+    if(isset($_POST['edit_id'])){
+        $id=$_POST['edit_id'];
+        $row=$db->selectbyid($id,'enseignants');
+       
+        echo json_encode($row);
+    }
+
+    if (isset($_POST['action'])&& $_POST['action']=="update") {
+            
+            $id=$_POST['id'];
+            $noms=$_POST['noms'];
+            $sexe=$_POST['sexe'];
+            $grade=$_POST['grade'];
+            $domaine=$_POST['domaine'];
+            $adresse=$_POST['adresse'];
+            $telephone=$_POST['telephone'];
+        
+
+        $db->Modification($id,$noms,$sexe,$grade,$domaine,$adresse,$telephone);
+        echo ($data);
+    }
 ?>

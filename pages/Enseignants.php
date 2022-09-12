@@ -303,10 +303,41 @@ $taches = new crud();
                     type:"POST",
                     data:{edit_id:edit_id},
                     success:function(reponse){
-                        console.log(reponse);
+                       data=JSON.parse(reponse);
+                        
+                       $("#id").val(data.id);
+                       $("#noms").val(data.noms);
+                       $("#sexe").val(data.sexe);
+                       $("#grade").val(data.grade);
+                       $("#adresse").val(data.adresse)
+                       $("#domaine").val(data.domaine);
+                       $("#telephone").val(data.telephone);
                     }
                 })
             });
+
+            /** Modification des donnees */
+            $("#update").click(function(e) {
+                if ($("#edit-form-data")[0].checkValidity()) {
+                    e.preventDefault();
+                    $.ajax({
+                        url:"action.php",
+                        type:"POST",
+                        data: $("#edit-form-data").serialize()+"&action=update",
+                        success: function(reponse) {
+                        Swal.fire(
+                            'Felicitation!',
+                            'Enseignant Modifier avec success !',
+                            'success'
+                            )
+
+                            $("#editModal").modal('hide');
+                            $("#edit-form-data")[0].reset();
+                            showAllUser();
+                        }
+                    });
+                }
+            })
         });
     </script>
 </body>
