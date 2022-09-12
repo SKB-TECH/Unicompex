@@ -34,15 +34,15 @@
                 <td>'.$data['adresse'].'</td>
                 <td>'.$data['telephone'].'</td>
                 <td>
-                    <a href="action.php" class="text-success infoBtn" title="Info plus id="'.$data['id'].'">
+                    <a href="#" class="text-success infoBtn" title="Info"  id="'.$data['id'].'">
                         <i class="fa fa-info-circle fa-lg "></i>
                     </a>
 
-                    <a href="" class="text-primary editBtn" title="Modifier" data-toggle="modal" data-target="#editModal" id="'.$data['id'].'">
+                    <a href="#" class="text-primary editBtn" title="Modifier" data-toggle="modal" data-target="#editModal" id="'.$data['id'].'">
                         <i class="fa fa-edit fa-lg"></i>
                     </a>
 
-                    <a href="" class="text-danger deleteBtn" title="Supprimer" id="'.$data['id'].'">
+                    <a href="#" class="text-danger deleteBtn" title="Supprimer" id="'.$data['id'].'">
                         <i class="fa fa-trash fa-lg"></i>
                     </a>
                 </td>
@@ -103,5 +103,41 @@
         
         $row=$db->deletedata('enseignants','id',$id);
        
+    }
+
+    /** Fonction info plus de la table  enseignants*/
+    if(isset($_POST['info_id'])){
+        $id=$_POST['info_id'];
+
+        $row=$db->selectbyid($id,'enseignants');
+    
+        echo json_encode($row);
+    }
+
+    /** exportation de la liste Excel */
+    if (isset($_GET['export']) && $_GET['export']=="excel") {
+        header('Content-type:application/xls');
+        header('Content-Disposition:attachement;filename=Enseignants.xls');
+        header('Pragma:no-cache');
+        header('Expire:0');
+
+        $resultat=$db->selectalldata('enseignants');
+        echo '<table border="1">';
+        echo '<tr><th>N°</th><th>Noms</th><th>Sexe</th><th>Grade</th><th>Domaine</th><th>Telephone</th></tr>';
+
+        while ($data=$resultat->fetch()) {
+            echo '<tr>
+            <tr class="text-center text-secondary">
+            <td>'.$data['id'].'</td>
+            <td>'.$data['noms'].'</td>
+            <td>'.$data['sexe'].'</td>
+            <td>'.$data['grade'].'</td>
+            <td>'.$data['domaine'].'</td>
+            <td>'.$data['adresse'].'</td>
+            <td>'.$data['telephone'].'</td>
+        </tr>';
+    
+        }
+        echo '</table>';
     }
 ?>

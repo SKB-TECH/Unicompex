@@ -95,7 +95,7 @@ $taches = new crud();
                     <div class="clog-lg-6">
                         <button type="button" class="btn btn-primary m-1 float-right"><i class="fa fa-user-plus fa-lg" data-toggle="modal" data-target="#addModal"> Nouveau</i>
                         </button>&nbsp;&nbsp;&nbsp;
-                        <a href="#" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
+                        <a href="action.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
                             Exporter</a>&nbsp;&nbsp;&nbsp;
                         <a href="#" class="btn btn-danger m-1 float-lg"><i class="fa fa-table fa-lg"></i>
                             Importer</a>
@@ -342,7 +342,7 @@ $taches = new crud();
             /** Fonction Supprimer de la table */
             $("body").on('click','.deleteBtn',function(e){
                 e.preventDefault();
-                var td=$(this).closest('tr');
+                var tr=$(this).closest('tr');
                 del_id=$(this).attr('id');
 
                 Swal.fire
@@ -361,6 +361,12 @@ $taches = new crud();
                         type:"POST",
                         data: {del_id:del_id},
                         success: function(reponse) {
+                           tr.css('background-color','#ff6666')
+                            Swal.fire(
+                            'Felicitation!!!',
+                            'Suppression effectuée avec success !',
+                            'success'
+                            )
                             showAllUser();
                         }
                         
@@ -368,6 +374,37 @@ $taches = new crud();
                     }
                 })
             })
+
+
+            /** Info plus */
+            $("body").on("click",'.infoBtn',function(e)
+            {
+                e.preventDefault();
+                info_id= $(this).attr('id');
+                $.ajax({
+                    url:"action.php",
+                    type:"POST",
+                    data:{info_id:info_id},
+                    success:function(reponse){
+                        data=JSON.parse(reponse);
+                        Swal.fire(
+                            {
+                                title:'<Strong class="text-left"> ID:'+data.id+'</Strong>',
+                                type:"info",
+                                html:'<b class="text-left">Noms:'+data.noms+'</b></br><b class="text-left">Grade:'+data.grade+'</b></br><b class="text-left">Domaines:'+data.domaine+'</b></br><b class="text-left">Tel:'+data.telephone+'</b>',
+                                showCancelButton:true
+                           
+                            }
+
+                        )
+
+                        showAllUser();
+                        console.log(info_id);
+                    }
+                })
+                
+                
+            });
         });
     </script>
 </body>
