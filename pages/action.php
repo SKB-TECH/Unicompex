@@ -83,7 +83,6 @@
        
         echo json_encode($row);
     }
-
     if (isset($_POST['action'])&& $_POST['action']=="update") {
             
             $id=$_POST['id'];
@@ -94,8 +93,15 @@
             $adresse=$_POST['adresse'];
             $telephone=$_POST['telephone'];
         
-
         $db->Modification($id,$noms,$sexe,$grade,$domaine,$adresse,$telephone);
         echo ($data);
+    }
+
+    /** Fonction Suprimmer de la table  enseignants*/
+    if(isset($_POST['del_id'])){
+        $id=$_POST['del_id'];
+        
+        $row=$db->deletedata('enseignants','id',$id);
+       
     }
 ?>

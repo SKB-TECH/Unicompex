@@ -338,6 +338,36 @@ $taches = new crud();
                     });
                 }
             })
+
+            /** Fonction Supprimer de la table */
+            $("body").on('click','.deleteBtn',function(e){
+                e.preventDefault();
+                var td=$(this).closest('tr');
+                del_id=$(this).attr('id');
+
+                Swal.fire
+                ({
+                    title: 'Voulez-vous supprimer cette information ?',
+                    text: "une fois supprimer vous ne l'aurez plus !!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes,Delete !!!'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                        url:"action.php",
+                        type:"POST",
+                        data: {del_id:del_id},
+                        success: function(reponse) {
+                            showAllUser();
+                        }
+                        
+                    });
+                    }
+                })
+            })
         });
     </script>
 </body>
