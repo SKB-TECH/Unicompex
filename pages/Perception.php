@@ -30,12 +30,14 @@
             // affiche les resultat
             function showSolde() {
                     let idFrais = $('#idFrais').val()
+                    let idEleve = $('#id').val()
                     $.ajax({
                         url: "actions/actionPerception.php",
                         type: "POST",
                         data: {
                             action: "solde",
                             idFrais: idFrais,
+                            idEleve: idEleve,
                         },
                         success: function(reponse) {
                             console.log(reponse);
@@ -109,12 +111,14 @@
                     </div>
 
                     <div class="clog-lg-6">
-                        <button type="button" class="btn btn-primary m-1 float-right"><i class="fa fa-user-plus fa-lg" data-toggle="modal" data-target="#addModal"> Nouveau</i>
+                        <!-- <button type="button" class="btn btn-primary m-1 float-right"><i class="fa fa-user-plus fa-lg" data-toggle="modal" data-target="#addModal"> Nouveau</i> -->
                         </button>&nbsp;&nbsp;&nbsp;
                         <a href="actionEleve.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
-                            Exporter</a>&nbsp;&nbsp;&nbsp;
+                            Exporter
+                        </a>&nbsp;&nbsp;&nbsp;
                         <a href="#" class="btn btn-danger m-1 float-lg"><i class="fa fa-table fa-lg"></i>
-                            Importer</a>
+                            Importer
+                        </a>
                     </div>
                 </div>
                 <hr class="my-1">
@@ -143,10 +147,13 @@
                 <!-- Modal body -->
                 <div class="modal-body px-4">
                     <form action="" method="POST" id="form-data">
+                        <input type="hidden" id="id" name="id">
+                        <p id="details_eleve"></p>
                         <div class="form-group">
                             <label for="idFrais">Frais :  </label>
                             <select name="idFrais" onchange='showSolde()' id="idFrais" class="form-control" required>
-                                <?php 
+                                <option value=""></option>  
+                               <?php 
                                          $resFrais = $taches->selectalldata("frais");
                                          while($data=$resFrais->fetch()){                                ?>
                                          <option value="<?php echo $data['id'] ?>"><?php echo $data['libelle']?></option>
@@ -196,8 +203,6 @@
                                 <option value="Femme">Femme</option>
                             </select>
                         </div>
-
-                       
 
                         <div class="form-group">
                             <input type="submit" name="update" id="update" class="btn btn-danger btn-block" value="MODIFIER">
@@ -269,15 +274,10 @@
                     type:"POST",
                     data:{edit_id:edit_id},
                     success:function(reponse){
-                       data=JSON.parse(reponse);
-                        
+                       console.log(reponse)
+                       data=JSON.parse(reponse);                        
                        $("#id").val(data.id);
-                       $("#noms").val(data.noms);
-                       $("#sexe").val(data.sexe);
-                       $("#grade").val(data.grade);
-                       $("#adresse").val(data.adresse)
-                       $("#domaine").val(data.domaine);
-                       $("#telephone").val(data.telephone);
+                       $("#details_eleve").text("Elève : "+data.nom+" "+data.postnom+" "+data.prenom+"     Classe: "+data.classe);
                     }
                 })
             });
@@ -287,7 +287,7 @@
                 if ($("#edit-form-data")[0].checkValidity()) {
                     e.preventDefault();
                     $.ajax({
-                        url:"actionPerception.php",
+                        url:"actions/actionPerception.php",
                         type:"POST",
                         data: $("#edit-form-data").serialize()+"&action=update",
                         success: function(reponse) {

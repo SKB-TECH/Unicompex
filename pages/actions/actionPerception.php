@@ -30,8 +30,8 @@
                             <i class="fa fa-info-circle fa-lg "></i>
                         </a>
 
-                        <a href="#" class="text-primary editBtn" title="Modifier" data-toggle="modal" data-target="#editModal" id="'.$data['id'].'">
-                            <i class="fa fa-edit fa-lg"></i>
+                        <a href="#" class="text-primary editBtn" title="Modifier" data-toggle="modal" data-target="#addModal" id="'.$data['id'].'">
+                            <i class="fa fa-dollar fa-lg"></i>
                         </a>
 
                         <a href="#" class="text-danger deleteBtn" title="Supprimer" id="'.$data['id'].'">
@@ -71,7 +71,10 @@
     /** Fonction modification de la table  enseignants*/
     if(isset($_POST['edit_id'])){
         $id=$_POST['edit_id'];
-        $row=$db->selectbyid($id,'enseignants');
+        // $row = $db->selectalldata2("select *, sum(montant_percu) as solde from perception inner join eleves on eleves.id = idEleve and idEleve ='$id'")
+
+            $row=$db->selectbyid($id,'eleves');
+
        
         echo json_encode($row);
     }
@@ -136,31 +139,26 @@
     // affiche resultat solde 
     if(isset($_POST['action']) && $_POST['action']=="solde"){
         $id=$_POST['idFrais'];
+        $idEleve=$_POST['idEleve'];
         $output="";
        
         $resultat=$db->selectalldata2("select *, sum(montant_percu) as solde from perception 
-            inner join frais on idFrais = frais.id and idFrais = '$id'");
-            
-            $res=$resultat->fetch();    
-            if ($data=$resultat->fetch()) {
+            inner join frais on idFrais = frais.id and idFrais = '$id' and idEleve='$idEleve'");   
+            $data=$resultat->fetch();
+            if ($data) {
                 $output .='
                 <p class="text-center text-secondary">
-                        <b>'.$data['solde'].'</b>
-                        <small>'.$data['libele'].'</small>   
-                </p>'
-                ;
+                        <b>'."Solde : ".$data['solde']." ".$data['devise']."
+                         / ".$data['montant_frais']." ".$data['devise'].'</b> 
+                         <input type="hidden" id="solde_value" name="solde" value='.$data['solde'].'>
+                </p>';
             }else{
                 $output .= "
-                <h3 class='text-center text-secondary mt-5'>
-                     solde 0
-                </h3>";
+                <p class='text-center text-secondary mt-5'>
+                     Le solde est 0 pour le frais selectionné
+                </p>";
             }
             echo ($output);
-        }else {
-            echo "
-            <h3 class='text-center text-secondary mt-5'>
-                 erreur
-            </h3>";
         }
     
 
