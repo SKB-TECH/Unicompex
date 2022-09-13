@@ -24,7 +24,7 @@ $taches = new crud();
 
     <link rel="stylesheet" href="../font/font-awesome-4.7.0/css/font-awesome.min.css">
 
-    <title>Personnel</title>
+    <title>Gestion Paiements</title>
     <?php require_once("../pages/Menus/Navbar.php") ?>
 </head>
 
@@ -88,13 +88,13 @@ $taches = new crud();
 
                 <div class="row">
                     <div class="col-lg-6">
-                        <h5 class="mt-2 text-primary">Gestion Personnel</h5>
+                        <h5 class="mt-2 text-primary">Paiement des Enseignants</h5>
                     </div>
 
                     <div class="clog-lg-6">
                         <button type="button" class="btn btn-primary m-1 float-right"><i class="fa fa-user-plus fa-lg" data-toggle="modal" data-target="#addModal"> Nouveau</i>
                         </button>&nbsp;&nbsp;&nbsp;
-                        <a href="./Menus/actionsEnsei.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
+                        <a href="./Menus/actionPaie.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
                             Exporter</a>&nbsp;&nbsp;&nbsp;
                         <a href="#" class="btn btn-danger m-1 float-lg"><i class="fa fa-table fa-lg"></i>
                             Importer</a>
@@ -215,11 +215,16 @@ $taches = new crud();
                         </div>
                         <div class="form-group">
                             <select name="domaine" class="form-control" id="domaine" required>
-                                <option value="">Selectionner Poste</option>
-                                <option value="Prefet">Prefet</option>
-                                <option value="Proviseur">Proviseur</option>
-                                <option value="Enseignant">Enseignant</option>
-                                <option value="Ouvrier">Ouvrier</option>
+                                <option value="">Selectionner Domaine..</option>
+                                <label value="Anglais">Anglophne</label>
+                                <option value="Pedagogie">Pedagogue</option>
+                                <option value="Biologie">Biologiste</option>
+                                <option value="Assistant Social">Assistant Social</option>
+                                <option value="Français">Franciste</option>
+                                <option value="Mathematique">Mathematicien</option>
+                                <option value="Comptabilite">Comptable</option>
+                                <option value="Chimie">Chimiste</option>
+                                <option value="Informatique">Informaticien</option>
                                 <option value="Autres">Autres</option>
                             </select>
                         </div>
@@ -249,7 +254,7 @@ $taches = new crud();
 
             function showAllUser() {
                 $.ajax({
-                    url: "./Menus/actionsEnsei.php",
+                    url: "./Menus/actionsPaie.php",
                     type: "POST",
                     data: {
                         action: "view"
@@ -269,7 +274,7 @@ $taches = new crud();
                 if ($("#form-data")[0].checkValidity()) {
                     e.preventDefault();
                     $.ajax({
-                        url:"./Menus/actionsEnsei.php",
+                        url:"./Menus/actionsPaie.php",
                         type:"POST",
                         data: $("#form-data").serialize()+"&action=insert",
                         success: function(reponse) {
@@ -293,7 +298,7 @@ $taches = new crud();
                 edit_id=$(this).attr('id');
 
                 $.ajax({
-                    url:"./Menus/actionsEnsei.php",
+                    url:"./Menus/actionsPaie.php",
                     type:"POST",
                     data:{edit_id:edit_id},
                     success:function(reponse){
@@ -315,7 +320,7 @@ $taches = new crud();
                 if ($("#edit-form-data")[0].checkValidity()) {
                     e.preventDefault();
                     $.ajax({
-                        url:"./Menus/actionsEnsei.php",
+                        url:"./Menus/actionsPaie.php",
                         type:"POST",
                         data: $("#edit-form-data").serialize()+"&action=update",
                         success: function(reponse) {
@@ -351,7 +356,7 @@ $taches = new crud();
                     }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                        url:"action.php",
+                        url:"./Menus/actionsPaie.php",
                         type:"POST",
                         data: {del_id:del_id},
                         success: function(reponse) {
@@ -376,7 +381,7 @@ $taches = new crud();
                 e.preventDefault();
                 info_id= $(this).attr('id');
                 $.ajax({
-                    url:"./Menus/actionsEnsei.php",
+                    url:"./Menus/actionsPaie.php",
                     type:"POST",
                     data:{info_id:info_id},
                     success:function(reponse){

@@ -2,7 +2,7 @@
     error_reporting( E_ALL );
     ini_set( 'display_errors', 1);
 
-    require_once "../Classes/crud.php";
+    require_once "../../Classes/crud.php";
     $db=new Crud();
 
     if(isset($_POST['action']) && $_POST['action']=="view"){
@@ -94,13 +94,12 @@
             $telephone=$_POST['telephone'];
         
         $db->Modification($id,$noms,$sexe,$grade,$domaine,$adresse,$telephone);
-        echo ($data);
+        // echo ($data);
     }
 
     /** Fonction Suprimmer de la table  enseignants*/
     if(isset($_POST['del_id'])){
         $id=$_POST['del_id'];
-        
         $row=$db->deletedata('enseignants','id',$id);
        
     }

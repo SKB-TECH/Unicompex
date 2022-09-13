@@ -13,7 +13,6 @@ ini_set( 'display_errors', 1);
                 public $column = "";
                 public $value = "";
 
-
                 public function __construct()
                 {
                         parent::__construct();
@@ -79,10 +78,35 @@ ini_set( 'display_errors', 1);
                         return true;
                 }
               
+                public function SelectDataWhere($table1,$table2){
+                        $select = "SELECT * FROM $table1 inner join $table2 ON $table1.id=$table2.idagent";
+                        $data = $this->connection->query($select);
+                        return $data;
+                }
 
+                public function SelectDataWhereById($table1,$table2,$ids){
+                        $select = "SELECT * FROM $table1 inner join $table2 ON $table1.id=$table2.$ids";
+                        $data = $this->connection->query($select);
+                        return $data;
+                }
 
+                public function ModificationAvance($id,$agent,$mois,$montant,$um,$dates){
+                        $sql="UPDATE avance SET idagent=:agent,mois=:mois,montant=:montant,um=:um,dates=:dates WHERE id=:id";
+                        $stms=$this->connection->prepare($sql);
+                        $stms->execute((['agent'=>$agent,'mois'=>$mois,'montant'=>$montant,'um'=>$um,'dates'=>$dates,'id'=>$id
+                        ]));
+     
+                             return true;
+                     }
 }
 
-// $taches=new Crud();
-//         $taches->insert2("INSERT INTO enseignants(noms,sexe,grade,domaine,adresse,telephone) values('Gourou','M','Gourou','M','Gourou','M')");
-?>
+//       $taches=new Crud();
+//       $data=$taches->SelectDataWhereById('enseignants','avance','idagent');
+//        while ($row=$data->fetch()) {
+//          echo($row['mois']);
+//          echo($row['montant']);
+//          echo($row['id']);
+//          echo($row['idagent']);
+//          echo($row['sexe']);
+//          echo($row['noms']);
+//        }
