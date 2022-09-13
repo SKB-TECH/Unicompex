@@ -26,6 +26,24 @@
     <link rel="stylesheet" href="../font/font-awesome-4.7.0/css/font-awesome.min.css">
 
     <title>Percetion</title>
+    <script>
+            // affiche les resultat
+            function showSolde() {
+                    let idFrais = $('#idFrais').val()
+                    $.ajax({
+                        url: "actions/actionPerception.php",
+                        type: "POST",
+                        data: {
+                            action: "solde",
+                            idFrais: idFrais,
+                        },
+                        success: function(reponse) {
+                            console.log(reponse);
+                            $("#solde").html(reponse);
+                        }
+                    });
+                }
+    </script>
     <?php require_once("../pages/Menus/Navbar.php") ?>
 </head>
 
@@ -127,8 +145,7 @@
                     <form action="" method="POST" id="form-data">
                         <div class="form-group">
                             <label for="idFrais">Frais :  </label>
-                            <select name="idFrais" id="idFrais" class="form-control" required>
-
+                            <select name="idFrais" onchange='showSolde()' id="idFrais" class="form-control" required>
                                 <?php 
                                          $resFrais = $taches->selectalldata("frais");
                                          while($data=$resFrais->fetch()){                                ?>
@@ -142,40 +159,9 @@
                         </div>
                         <div class="form-group">
                             <label for="nom">Nom</label>
-                            <input type="text" name="noms" class="form-control" placeholder="noms complet" required>
+                            <input type="text" name="noms" class="form-control" placeholder="noms complet"  required>
                         </div>
 
-                        <div class="form-group">
-                            <select name="grade" class="form-control" required>
-                                <option value="">Selectionner le grade..</option>
-                                <option value="D6">Diplome d'Etat</option>
-                                <option value="Licencie">Licencié</option>
-                                <option value="Gradue">Gradué</option>
-                                <option value="Master">Master</option>
-                                <option value="Autres">Autres</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <select name="domaine" class="form-control" required>
-                                <option value="">Selectionner Domaine..</option>
-                                <label value="Anglais">Anglophne</label>
-                                <option value="Pedagogie">Pedagogue</option>
-                                <option value="Biologie">Biologiste</option>
-                                <option value="Assistant Social">Assistant Social</option>
-                                <option value="Français">Franciste</option>
-                                <option value="Mathematique">Mathematicien</option>
-                                <option value="Comptabilite">Comptable</option>
-                                <option value="Chimie">Chimiste</option>
-                                <option value="Informatique">Informaticien</option>
-                                <option value="Autres">Autres</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="adresse" class="form-control" placeholder="adresse" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="telephone" class="form-control" placeholder="+243 813678926" required>
-                        </div>
 
                         <div class="form-group">
                             <input type="submit" name="insert" id="insert" class="btn btn-primary btn-block" value="ENREGISTRER">
@@ -211,37 +197,7 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <select name="grade" class="form-control" id="grade" required>
-                                <option value="">Selectionner le grade..</option>
-                                <option value="D6">Diplome d'Etat</option>
-                                <option value="Licencie">Licencié</option>
-                                <option value="Gradue">Gradué</option>
-                                <option value="Master">Master</option>
-                                <option value="Autres">Autres</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <select name="domaine" class="form-control" id="domaine" required>
-                                <option value="">Selectionner Domaine..</option>
-                                <label value="Anglais">Anglophne</label>
-                                <option value="Pedagogie">Pedagogue</option>
-                                <option value="Biologie">Biologiste</option>
-                                <option value="Assistant Social">Assistant Social</option>
-                                <option value="Français">Franciste</option>
-                                <option value="Mathematique">Mathematicien</option>
-                                <option value="Comptabilite">Comptable</option>
-                                <option value="Chimie">Chimiste</option>
-                                <option value="Informatique">Informaticien</option>
-                                <option value="Autres">Autres</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="adresse" class="form-control" id="adresse" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="telephone" class="form-control" id="telephone" required>
-                        </div>
+                       
 
                         <div class="form-group">
                             <input type="submit" name="update" id="update" class="btn btn-danger btn-block" value="MODIFIER">
@@ -253,18 +209,19 @@
     </div>
     <!-- Fin de la fenetre modal Modification-->
 
-<!-- Fin de la fenetre modal -->
+
     <!-- Les lebrairies Javascript -->
     <script>
 
         // 
         /** fonction pour Afficher les donnes avec ajax  */
         $(document).ready(() => {
+            // $("#idFrais").change(showSolde());
             showAllUser()
 
             function showAllUser() {
                 $.ajax({
-                    url: "action.php",
+                    url: "actions/actionPerception.php",
                     type: "POST",
                     data: {
                         action: "view"
@@ -279,29 +236,12 @@
                 });
             }
 
-            // affiche les resultat
-                function showAllUser() {
-                    let selected = $('#idFrais').val()
-                    $.ajax({
-                        url: "action.php",
-                        type: "POST",
-                        data: {
-                            action: "solde",
-                            idFrais: idFrais,
-                        },
-                        success: function(reponse) {
-                            // console.log(reponse);
-                            $("#solde").html(reponse);
-                        }
-                    });
-                }
-
             /** Fonction insert dans la bdd */
             $("#insert").click(function(e) {
                 if ($("#form-data")[0].checkValidity()) {
                     e.preventDefault();
                     $.ajax({
-                        url:"action.php",
+                        url:"actionPerception.php",
                         type:"POST",
                         data: $("#form-data").serialize()+"&action=insert",
                         success: function(reponse) {
@@ -325,7 +265,7 @@
                 edit_id=$(this).attr('id');
 
                 $.ajax({
-                    url:"action.php",
+                    url:"actions/actionPerception.php",
                     type:"POST",
                     data:{edit_id:edit_id},
                     success:function(reponse){
@@ -347,7 +287,7 @@
                 if ($("#edit-form-data")[0].checkValidity()) {
                     e.preventDefault();
                     $.ajax({
-                        url:"action.php",
+                        url:"actionPerception.php",
                         type:"POST",
                         data: $("#edit-form-data").serialize()+"&action=update",
                         success: function(reponse) {
@@ -382,7 +322,7 @@
                     }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                        url:"action.php",
+                        url:"actionPerception.php",
                         type:"POST",
                         data: {del_id:del_id},
                         success: function(reponse) {
@@ -407,7 +347,7 @@
                 e.preventDefault();
                 info_id= $(this).attr('id');
                 $.ajax({
-                    url:"action.php",
+                    url:"actionPerception.php",
                     type:"POST",
                     data:{info_id:info_id},
                     success:function(reponse){

@@ -11,7 +11,7 @@
         if($res=$db->total('eleves')){
             $output .='
             <table class="table table-striped table-sm table-bordered">
-            <thead>
+                <thead>
                 <th>N°</th>
                 <th>Noms</th>
                 <th>Classe</th>
@@ -22,11 +22,10 @@
             while ($data=$resultat->fetch()) {
                 $output .='
                 <tr class="text-center text-secondary">
-                    <td>'.$data['id'].'</td>
-                    <td>'.$data['nom']." ".$data['postnom']." ".$data['prenom'].'</td>
-                    <td>'.$data['classe'].'</td>
-                    
-                    <td>
+                <td>'.$data['id'].'</td>
+                <td>'.$data['nom']." ".$data['postnom']." ".$data['prenom'].'</td>
+                <td>'.$data['classe'].'</td>
+                <td>
                         <a href="#" class="text-success infoBtn" title="Info"  id="'.$data['id'].'">
                             <i class="fa fa-info-circle fa-lg "></i>
                         </a>
@@ -50,7 +49,7 @@
         else {
             echo "
             <h3 class='text-center text-secondary mt-5'>
-                Aucune donnee disponible !!!
+                Pas d'informations sur cette recherche !!!
             </h3>";
         }
     }
@@ -58,14 +57,13 @@
     /** Fonction insert dans la bdd */
     if(isset($_POST['action']) && $_POST['action']=="insert"){
         
-        $nom=$_POST['nom'];
-        $postnom=$_POST['postnom'];
-        $prenom=$_POST['prenom'];
+        $noms=$_POST['noms'];
         $sexe=$_POST['sexe'];
-        $date_naissance=$_POST['date_naissance'];
-        $lieu_naissance=$_POST['lieu_naissance'];
-        $classe=$_POST['classe'];
-        $sql=("INSERT INTO eleves(nom,postnom,prenom,sexe,date_naissance,lieu_naissance,classe)VALUES('$nom','$postnom','$prenom','$sexe','$date_naissance','$lieu_naissance','$classe')");
+        $grade=$_POST['grade'];
+        $domaine=$_POST['domaine'];
+        $adresse=$_POST['adresse'];
+        $telephone=$_POST['telephone'];
+        $sql=("INSERT INTO enseignants(noms,sexe,grade,domaine,adresse,telephone)VALUES('$noms','$sexe','$grade','$domaine','$adresse','$telephone')");
         
         $db->insert2($sql);
     }
@@ -77,26 +75,25 @@
        
         echo json_encode($row);
     }
-    if (isset($_POST['action'])&& $_POST['action']=="update") {
+    // if (isset($_POST['action'])&& $_POST['action']=="update") {
             
-            $id=$_POST['id'];
-            $nom=$_POST['nom'];
-            $postnom=$_POST['postnom'];
-            $prenom=$_POST['prenom'];
-            $sexe=$_POST['sexe'];
-            $date_naissance=$_POST['date_naissance'];
-            $lieu_naissance=$_POST['lieu_naissance'];
-            $classe=$_POST['classe'];
+    //         $id=$_POST['id'];
+    //         $noms=$_POST['noms'];
+    //         $sexe=$_POST['sexe'];
+    //         $grade=$_POST['grade'];
+    //         $domaine=$_POST['domaine'];
+    //         $adresse=$_POST['adresse'];
+    //         $telephone=$_POST['telephone'];
         
-        $sql = "UPDATE FROM eleves SET nom='$nom',postnom='$postnom',prenom='$prenom',sexe='$sexe',date_naissance='$date_naissance',lieu_naissance='$lieu_naissance',classe='$classe' where id='$id";
-        echo ($data);
-    }
+    //     $db->Modification($id,$noms,$sexe,$grade,$domaine,$adresse,$telephone);
+    //     echo ($data);
+    // }
 
     /** Fonction Suprimmer de la table  enseignants*/
     if(isset($_POST['del_id'])){
         $id=$_POST['del_id'];
         
-        $row=$db->deletedata('eleves','id',$id);
+        $row=$db->deletedata('enseignants','id',$id);
        
     }
 
@@ -104,7 +101,7 @@
     if(isset($_POST['info_id'])){
         $id=$_POST['info_id'];
 
-        $row=$db->selectbyid($id,'eleves');
+        $row=$db->selectbyid($id,'enseignants');
     
         echo json_encode($row);
     }
@@ -116,25 +113,55 @@
         header('Pragma:no-cache');
         header('Expire:0');
 
-        $resultat=$db->selectalldata('eleves');
+        $resultat=$db->selectalldata('enseignants');
         echo '<table border="1">';
-        echo '<tr><th>N°</th><th>Nom</th><th>Postom</th><th>Prenom</th>
-                <th>Sexe</th><th>Classe</th><th>Lieu</th><th>Naissance</th></tr>';
+        echo '<tr><th>N°</th><th>Noms</th><th>Sexe</th><th>Grade</th><th>Domaine</th><th>Telephone</th></tr>';
 
         while ($data=$resultat->fetch()) {
             echo '<tr>
             <tr class="text-center text-secondary">
             <td>'.$data['id'].'</td>
-            <td>'.$data['nom'].'</td>
-            <td>'.$data['postnom'].'</td>
-            <td>'.$data['prenom'].'</td>
+            <td>'.$data['noms'].'</td>
             <td>'.$data['sexe'].'</td>
-            <td>'.$data['classe'].'</td>
-            <td>'.$data['lieu_naissance'].'</td>
-            <td>'.$data['date_naissance'].'</td>
+            <td>'.$data['grade'].'</td>
+            <td>'.$data['domaine'].'</td>
+            <td>'.$data['adresse'].'</td>
+            <td>'.$data['telephone'].'</td>
         </tr>';
     
         }
         echo '</table>';
     }
+
+    // affiche resultat solde 
+    if(isset($_POST['action']) && $_POST['action']=="solde"){
+        $id=$_POST['idFrais'];
+        $output="";
+       
+        $resultat=$db->selectalldata2("select *, sum(montant_percu) as solde from perception 
+            inner join frais on idFrais = frais.id and idFrais = '$id'");
+            
+            $res=$resultat->fetch();    
+            if ($data=$resultat->fetch()) {
+                $output .='
+                <p class="text-center text-secondary">
+                        <b>'.$data['solde'].'</b>
+                        <small>'.$data['libele'].'</small>   
+                </p>'
+                ;
+            }else{
+                $output .= "
+                <h3 class='text-center text-secondary mt-5'>
+                     solde 0
+                </h3>";
+            }
+            echo ($output);
+        }else {
+            echo "
+            <h3 class='text-center text-secondary mt-5'>
+                 erreur
+            </h3>";
+        }
+    
+
 ?>

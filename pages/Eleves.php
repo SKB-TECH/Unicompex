@@ -90,7 +90,7 @@
                     <div class="clog-lg-6">
                         <button type="button" class="btn btn-primary m-1 float-right"><i class="fa fa-user-plus fa-lg" data-toggle="modal" data-target="#addModal"> Nouveau</i>
                         </button>&nbsp;&nbsp;&nbsp;
-                        <a href="actionEleve.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
+                        <a href="actions/actionEleve.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
                             Exporter</a>&nbsp;&nbsp;&nbsp;
                         <a href="#" class="btn btn-danger m-1 float-lg"><i class="fa fa-table fa-lg"></i>
                             Importer</a>
@@ -107,7 +107,6 @@
             </div>
         </div>
     </div>
-
     <!-- Modal pour enregistrement -->
     <!-- The Modal -->
     <div class="modal fade" id="addModal">
@@ -123,47 +122,41 @@
                 <div class="modal-body px-4">
                     <form action="" method="POST" id="form-data">
                         <div class="form-group">
-                            <label for="nom">Nom</label>
-                            <input type="text" name="noms" class="form-control" placeholder="noms complet" required>
+                            <label for="nom">Nom :</label>
+                            <input type="text" name="nom" class="form-control" placeholder="nom de l'élève" required>
                         </div>
                         <div class="form-group">
-                            <select name="sexe" class="form-control" required>
-                                <option value="Autres">Selectionner le sexe..</option>
-                                <option value="Homme">Homme</option>
-                                <option value="Femme">Femme</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <select name="grade" class="form-control" required>
-                                <option value="">Selectionner le grade..</option>
-                                <option value="D6">Diplome d'Etat</option>
-                                <option value="Licencie">Licencié</option>
-                                <option value="Gradue">Gradué</option>
-                                <option value="Master">Master</option>
-                                <option value="Autres">Autres</option>
-                            </select>
+                            <label for="nom">Postnom :</label>
+                            <input type="text" name="postnom" class="form-control" placeholder="postnom de l'élève" required>
                         </div>
                         <div class="form-group">
-                            <select name="domaine" class="form-control" required>
-                                <option value="">Selectionner Domaine..</option>
-                                <label value="Anglais">Anglophne</label>
-                                <option value="Pedagogie">Pedagogue</option>
-                                <option value="Biologie">Biologiste</option>
-                                <option value="Assistant Social">Assistant Social</option>
-                                <option value="Français">Franciste</option>
-                                <option value="Mathematique">Mathematicien</option>
-                                <option value="Comptabilite">Comptable</option>
-                                <option value="Chimie">Chimiste</option>
-                                <option value="Informatique">Informaticien</option>
-                                <option value="Autres">Autres</option>
+                            <label for="prenom">Prenom :</label>
+                            <input type="text" name="prenom" class="form-control" placeholder="prenom de l'élève" required>
+                        </div>
+                        <div class="form-group">
+                        <label for="sexe">Sexe : </label>
+                            <select name="sexe" id="sexe" class="form-control" required>
+                                <option value="">Selectionner le sexe...</option>
+                                <option value="M">Masculin</option>
+                                <option value="F">Feminin</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="adresse" class="form-control" placeholder="adresse" required>
+                        <label for="sexe">Classe :  </label>
+                            <select name="classe" id="classe" class="form-control" required>
+                                <option value="">Selectionner le sexe...</option>
+                                <option value="1 ère">1 ère</option>
+                                <option value="2 ème">2 ème</option>
+                                <option value="3 ème">3 ème</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="telephone" class="form-control" placeholder="+243 813678926" required>
+                            <label for="date_naissance">Date de naissance :</label>
+                            <input type="date" name="date_naissance" class="form-control" placeholder="Date de naissance" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lieu">Lieu de naissance :</label>
+                            <input type="text" name="lieu_naissance" class="form-control" placeholder="Lieu de naissance" required>
                         </div>
 
                         <div class="form-group">
@@ -189,49 +182,43 @@
                 <div class="modal-body px-4">
                     <form action="" method="POST" id="edit-form-data">
                         <input type="hidden" id="id" name="id">
-                        <div class="form-group">
-                            <input type="text" name="noms" class="form-control" id="noms" required>
+                    <div class="form-group">
+                            <label for="nom">Nom :</label>
+                            <input type="text" name="nom" class="form-control" placeholder="nom de l'élève" required>
                         </div>
                         <div class="form-group">
-                            <select name="sexe" class="form-control" id="sexe" required>
-                                <option value="Autres">Selectionner le sexe..</option>
-                                <option value="Homme">Homme</option>
-                                <option value="Femme">Femme</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <select name="grade" class="form-control" id="grade" required>
-                                <option value="">Selectionner le grade..</option>
-                                <option value="D6">Diplome d'Etat</option>
-                                <option value="Licencie">Licencié</option>
-                                <option value="Gradue">Gradué</option>
-                                <option value="Master">Master</option>
-                                <option value="Autres">Autres</option>
-                            </select>
+                            <label for="nom">Postnom :</label>
+                            <input type="text" name="postnom" class="form-control" placeholder="postnom de l'élève" required>
                         </div>
                         <div class="form-group">
-                            <select name="domaine" class="form-control" id="domaine" required>
-                                <option value="">Selectionner Domaine..</option>
-                                <label value="Anglais">Anglophne</label>
-                                <option value="Pedagogie">Pedagogue</option>
-                                <option value="Biologie">Biologiste</option>
-                                <option value="Assistant Social">Assistant Social</option>
-                                <option value="Français">Franciste</option>
-                                <option value="Mathematique">Mathematicien</option>
-                                <option value="Comptabilite">Comptable</option>
-                                <option value="Chimie">Chimiste</option>
-                                <option value="Informatique">Informaticien</option>
-                                <option value="Autres">Autres</option>
+                            <label for="prenom">Prenom :</label>
+                            <input type="text" name="prenom" class="form-control" placeholder="prenom de l'élève" required>
+                        </div>
+                        <div class="form-group">
+                        <label for="sexe">Sexe : </label>
+                            <select name="sexe" id="sexe" class="form-control" required>
+                                <option value="">Selectionner le sexe...</option>
+                                <option value="M">Masculin</option>
+                                <option value="F">Feminin</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="adresse" class="form-control" id="adresse" required>
+                        <label for="sexe">Classe :  </label>
+                            <select name="classe" id="classe" class="form-control" required>
+                                <option value="">Selectionner le sexe...</option>
+                                <option value="1 ère">1 ère</option>
+                                <option value="2 ème">2 ème</option>
+                                <option value="3 ème">3 ème</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="telephone" class="form-control" id="telephone" required>
+                            <label for="date_naissance">Date de naissance :</label>
+                            <input type="date" name="date_naissance" class="form-control" placeholder="Date de naissance" required>
                         </div>
-
+                        <div class="form-group">
+                            <label for="lieu">Lieu de naissance :</label>
+                            <input type="text" name="lieu_naissance" class="form-control" placeholder="Lieu de naissance" required>
+                        </div>
                         <div class="form-group">
                             <input type="submit" name="update" id="update" class="btn btn-danger btn-block" value="MODIFIER">
                         </div>
@@ -251,7 +238,7 @@
 
             function showAllUser() {
                 $.ajax({
-                    url: "action.php",
+                    url: "actions/actionEleve.php",
                     type: "POST",
                     data: {
                         action: "view"
@@ -271,13 +258,13 @@
                 if ($("#form-data")[0].checkValidity()) {
                     e.preventDefault();
                     $.ajax({
-                        url:"action.php",
+                        url:"actions/actionEleve.php",
                         type:"POST",
                         data: $("#form-data").serialize()+"&action=insert",
                         success: function(reponse) {
                         Swal.fire(
                             'Felicitation!',
-                            'Enseignant Ajouté(e) avec success !',
+                            'Elève Ajouté(e) avec success !',
                             'success'
                             )
 
@@ -295,35 +282,35 @@
                 edit_id=$(this).attr('id');
 
                 $.ajax({
-                    url:"action.php",
+                    url:"actions/actionEleve.php",
                     type:"POST",
                     data:{edit_id:edit_id},
                     success:function(reponse){
                        data=JSON.parse(reponse);
                         
                        $("#id").val(data.id);
-                       $("#noms").val(data.noms);
+                       $("#nom").val(data.nom);
+                       $("#postnom").val(data.postnom);
+                       $("#prenom").val(data.prenom);
                        $("#sexe").val(data.sexe);
-                       $("#grade").val(data.grade);
-                       $("#adresse").val(data.adresse)
-                       $("#domaine").val(data.domaine);
-                       $("#telephone").val(data.telephone);
+                       $("#date_naissance").val(data.date_naissance);
+                       $("#lieu_naissa").val(data.lieu_naissance)
+                       $("#classe").val(data.classe);
                     }
                 })
             });
-
             /** Modification des donnees */
             $("#update").click(function(e) {
                 if ($("#edit-form-data")[0].checkValidity()) {
                     e.preventDefault();
                     $.ajax({
-                        url:"action.php",
+                        url:"actions/actionEleve.php",
                         type:"POST",
                         data: $("#edit-form-data").serialize()+"&action=update",
                         success: function(reponse) {
                         Swal.fire(
                             'Felicitation!',
-                            'Enseignant Modifier avec success !',
+                            ' modification reussi !',
                             'success'
                             )
 
@@ -353,7 +340,7 @@
                     }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                        url:"action.php",
+                        url:"actions/actionEleve.php",
                         type:"POST",
                         data: {del_id:del_id},
                         success: function(reponse) {
@@ -378,24 +365,21 @@
                 e.preventDefault();
                 info_id= $(this).attr('id');
                 $.ajax({
-                    url:"action.php",
+                    url:"actions/actionEleve.php",
                     type:"POST",
                     data:{info_id:info_id},
                     success:function(reponse){
                         data=JSON.parse(reponse);
                         Swal.fire(
                             {
-                                title:'<Strong class="text-left"> ID:'+data.id+'</Strong>',
+                                title:'<Strong class="text-left"> Code Eleve :'+data.id+'</Strong>',
                                 type:"info",
-                                html:'<b class="text-left">Noms:'+data.noms+'</b></br><b class="text-left">Grade:'+data.grade+'</b></br><b class="text-left">Domaines:'+data.domaine+'</b></br><b class="text-left">Tel:'+data.telephone+'</b>',
+                                html:'<b class="text-left">Noms:'+data.nom+" "+data.postnom+" "+data.prenom+
+                                '</b></br><b class="text-left">Sexe:'+data.sexe+'</b></br><b class="text-left">Classe:'+data.classe+'</b>',
                                 showCancelButton:true
-                           
                             }
-
                         )
-
                         showAllUser();
-                        console.log(info_id);
                     }
                 })
                 

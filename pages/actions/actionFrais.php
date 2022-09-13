@@ -81,7 +81,7 @@
             $montant=$_POST['montant'];
             $devise=$_POST['devise'];
            
-        $db->Modification($id,$libelle,$montant,$devise);
+        // $db->Modification($id,$libelle,$montant,$devise);
         echo ($data);
     }
 
