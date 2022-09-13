@@ -140,29 +140,4 @@
         }
         echo '</table>';
     }
-
-    // affiche resultat solde 
-    if(isset($_POST['action']) && $_POST['action']=="solde"){
-        $id=$_POST['idFrais'];
-        $output="";
-        $resultat=$db->selectalldata2("select *, sum(perception) as solde from perception 
-            inner join frais on idFrais = frais.id and idFrais = '$idFrais'");
-        if($res=$resultat->fetch()){     
-            if ($data=$resultat->fetch()) {
-                $output .='
-                <p class="text-center text-secondary">
-                        <b>'.$data['solde'].'</b>
-                        <small>'.$data['libele'].'</small>   
-                </p>'
-                ;
-            }
-            echo ($output);
-        }else {
-            echo "
-            <h3 class='text-center text-secondary mt-5'>
-                 erreur
-            </h3>";
-        }
-    }
-
 ?>
