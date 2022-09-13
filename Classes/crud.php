@@ -84,10 +84,13 @@ ini_set( 'display_errors', 1);
                         return $data;
                 }
 
-                public function SelectDataWhereById($table1,$table2,$ids){
-                        $select = "SELECT * FROM $table1 inner join $table2 ON $table1.id=$table2.$ids";
-                        $data = $this->connection->query($select);
-                        return $data;
+                public function ModDepenses($id,$motif,$montant,$um,$mois,$dates){
+                $sql="UPDATE depense SET motif=:mot,montant=:mont,um=:um,mois=:mois,dates=:dates WHERE id=:id";
+                   $stms=$this->connection->prepare($sql);
+                   $stms->execute((['mot'=>$motif,'mont'=>$montant,'um'=>$um,'mois'=>$mois,'dates'=>$dates,'id'=>$id
+                   ]));
+
+                        return true;
                 }
 
                 public function ModificationAvance($id,$agent,$mois,$montant,$um,$dates){
@@ -98,15 +101,6 @@ ini_set( 'display_errors', 1);
      
                              return true;
                      }
-}
 
-//       $taches=new Crud();
-//       $data=$taches->SelectDataWhereById('enseignants','avance','idagent');
-//        while ($row=$data->fetch()) {
-//          echo($row['mois']);
-//          echo($row['montant']);
-//          echo($row['id']);
-//          echo($row['idagent']);
-//          echo($row['sexe']);
-//          echo($row['noms']);
-//        }
+                
+}

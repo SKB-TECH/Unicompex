@@ -7,16 +7,16 @@
 
     if(isset($_POST['action']) && $_POST['action']=="view"){
         $output="";
-        $resultat=$db->SelectDataWhere('enseignants','avance');
-        if($res=$db->total('avance')){
+        $resultat=$db->selectalldata('depense');
+        if($res=$db->total('depense')){
             $output .='
             <table class="table table-striped table-sm table-bordered">
             <thead>
                 <th>N°</th>
-                <th>Noms</th>
-                <th>Mois</th>
+                <th>Motif</th>
                 <th>Montant</th>
                 <th>Um</th>
+                <th>Mois</th>
                 <th>Date</th>
                 <th>Actions</th>
             </thead>
@@ -26,10 +26,10 @@
                 $output .='
                 <tr class="text-center text-secondary">
                 <td>'.$data['id'].'</td>
-                <td>'.$data['noms'].'</td>
-                <td>'.$data['mois'].'</td>
+                <td>'.$data['motif'].'</td>
                 <td>'.$data['montant'].'</td>
                 <td>'.$data['um'].'</td>
+                <td>'.$data['mois'].'</td>
                 <td>'.$data['dates'].'</td>
                 <td>
                     <a href="#" class="text-success infoBtn" title="Info"  id="'.$data['id'].'">
@@ -62,13 +62,14 @@
     
     /** Fonction insert dans la bdd */
     if(isset($_POST['action']) && $_POST['action']=="insert"){
-        $id=$_POST['agent'];
-        $mois=$_POST['mois'];
+        
+        $motif=$_POST['motif'];
         $montant=$_POST['montant'];
         $um=$_POST['um'];
+        $mois=$_POST['mois'];
         $dates=$_POST['dates'];
-        $sql=("INSERT INTO avance(idagent,mois,montant,um,dates)VALUES('$id','$mois','$montant','$um','$dates')");
-        
+        $sql=("INSERT INTO depense(motif,montant,um,mois,dates)VALUES('$motif','$montant','$um','$mois','$dates')");
+    
         $db->insert2($sql);
         echo("ok");
     }
@@ -76,25 +77,25 @@
     /** Fonction modification de la table  enseignants*/
     if(isset($_POST['edit_id'])){
         $id=$_POST['edit_id'];
-        $row=$db->selectbyid($id,'avance');
+        $row=$db->selectbyid($id,'depense');
         echo json_encode($row);
     }
     if (isset($_POST['action'])&& $_POST['action']=="update") {
             
-            $id=$_POST['id'];
-            $agent=$_POST['agent'];
-            $mois=$_POST['mois'];
-            $montant=$_POST['montant'];
-            $dates=$_POST['dates'];
-            $um=$_POST['um'];
-            $db->ModificationAvance($id,$agent,$mois,$montant,$um,$dates);
+        $id=$_POST['id'];
+        $motif=$_POST['motif'];
+        $montant=$_POST['montant'];
+        $um=$_POST['um'];
+        $mois=$_POST['mois'];
+        $dates=$_POST['dates'];
+            $db->ModDepenses($id,$motif,$montant,$um,$mois,$dates);
         // echo ($data);
     }
 
     /** Fonction Suprimmer de la table  enseignants*/
     if(isset($_POST['del_id'])){
         $id=$_POST['del_id'];
-        $row=$db->deletedata('avance','idagent',$id);
+        $row=$db->deletedata('depense','id',$id);
        
     }
 
@@ -102,7 +103,7 @@
     if(isset($_POST['info_id'])){
         $id=$_POST['info_id'];
 
-        $row=$db->selectbyid($id,'avance');
+        $row=$db->selectbyid($id,'depense');
         echo json_encode($row);
     }
 
@@ -113,19 +114,19 @@
         header('Pragma:no-cache');
         header('Expire:0');
 
-        $resultat=$db->SelectDataWhere('enseignants','avance');
+        $resultat=$db->selectalldata('depense');
         echo '<table border="1">';
-        echo '<tr><th>N°</th><th>Noms</th><th>Mois</th><th>Montant</th><th>Um</th><th>Date</th></tr>';
+        echo '<tr><th>N°</th><th>Motif</th><th>Montant</th><th>Mois</th><th>Um</th><th>Date</th></tr>';
 
         while ($data=$resultat->fetch()) {
             $i=1;
             echo '<tr>
             <tr class="text-center text-secondary">
             <td>'.$i.'</td>
-            <td>'.$data['noms'].'</td>
-            <td>'.$data['mois'].'</td>
+            <td>'.$data['motif'].'</td>
             <td>'.$data['montant'].'</td>
             <td>'.$data['um'].'</td>
+            <td>'.$data['mois'].'</td>
             <td>'.$data['dates'].'</td>
         </tr>';
             $i++;

@@ -24,7 +24,7 @@ $taches = new crud();
 
     <link rel="stylesheet" href="../font/font-awesome-4.7.0/css/font-awesome.min.css">
 
-    <title>Avances</title>
+    <title>Depenses</title>
     <?php require_once("../pages/Menus/Navbar.php") ?>
 </head>
 
@@ -87,11 +87,11 @@ $taches = new crud();
 
                 <div class="row">
                     <div class="col-lg-6">
-                        <h5 class="mt-2 text-primary">Avances sur Salaires</h5>
+                        <h5 class="mt-2 text-primary">Gestion des Depenses</h5>
                     </div>
 
                     <div class="clog-lg-6">
-                        <button type="button" class="btn btn-primary m-1 float-right"><i class="fa fa-usd fa-lg" data-toggle="modal" data-target="#addModal"> Ajouter</i>
+                        <button type="button" class="btn btn-primary m-1 float-right"><i class="fa fa-briefcase" data-toggle="modal" data-target="#addModal"> Ajouter</i>
                         </button>&nbsp;&nbsp;&nbsp;
                     
                         <a href="./Menus/actionsAvance.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
@@ -119,7 +119,7 @@ $taches = new crud();
             <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h5 class="modal-title">Nouvelle Avance</h5>
+                    <h5 class="modal-title">Nouvelle Depense</h5>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
@@ -127,18 +127,21 @@ $taches = new crud();
                 <div class="modal-body px-4">
                     <form action="" method="POST" id="form-data">
                         <div class="form-group">
-                            <select name="agent" class="form-control" required>
-                            <option value="Autres">Selectionner l'agent</option>
-                            <?php 
-                                $data=$taches->selectalldata('enseignants');
-                                while ($row=$data->fetch()){?>
-                                <option value='<?php echo $row['id']?>'><?php echo $row['noms']?></option>
-                               <?php } ?>
+                            <select name="motif" class="form-control" required>
+                            <option value="Autres">Selectionner le motif ..</option>
+                                <option value="Entretien">Entretier</option>
+                                <option value="Coordination">Coordination</option>
+                                <option value="Sport et Loisir">Sport et Loisir</option>
+                                <option value="Fete">Fete</option>
+                                <option value="Achat Fournitures de bureau">Achat Fournitures de bureau</option>
+                                <option value="Construction">Construction</option>
+                                <option value="Sortie scientifque">Sorite scientifque</option>
+                                <option value="Assistance Maladie">Assistance Maladie</option>
+                                <option value="Assistance Mariage">Assistance Mariage</option>
+                                <option value="Assistance Deuil">Assistance Deuil</option>
+                                <option value="Rehabilitation">Rehabilitation</option>
                             </select>
         
-                        </div>
-                        <div class="form-group">
-                            <input type="month" name="mois" class="form-control" placeholder="mois" required>
                         </div>
                         <div class="form-group">
                             <input type="text" name="montant" class="form-control" placeholder="montant" required>
@@ -151,9 +154,12 @@ $taches = new crud();
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="date" name="dates" class="form-control" placeholder="dates" required>
+                            <input type="month" name="mois" class="form-control" placeholder="dates" required>
                         </div>
 
+                        <div class="form-group">
+                            <input type="date" name="dates" class="form-control" placeholder="mois" required>
+                        </div>
                         <div class="form-group">
                             <input type="submit" name="insert" id="insert" class="btn btn-primary btn-block" value="ENREGISTRER">
                         </div>
@@ -169,7 +175,7 @@ $taches = new crud();
             <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h5 class="modal-title">Modification Avance</h5>
+                    <h5 class="modal-title">Modification Depense</h5>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
@@ -178,17 +184,21 @@ $taches = new crud();
                     <form action="" method="POST" id="edit-form-data">
                         <input type="hidden" id="id" name="id">
                         <div class="form-group">
-                            <select name="agent" id="agent" class="form-control" required>
-                            <option value="Autres">Selectionner l'agent</option>
-                            <?php 
-                                $data=$taches->selectalldata('enseignants');
-                                while ($row=$data->fetch()){?>
-                                <option value='<?php echo $row['id']?>'><?php echo $row['noms']?></option>
-                               <?php } ?>
+                            <select name="motif" id="motif" class="form-control" required>
+                            <option value="Autres">Selectionner le motif ..</option>
+                                <option value="Entretien">Entretier</option>
+                                <option value="Coordination">Coordination</option>
+                                <option value="Sport et Loisir">Sport et Loisir</option>
+                                <option value="Fete">Fete</option>
+                                <option value="Achat Fournitures de bureau">Achat Fournitures de bureau</option>
+                                <option value="Construction">Construction</option>
+                                <option value="Sortie scientifque">Sorite scientifque</option>
+                                <option value="Assistance Maladie">Assistance Maladie</option>
+                                <option value="Assistance Mariage">Assistance Mariage</option>
+                                <option value="Assistance Deuil">Assistance Deuil</option>
+                                <option value="Rehabilitation">Rehabilitation</option>
                             </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="month" id="mois" name="mois" class="form-control" placeholder="mois" required>
+        
                         </div>
                         <div class="form-group">
                             <input type="text" id="montant" name="montant" class="form-control" placeholder="montant" required>
@@ -201,8 +211,12 @@ $taches = new crud();
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="date" id="dates" name="dates" class="form-control" placeholder="dates" required>
-                        </div>      
+                            <input type="month" id="mois" name="mois" class="form-control" placeholder="dates" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="date" id="dates" name="dates" class="form-control" placeholder="mois" required>
+                        </div>
                         <div class="form-group">
                             <input type="submit" name="update" id="update" class="btn btn-danger btn-block" value="MODIFIER">
                         </div>
@@ -222,7 +236,7 @@ $taches = new crud();
 
             function showAllUser() {
                 $.ajax({
-                    url: "./Menus/actionAvance.php",
+                    url: "./Menus/actionDepense.php",
                     type: "POST",
                     data: {
                         action: "view"
@@ -242,13 +256,13 @@ $taches = new crud();
                 if ($("#form-data")[0].checkValidity()) {
                     e.preventDefault();
                     $.ajax({
-                        url:"./Menus/actionAvance.php",
+                        url:"./Menus/actionDepense.php",
                         type:"POST",
                         data: $("#form-data").serialize()+"&action=insert",
                         success: function(reponse) {
                         Swal.fire(
                             'Felicitation!',
-                            'Enseignant Ajouté(e) avec success !',
+                            'Depense Ajouté(e) avec success !',
                             'success'
                             )
 
@@ -266,17 +280,17 @@ $taches = new crud();
                 edit_id=$(this).attr('id');
 
                 $.ajax({
-                    url:"./Menus/actionAvance.php",
+                    url:"./Menus/actionDepense.php",
                     type:"POST",
                     data:{edit_id:edit_id},
                     success:function(reponse){
                        data=JSON.parse(reponse);
                       
                        $("#id").val(data.id);
-                       $("#agent").val(data.noms);
-                       $("#mois").val(data.mois);
+                       $("#motif").val(data.motif);
                        $("#montant").val(data.montant);
-                       $("#um").val(data.um)
+                       $("#um").val(data.um);
+                       $("#mois").val(data.mois)
                        $("#dates").val(data.dates);
                       
                     }
@@ -288,13 +302,13 @@ $taches = new crud();
                 if ($("#edit-form-data")[0].checkValidity()) {
                     e.preventDefault();
                     $.ajax({
-                        url:"./Menus/actionAvance.php",
+                        url:"./Menus/actionDepense.php",
                         type:"POST",
                         data: $("#edit-form-data").serialize()+"&action=update",
                         success: function(reponse) {
                         Swal.fire(
                             'Felicitation!',
-                            'Enseignant Modifier avec success !',
+                            'Depense Modifier avec success !',
                             'success'
                             )
 
@@ -324,7 +338,7 @@ $taches = new crud();
                     }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                        url:"./Menus/actionAvance.php",
+                        url:"./Menus/actionDepense.php",
                         type:"POST",
                         data: {del_id:del_id},
                         success: function(reponse) {
@@ -349,16 +363,16 @@ $taches = new crud();
                 e.preventDefault();
                 info_id= $(this).attr('id');
                 $.ajax({
-                    url:"./Menus/actionAvance.php",
+                    url:"./Menus/actionDepense.php",
                     type:"POST",
                     data:{info_id:info_id},
                     success:function(reponse){
                         data=JSON.parse(reponse);
                         Swal.fire(
                             {
-                                title:'<Strong class="text-left"> ID:'+data.idagent+'</Strong>',
+                                title:'<Strong class="text-left"> ID:'+data.id+'</Strong>',
                                 type:"info",
-                                html:'<b class="text-left">Mois:'+data.mois+'</b></br><b class="text-left">Montant:'+data.montant+data.um+'</b></br><b class="text-left">Date:'+data.dates+'</b>',
+                                html:'<b>Motif:'+data.motif+'</b><br/><b class="text-left">Mois:'+data.mois+'</b></br><b class="text-left">Montant:'+data.montant+data.um+'</b></br><b class="text-left">Date:'+data.dates+'</b>',
                                 showCancelButton:true
                            
                             }
