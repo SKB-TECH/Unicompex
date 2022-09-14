@@ -69,8 +69,8 @@
     if(isset($_POST['info_id'])){
         $id=$_POST['info_id'];
 
-        $row=$db->selectbyid($id,'eleves');
-    
+        $row=$db->selectbyid('1','eleves');
+        
         echo json_encode($row);
     }
 
