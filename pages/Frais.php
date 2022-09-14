@@ -22,7 +22,7 @@
 
     <link rel="stylesheet" href="../font/font-awesome-4.7.0/css/font-awesome.min.css">
 
-    <title>Gestion des frais </title>
+    <title>Gestion  </title>
     <?php require_once("../pages/Menus/Navbar.php") ?>
 </head>
 

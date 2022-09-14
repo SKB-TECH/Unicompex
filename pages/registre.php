@@ -25,6 +25,7 @@
     <title>Gestion eleves</title>
     <?php require_once("../pages/Menus/Navbar.php") ?>
 </head>
+
 <body>
     <div class="d-flex" id="wrapper">
         <!-- sidebar -->
