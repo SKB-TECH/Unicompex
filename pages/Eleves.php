@@ -88,11 +88,12 @@
 
                     <div class="clog-lg-6">
                         <button type="button" class="btn btn-primary m-1 float-right"><i class="fa fa-user-plus fa-lg" data-toggle="modal" data-target="#addModal"> Nouveau</i>
-                        </button>&nbsp;&nbsp;&nbsp;
-                        <a href="actions/actionEleve.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
-                            Exporter</a>&nbsp;&nbsp;&nbsp;
-                        <a href="#" class="btn btn-danger m-1 float-lg"><i class="fa fa-table fa-lg"></i>
-                            Importer</a>
+                    </button>&nbsp;&nbsp;&nbsp;
+                    <a href="actions/actionEleve.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
+                    Exporter</a>&nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn-danger m-1 float-lg"><i class="fa fa-table fa-lg" data-toggle="modal" data-target="#importExcel"> Import</i>
+                        <!-- <a href="#" class="btn btn-danger m-1 float-lg"><i class="fa fa-table fa-lg"></i>
+                            Importer </a> -->
                     </div>
                 </div>
                 <hr class="my-1">
@@ -228,6 +229,35 @@
     </div>
     <!-- Fin de la fenetre modal Modification-->
 
+<!-- import excel -->
+        <!-- Modification Modal -->
+        <div class="modal fade" id="importExcel">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h5 class="modal-title">Importer la liste des eleves</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body px-4">
+                    <form action="" method="POST" id="edit-form-data" action="../Classes/excel/.php" enctype="multipart/form-data" >
+                      <div class="form-group">
+                            <label for=""> Importez un fichier excel :</label>
+                            <input type="file" name="file" class="form-control" placeholder="nom de l'élève" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" id="update" class="btn btn-success btn-block" value="IMPORTER">
+                        </div>
+		                <p>Prendre un modele avant importation : <a href="../Classes/excel/demo/demoEleves.ods"><strong>Demo.ods</strong></a></p>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin de la fenetre modal import excel->
 <!-- Fin de la fenetre modal -->
     <!-- Les lebrairies Javascript -->
     <script>
