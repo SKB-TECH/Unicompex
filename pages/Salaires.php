@@ -382,7 +382,7 @@ $taches = new crud();
                         
                             data=JSON.parse(reponse);
                             $('#avancement').val(data.montant);
-                            console.log(data);
+                            $("#avancement").val(data.montant);
                         }
                         
                     })

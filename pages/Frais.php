@@ -218,7 +218,7 @@
                 if ($("#form-data")[0].checkValidity()) {
                     e.preventDefault();
                     $.ajax({
-                        url:"actionFrais.php",
+                        url:"./actions/actionFrais.php",
                         type:"POST",
                         data: $("#form-data").serialize()+"&action=insert",
                         success: function(reponse) {
@@ -242,7 +242,7 @@
                 edit_id=$(this).attr('id');
 
                 $.ajax({
-                    url:"actionFrais.php",
+                    url:"./actions/actionFrais.php",
                     type:"POST",
                     data:{edit_id:edit_id},
                     success:function(reponse){
@@ -260,7 +260,7 @@
                 if ($("#edit-form-data")[0].checkValidity()) {
                     e.preventDefault();
                     $.ajax({
-                        url:"actionFrais.php",
+                        url:"./actions/actionFrais.php",
                         type:"POST",
                         data: $("#edit-form-data").serialize()+"&action=update",
                         success: function(reponse) {
@@ -296,7 +296,7 @@
                     }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                        url:"actionFrais.php",
+                        url:"./actions/actionFrais.php",
                         type:"POST",
                         data: {del_id:del_id},
                         success: function(reponse) {
@@ -321,7 +321,7 @@
                 e.preventDefault();
                 info_id= $(this).attr('id');
                 $.ajax({
-                    url:"actionFrais.php",
+                    url:"./actions/actionFrais.php",
                     type:"POST",
                     data:{info_id:info_id},
                     success:function(reponse){
