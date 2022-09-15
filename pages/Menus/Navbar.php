@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md bg-primary navbar-dark border-bottom" style="z-index: 100;">
+<nav class="navbar navbar-expand-md bg-primary navbar-dark border-bottom w-100" style="z-index: 1; position:fixed">
   <!-- Brand -->
   <span>
     <i class="fa fa-graduation-cap logo-icon text-light" aria-hidden="true" style="font-size: 35px ;"></i>
