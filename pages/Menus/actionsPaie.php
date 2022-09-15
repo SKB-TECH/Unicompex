@@ -1,4 +1,7 @@
 <?php
+
+use FTP\Connection;
+
     error_reporting( E_ALL );
     ini_set( 'display_errors', 1);
 
@@ -16,9 +19,10 @@
                 <th>Noms</th>
                 <th>Motif</th>
                 <th>Montant</th>
-                <th>Mois</th>
+                <th>Avance</th>
                 <th>Mituelle</th>
-                <th>Net</th>
+                <th>NetApayer</th>
+                <th>Mois</th>
                 <th>Date</th>
                 <th>Actions</th>
             </thead>
@@ -63,6 +67,12 @@
         }
     }
     
+    /** Fonction recaherche les avances sur salaires */
+    if (isset($_POST['idagent']) && !empty($_POST['mois'])) {
+        $res=$db->SearchAvance($_POST['idagent'],$_POST['mois']);
+            echo json_encode($res);
+    }
+
     /** Fonction insert dans la bdd */
     if(isset($_POST['action']) && $_POST['action']=="insert"){
         

@@ -88,11 +88,11 @@ $taches = new crud();
 
                 <div class="row">
                     <div class="col-lg-6">
-                        <h5 class="mt-2 text-primary">Paiement des Enseignants</h5>
+                        <h5 class="mt-2 text-primary">Paiement du personnel</h5>
                     </div>
 
                     <div class="clog-lg-6">
-                        <button type="button" class="btn btn-primary m-1 float-right"><i class="fa fa-user-plus fa-lg" data-toggle="modal" data-target="#addModal"> Nouveau</i>
+                        <button type="button" class="btn btn-primary m-1 float-right"><i class="fa fa-user-plus fa-lg" data-toggle="modal" data-target="#addModal"> Payer</i>
                         </button>&nbsp;&nbsp;&nbsp;
                         <a href="./Menus/actionPaie.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
                             Exporter</a>&nbsp;&nbsp;&nbsp;
@@ -119,56 +119,48 @@ $taches = new crud();
             <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h5 class="modal-title">Nouveau Enseignant</h5>
+                    <h5 class="modal-title">PAIEMENT PRIME DU PERSONNEL</h5>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body px-4">
-                    <form action="" method="POST" id="form-data">
+                <form action="" method="POST" id="form-data">
                         <div class="form-group">
-                            <input type="text" name="noms" class="form-control" placeholder="noms complet" required>
+                            <label for="mois">Selectionner le mois</label>
+                            <input type="month" name="mois" class="form-control" id="mois" placeholder="mois" required>
                         </div>
                         <div class="form-group">
-                            <select name="sexe" class="form-control" required>
-                                <option value="Autres">Selectionner le sexe..</option>
-                                <option value="Homme">Homme</option>
-                                <option value="Femme">Femme</option>
+                            <select name="agent" class="form-control" id="iagent" required>
+                            <option value="Autres">Selectionner l'agent</option>
+                            <?php 
+                                $data=$taches->selectalldata('enseignants');
+                                while ($row=$data->fetch()){?>
+                                <option value='<?php echo $row['id']?>'><?php echo $row['noms']?></option>
+                               <?php } ?>
                             </select>
+        
+                        </div>
+                       
+                        <div class="form-group">
+                            <input type="text" name="montant" class="form-control" placeholder="montant" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="mituelle" class="form-control" placeholder="mituelle" required>
+                        </div>
+                        <div class="form-group" >
+                        <input type="text" id="avancement" name="avance" class="form-control text-danger" placeholder="avance" required>
                         </div>
 
                         <div class="form-group">
-                            <select name="grade" class="form-control" required>
-                                <option value="">Selectionner le grade..</option>
-                                <option value="D6">Diplome d'Etat</option>
-                                <option value="Licencie">Licencié</option>
-                                <option value="Gradue">Gradué</option>
-                                <option value="Master">Master</option>
-                                <option value="Autres">Autres</option>
-                            </select>
+                            <input type="text" name="net" class="form-control text-danger" placeholder="net A payer" required>
                         </div>
+                        
                         <div class="form-group">
-                            <select name="domaine" class="form-control" required>
-                                <option value="">Selectionner Domaine..</option>
-                                <label value="Anglais">Anglophne</label>
-                                <option value="Pedagogie">Pedagogue</option>
-                                <option value="Biologie">Biologiste</option>
-                                <option value="Assistant Social">Assistant Social</option>
-                                <option value="Français">Franciste</option>
-                                <option value="Mathematique">Mathematicien</option>
-                                <option value="Comptabilite">Comptable</option>
-                                <option value="Chimie">Chimiste</option>
-                                <option value="Informatique">Informaticien</option>
-                                <option value="Autres">Autres</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="adresse" class="form-control" placeholder="adresse" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="telephone" class="form-control" placeholder="+243 813678926" required>
+                            <input type="date" name="dates" class="form-control" placeholder="dates" required>
                         </div>
 
+                       
                         <div class="form-group">
                             <input type="submit" name="insert" id="insert" class="btn btn-primary btn-block" value="ENREGISTRER">
                         </div>
@@ -184,7 +176,7 @@ $taches = new crud();
             <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h5 class="modal-title">Modification Enseignant</h5>
+                    <h5 class="modal-title">Modification personnel</h5>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
@@ -280,7 +272,7 @@ $taches = new crud();
                         success: function(reponse) {
                         Swal.fire(
                             'Felicitation!',
-                            'Enseignant Ajouté(e) avec success !',
+                            'personnel Ajouté(e) avec success !',
                             'success'
                             )
 
@@ -326,7 +318,7 @@ $taches = new crud();
                         success: function(reponse) {
                         Swal.fire(
                             'Felicitation!',
-                            'Enseignant Modifier avec success !',
+                            'personnel Modifier avec success !',
                             'success'
                             )
 
@@ -372,8 +364,31 @@ $taches = new crud();
                     });
                     }
                 })
+                
+                
             })
 
+            // on change search
+            $("#iagent").on("change",function(){
+                var idagent=$(this).val();
+                var mois=$("#mois").val();
+                if (idagent && mois) {
+                    $.ajax({
+                        type:'POST',
+                        url:"./Menus/actionsPaie.php",
+                        data:{'idagent':idagent,'mois':mois},
+                        
+                        success:function(reponse){
+                        
+                            data=JSON.parse(reponse);
+                            $('#avancement').val(data.montant);
+                            console.log(data);
+                        }
+                        
+                    })
+                }
+                
+            })
 
             /** Info plus */
             $("body").on("click",'.infoBtn',function(e)
@@ -404,6 +419,8 @@ $taches = new crud();
                 
                 
             });
+
+
         });
     </script>
 </body>
