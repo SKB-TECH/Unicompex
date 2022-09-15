@@ -24,18 +24,18 @@ if(isset($_POST['Submit'])){
       foreach ($Reader as $Row)
       {
         // $title = isset($Row[1]) ? $Row[0] : '';
-        $nom = isset($Row[2]) ? $Row[2] : '';
-        $postnom = isset($Row[3]) ? $Row[3] : '';
-        $prenom = isset($Row[4]) ? $Row[4] : '';
-        $sexe = isset($Row[5]) ? $Row[5] : '';
-        $classe = isset($Row[6]) ? $Row[6] : '';
-        $lieu_naissance = isset($Row[7]) ? $Row[7] : '';
-        $date_naissance = isset($Row[8]) ? $Row[8] : '';
+        $nom = isset($Row[1]) ? $Row[1] : '';
+        $postnom = isset($Row[2]) ? $Row[2] : '';
+        $prenom = isset($Row[3]) ? $Row[3] : '';
+        $sexe = isset($Row[4]) ? $Row[4] : '';
+        $classe = isset($Row[5]) ? $Row[5] : '';
+        $lieu_naissance = isset($Row[6]) ? $Row[6] : '';
+        $date_naissance = isset($Row[7]) ? $Row[7] : '';
             $query = "insert into eleves(nom,postnom,prenom,sexe,classe,lieu_naissance)
                values('".$nom."','".$postnom."','".$prenom."','".$sexe."','".$classe."','".$lieu_naissance."')";
-            if($crud->insert2($query)){
+              $crud->insert2($query);
               header("location:Eleves.php");
-            };
+            
        }
     }
   }else { 
