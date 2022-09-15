@@ -1,32 +1,34 @@
  <?php
-        require_once("session.php");
-        
-        include "connexion.php";
-            $idRec = $_GET['idRec'];
-            	   					               
-			$sql = "SELECT * , recouvrements.montant as rec, dettes.montant as dette FROM dettes inner join clients on clients.code_client = dettes.client inner join recouvrements on recouvrements.codeEmprunt = dettes.code_dettes and code_recouvrement = '$idRec' inner join user on user.code_user = recouvrements.idAgent";
-            	$res = $pdo->query($sql);
-			    $data= $res->fetch();
-			    $codeE = $data['code_dettes'];
+           error_reporting( E_ALL );
+           ini_set( 'display_errors', 1);
+        // require_once("session.php");
+        // include "connexion.php";
+        require_once("../../Classes/crud.php");
+        $db = new crud();
+        $idRec = 2;
+        // $idRec = $_GET['idRec'];
+                // recherche le paiement a imprimer
+                $resultat=$db->selectalldata2("select * from perception 
+                    inner join frais on idFrais = frais.id
+                    inner join eleves on eleves.id=idEleve  and perception.id = '$idRec'");
+			    $data= $resultat->fetch();
+			    $idEleve = $data['idEleve'];
+			    $idFrais = $data['idFrais'];
 			    
-			    
-			    $sql1 = "SELECT sum(montant) AS total FROM recouvrements WHERE codeEmprunt = '$codeE'";
-            	$res1 = $pdo->query($sql1);
-			    $data1= $res1->fetch();
-			    
-			    $sql2 = "SELECT *  FROM recouvrements WHERE code_recouvrement = '$idRec'";
-            	$res2 = $pdo->query($sql2);
-			    $data2= $res2->fetch();
-			    
+
+                // recherche des informations sur l'eleve et le frais paye
+                $resultat1=$db->selectalldata2("select *, sum(montant_percu) as solde from perception 
+                    inner join frais on idFrais = frais.id and idFrais = '$idFrais'
+                    inner join eleves on eleves.id=idEleve  and idEleve = '$idEleve'");
+                $data1= $resultat1->fetch();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<body onload="window.print();">
-<h1 id="logo" class="text-center">ACTION JUWA ASBL</h1>
     <title>Recu</title>
-     
+<body onload="window.print();">
+    
     <style>
         @media print {
             @page {
@@ -42,7 +44,7 @@
                 
                 width: 250px;
                 margin: auto;
-                background-image: url("juwa.jpg")
+                background-image: url("juwa.jpg");
                 background-repeat: no-repeat, repeat;
                 background-size: auto;
                 padding: 10px;
@@ -51,46 +53,52 @@
             }
             #logo {
                 color: black;
-                font-size: 25px;
-                font-weigth: bold;
+                font-size: 20px;
+                font-weight: bold;
                 
             }
            .text-center{text-align: center;}
         }
-    </style>
+        </style>
 </head>
 <body onload="window.print();">
-
-<div id='printContainer'>
-    <h3 id="slogan" style="margin-top:0" class="text-center">Réçu de paiement n° <?php echo $data['code_recouvrement']?></h3>
-
+    <div id='printContainer'>
+        <h3 id="logo" class="text-center">Institut NYALUKEMBA</h3>
+    <h3 id="slogan" style="margin-top:0" class="text-center">Réçu n° <?php echo $idFrais?></h3>
     <table>
         <tr>
             <td>Noms  : </td>
-            <td><?php echo $data['noms_client']." ".$data['code_client']?></td>
+            <td><?php echo $data['nom']." ".$data['postnom']." ".$data['prenom']?></td>
         </tr>
-       
+        <tr>
+            <td>Classe  : </td>
+            <td><?php echo $data['classe']?></td>
+        </tr>
     </table>
 
     <table>
         <tr><td colspan="2"><hr></td></tr>
         <tr>
             <td>Montant payé:</td>
-            <td><b ><?php echo $data['rec'] ?> FC</b></td>
+            <td><b ><?php echo $data['montant_percu']." ".$data['devise'] ?> </b></td>
+        </tr>
+        <tr>
+            <td>Classe  : </td>
+            <td><?php echo $data['libelle']?></td>
         </tr>
         <tr><td colspan="2"><hr></td></tr>
         <tr>
-            <td>Dette générale :</td>
-            <td><?php echo $data['dette'] ?> FC</td>
+            <td>Solde :</td>
+            <td><?php echo $data1['solde']." ".$data['devise'] ?> / <?php echo $data1['montant_frais']." ".$data['devise'] ?>  </td>
         </tr>
-        <tr>
-            <td>Dette restante : </td>
-            <td><?php echo $data['dette'] - $data1['total']; ?> FC</td>
-        </tr>
+        
     </table>
     <?php setlocale(LC_TIME, 'fra_fra'); ?>
-    <p>Operateur: <?php echo $data['noms']." +243".$data['telephone'] ?> </p>
-    <p>Date: <?php echo $data['dateRec'] ?> </p>
+    <p>Percepteur(trice): Caissier </p>
+    <p>Date: <?php 
+                $dat = date_create($data['date_perception']);
+                echo date_format($dat, "d/m/Y"); 
+        ?> </p>
 </div>
     </body>
 </html>

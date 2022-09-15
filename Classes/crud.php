@@ -7,7 +7,6 @@ ini_set( 'display_errors', 1);
 
         class Crud extends Database
         {
-
                 public $columns = "";
                 public $values = "";
                 public $column = "";
@@ -17,12 +16,17 @@ ini_set( 'display_errors', 1);
                 {
                         parent::__construct();
                 }
-
                 //afficher  toutes les donnees de la bdd
                 public function selectalldata($table)
                 {
                         $select = "SELECT * FROM $table";
                         $select1 = $this->connection->query($select);
+                        return $select1;
+                }
+
+                public function selectalldata2($sql)
+                {
+                        $select1 = $this->connection->query($sql);
                         return $select1;
                 }
                 // affichier les donnees de la table par id
@@ -55,7 +59,6 @@ ini_set( 'display_errors', 1);
                            $insert1 = $this->connection->query($sql);
                         }
                 }
-
                 public function escape_string($value)
                 {
                         return $this->connection->quote($value);
@@ -68,15 +71,14 @@ ini_set( 'display_errors', 1);
                     return $tot=$stms->rowCount();
                 }
 
-        
                 public function Modification($id,$nm,$se,$gr,$do,$ad,$te){
                    $sql="UPDATE enseignants SET noms=:nm,sexe=:se,grade=:gr,domaine=:do,adresse=:ad,telephone=:te WHERE id=:id";
                    $stms=$this->connection->prepare($sql);
                    $stms->execute((['nm'=>$nm,'se'=>$se,'gr'=>$gr,'do'=>$do,'ad'=>$ad,'te'=>$te,'id'=>$id
                    ]));
-
                         return true;
                 }
+
               
                 public function SelectDataWhere($table1,$table2){
                         $select = "SELECT * FROM $table1 inner join $table2 ON $table1.id=$table2.idagent";
@@ -110,3 +112,4 @@ ini_set( 'display_errors', 1);
 
                 
 }
+
