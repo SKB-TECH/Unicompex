@@ -42,6 +42,7 @@
                         success: function(reponse) {
                             console.log(reponse);
                             $("#solde").html(reponse);
+                            $("#solde").html(reponse);
                         }
                     });
                 }
@@ -218,7 +219,7 @@
                 if ($("#form-data")[0].checkValidity()) {
                     e.preventDefault();
                     $.ajax({
-                        url:"actionPerception.php",
+                        url:"actions/actionPerception.php",
                         type:"POST",
                         data: $("#form-data").serialize()+"&action=insert",
                         success: function(reponse) {

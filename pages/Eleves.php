@@ -242,13 +242,13 @@
 
                 <!-- Modal body -->
                 <div class="modal-body px-4">
-                    <form action="" method="POST" id="edit-form-data" action="../Classes/excel/.php" enctype="multipart/form-data" >
+                    <form method="POST" id="edit-form-data" action="./actions/excelUpload.php" enctype="multipart/form-data" >
                       <div class="form-group">
                             <label for=""> Importez un fichier excel :</label>
                             <input type="file" name="file" class="form-control" placeholder="nom de l'élève" required>
                         </div>
                         <div class="form-group">
-                            <input type="submit" name="submit" id="update" class="btn btn-success btn-block" value="IMPORTER">
+                            <input type="submit" name="Submit" id="import" class="btn btn-success btn-block" value="IMPORTER">
                         </div>
 		                <p>Prendre un modele avant importation : <a href="../Classes/excel/demo/demoEleves.ods"><strong>Demo.ods</strong></a></p>
 
@@ -257,8 +257,9 @@
             </div>
         </div>
     </div>
-    <!-- Fin de la fenetre modal import excel->
-<!-- Fin de la fenetre modal -->
+    <!-- Fin de la fenetre modal import excel -->
+
+
     <!-- Les lebrairies Javascript -->
     <script>
         /** fonction pour Afficher les donnes avec ajax  */
