@@ -57,8 +57,23 @@ if (isset($_POST['action']) && $_POST['action'] == "insert") {
     $solde = $_POST['solde'];
     $frais = $_POST['frais'];
     $idFrais = $_POST['idFrais'];
-    $sql = "INSERT INTO perception(date_perception,montant_percu,idEleve,idFrais,idUser) VALUES ('$date_perception','$montant_percu','$idEleve','$idFrais','$iduser')";
-    $db->insert2($sql);
+    $idUser=1;
+    if(!empty(trim($date_perception)) && !empty(trim($date_perception)))
+    $sql = "INSERT INTO perception(date_perception,montant_percu,idEleve,idFrais) 
+            VALUES ('$date_perception','$montant_percu','$idEleve','$idFrais')";
+      if($frais > $montant_percu + $solde ){
+          if($db->insert2($sql)){
+              $res = "reussi";
+          }else{
+              $res ="echec";    
+          }
+          
+      }else{
+        num
+        $reste = ( doubleval($montant_percu) + doubleval($solde) ) - $frais;
+        $res ="L'élève reste avec le reste de "+$reste+"seulement,  reessayer!"; 
+      }  
+    echo $frais;
 }
 
 /** Fonction info plus de la table  eleves*/
@@ -102,6 +117,7 @@ if (isset($_POST['action']) && $_POST['action'] == "solde") {
                         <b>' . "Solde : " . $data['solde'] . " " . $data['devise'] . "
                          / " . $data['montant_frais'] . " " . $data['devise'] . '</b> 
                          <input type="hidden" id="solde_value" name="solde" value=' . $data['solde'] . '>
+                         <input type="hidden" id="" name="frais" value='. $data['montant_frais'].'>
                 </p>';
     } else {
         $output .= "
