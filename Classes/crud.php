@@ -78,7 +78,38 @@ ini_set( 'display_errors', 1);
                    ]));
                         return true;
                 }
+
+              
+                public function SelectDataWhere($table1,$table2){
+                        $select = "SELECT * FROM $table1 inner join $table2 ON $table1.id=$table2.idagent";
+                        $data = $this->connection->query($select);
+                        return $data;
+                }
+
+                public function SearchAvance($idagent,$mois){
+                        $sql="SELECT montant FROM avance WHERE idagent=$idagent AND mois=$mois";
+                        $data = $this->connection->query($sql);
+                        return $data;
+        }
+
+                public function ModDepenses($id,$motif,$montant,$um,$mois,$dates){
+                $sql="UPDATE depense SET motif=:mot,montant=:mont,um=:um,mois=:mois,dates=:dates WHERE id=:id";
+                   $stms=$this->connection->prepare($sql);
+                   $stms->execute((['mot'=>$motif,'mont'=>$montant,'um'=>$um,'mois'=>$mois,'dates'=>$dates,'id'=>$id
+                   ]));
+
+                        return true;
+                }
+
+                public function ModificationAvance($id,$agent,$mois,$montant,$um,$dates){
+                        $sql="UPDATE avance SET idagent=:agent,mois=:mois,montant=:montant,um=:um,dates=:dates WHERE id=:id";
+                        $stms=$this->connection->prepare($sql);
+                        $stms->execute((['agent'=>$agent,'mois'=>$mois,'montant'=>$montant,'um'=>$um,'dates'=>$dates,'id'=>$id
+                        ]));
+     
+                             return true;
+                     }
+
+                
 }
-// $taches=new Crud();
-//         $taches->insert2("INSERT INTO enseignants(noms,sexe,grade,domaine,adresse,telephone) values('Gourou','M','Gourou','M','Gourou','M')");
-?>
+

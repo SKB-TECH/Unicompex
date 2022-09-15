@@ -1,13 +1,13 @@
-
- <div class="list-group list-group-flush " style="height:100%vh;">
-        <a class="list-group-item  bg-transparent text-left m-2 text-light">profil</a>
+<div class="list-group list-group-flush " style="height:900px;" style="position: fixed;">
+        <a class="list-group-item  bg-transparent text-left m-2 text-light mt-70">profil</a>
         <a class="list-group-item bg-transparent text-left m-2 text-light" href="Eleves.php">Eleve</a>
-        <a class="list-group-item  bg-transparent text-left m-2 text-light">Enseignants</a>
+        <a href="Enseignants.php" class="list-group-item  bg-transparent text-left m-2 text-light">Agents</a>
         <a class="list-group-item bg-transparent text-left m-2 text-light" href="Frais.php">Frais</a>
         <a class="list-group-item bg-transparent text-left m-2 text-light" href="Perception.php">Perception </a>
-        <a class="list-group-item bg-transparent text-left m-2 text-light">Paiement </a>
-        <!-- <a class="list-group-item bg-transparent text-left m-2 text-light">Classes</a>
-        <a class="list-group-item bg-transparent text-left m-2 text-light">Options</a> -->
-        <!-- <a class="list-group-item bg-transparent text-left m-2  text-light">Enseignants</a> -->
+        <a class="list-group-item bg-transparent text-left m-2 text-light" href="Perception.php">Registre </a>
+        <a href="Salaires.php" class="list-group-item bg-transparent text-left m-2 text-light">Salaires</a>
+        <a href="Depences.php" class="list-group-item bg-transparent text-left m-2 text-light">Depenses</a>
+        <a href="Avances.php" class="list-group-item bg-transparent text-left m-2 text-light">Avances</a>
+        <a href="Avances.php" class="list-group-item bg-transparent text-left m-2 text-light">Situation</a>
        
 </div>
