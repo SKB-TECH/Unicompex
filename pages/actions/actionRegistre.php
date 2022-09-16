@@ -7,7 +7,7 @@
 
     if(isset($_POST['action']) && $_POST['action']=="view"){
         $output="";
-        $resultat=$db->selectalldata('eleves');
+        $resultat=$db->selectalldata2('');
         if($res=$db->total('eleves')){
             $output .='
             <table class="table table-striped table-sm table-bordered">
@@ -21,7 +21,6 @@
                 <th></th>
             </thead>
             <tbody>';
-
             while ($data=$resultat->fetch()) {
                 $output .='
                 <tr class="text-center text-secondary">

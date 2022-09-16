@@ -144,7 +144,6 @@
                     <h5 class="modal-title">Perception: Ajout</h5>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-
                 <!-- Modal body -->
                 <div class="modal-body px-4">
                     <form action="" method="POST" id="form-data">
@@ -160,7 +159,6 @@
                                          <option value="<?php echo $data['id'] ?>"><?php echo $data['libelle']?></option>
                                 <?php } ?>
                             </select>
-
                             <div id="solde">
 
                             </div>
@@ -175,8 +173,6 @@
                                 <input type="date" name="date_perception" class="form-control " placeholder="date_perception" required>
                             </div>
                         </div>
-
-
                         <div class="form-group">
                             <input type="submit" name="insert" id="insert" class="btn btn-primary btn-block" value="ENREGISTRER">
                         </div>
@@ -213,7 +209,6 @@
                     }
                 });
             }
-
             /** Fonction insert dans la bdd */
             $("#insert").click(function(e) {
                 if ($("#form-data")[0].checkValidity()) {
@@ -223,12 +218,13 @@
                         type:"POST",
                         data: $("#form-data").serialize()+"&action=insert",
                         success: function(reponse) {
-                        Swal.fire(
-                            'Felicitation!',
-                            ' Enregistrement reussi!',
-                            'success'
+                            console.log(reponse);
+                            Swal.fire(
+                                'Resultat',                            // 'Felicitation!',
+                                reponse,
+                                'error'
                             )
-
+                           
                             $("#addModal").modal('hide');
                             $("#form-data")[0].reset();
                             showAllUser();
@@ -265,13 +261,22 @@
                     data:{info_id:info_id},
                     success:function(reponse){
                         data=JSON.parse(reponse);
+                        let html= data.map((res)=>{
+                                return(
+                                    '<b class="text-left">Frais :'+res.libelle+
+                                    '</b><b class="text-left">Nombre veraement :'+res.mouvement+
+                                    '</b></br>'
+                                )
+                                 
+                            })
                         Swal.fire(
                             {
-                                title:'<Strong class="text-left"> ID:'+data.id+'</Strong>',
-                                type:"info",
-                                html:'<b class="text-left">Noms:'+data.noms+'</b></br><b class="text-left">Grade:'+data.grade+'</b></br><b class="text-left">Domaines:'+data.domaine+'</b></br><b class="text-left">Tel:'+data.telephone+'</b>',
-                                showCancelButton:true
-                            }
+                                
+                                    title:'<Strong class="text-left"> ID:'+data[0].nom+'</Strong><hr>',
+                                    type:"info",
+                                    html:html ,
+                                    showCancelButton:true,
+                         }
                         )
                         showAllUser();
                     }

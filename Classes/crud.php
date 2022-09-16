@@ -57,6 +57,9 @@ ini_set( 'display_errors', 1);
                 {   
                         if($sql != ""){
                            $insert1 = $this->connection->query($sql);
+                                return true;
+                        }else{
+                                return false;
                         }
                 }
                 public function escape_string($value)
