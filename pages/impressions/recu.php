@@ -5,8 +5,8 @@
         // include "connexion.php";
         require_once("../../Classes/crud.php");
         $db = new crud();
-        $idRec = 2;
-        // $idRec = $_GET['idRec'];
+        // $idRec = 2;
+        $idRec = $_GET['idRec'];
                 // recherche le paiement a imprimer
                 $resultat=$db->selectalldata2("select * from perception 
                     inner join frais on idFrais = frais.id
@@ -64,7 +64,7 @@
 <body onload="window.print();">
     <div id='printContainer'>
         <h3 id="logo" class="text-center">Institut NYALUKEMBA</h3>
-    <h3 id="slogan" style="margin-top:0" class="text-center">Réçu n° <?php echo $idFrais?></h3>
+    <h5 id="slogan" style="margin-top:0" class="text-center">Réçu n° <?php echo $idFrais?></h5>
     <table>
         <tr>
             <td>Noms  : </td>
@@ -83,12 +83,12 @@
             <td><b ><?php echo $data['montant_percu']." ".$data['devise'] ?> </b></td>
         </tr>
         <tr>
-            <td>Classe  : </td>
+            <td>Motif  : </td>
             <td><?php echo $data['libelle']?></td>
         </tr>
         <tr><td colspan="2"><hr></td></tr>
         <tr>
-            <td>Solde :</td>
+            <td>Situation :</td>
             <td><?php echo $data1['solde']." ".$data['devise'] ?> / <?php echo $data1['montant_frais']." ".$data['devise'] ?>  </td>
         </tr>
         
@@ -100,5 +100,6 @@
                 echo date_format($dat, "d/m/Y"); 
         ?> </p>
 </div>
+<a href="../registre.php">Retour </a>
     </body>
 </html>

@@ -42,7 +42,7 @@
                         success: function(reponse) {
                             console.log(reponse);
                             $("#solde").html(reponse);
-                            $("#solde").html(reponse);
+                            // $("#solde").html(reponse);
                         }
                     });
                 }
@@ -108,19 +108,19 @@
 
                 <div class="row">
                     <div class="col-lg-6">
-                        <h5 class="mt-2 text-primary">Registre de paie</h5>
+                        <h5 class="mt-2 text-primary">Perception des frais scolaire</h5>
                     </div>
 
-                    <!-- <div class="clog-lg-6"> -->
+                    <div class="clog-lg-6"> 
                         <!-- <button type="button" class="btn btn-primary m-1 float-right"><i class="fa fa-user-plus fa-lg" data-toggle="modal" data-target="#addModal"> Nouveau</i> -->
                         <!-- </button>&nbsp;&nbsp;&nbsp;
                         <a href="actionEleve.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
                             Exporter
-                        </a>&nbsp;&nbsp;&nbsp;
-                        <a href="#" class="btn btn-danger m-1 float-lg"><i class="fa fa-table fa-lg"></i>
-                            Importer
-                        </a> -->
-                    <!-- </div> -->
+                        </a>&nbsp;&nbsp;&nbsp;-->
+                        <a href="registre.php" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
+                            Voir le registre des paiements
+                        </a> 
+                    </div>
                 </div>
                 <hr class="my-1">
                 <div class="row">
@@ -209,6 +209,7 @@
                     }
                 });
             }
+            
             /** Fonction insert dans la bdd */
             $("#insert").click(function(e) {
                 if ($("#form-data")[0].checkValidity()) {
@@ -263,19 +264,17 @@
                         data=JSON.parse(reponse);
                         let html= data.map((res)=>{
                                 return(
-                                    '<b class="text-left">Frais :'+res.libelle+
-                                    '</b><b class="text-left">Nombre veraement :'+res.mouvement+
+                                    '<b class="text-left">'+res.libelle+' : '
+                                        +res.somme+' '+res.devise+' en '+res.mouvement+' versement(s)'+
                                     '</b></br>'
                                 )
-                                 
                             })
                         Swal.fire(
                             {
-                                
-                                    title:'<Strong class="text-left"> ID:'+data[0].nom+'</Strong><hr>',
+                                    title:'<Strong class="text-left">'+data[0].nom+' '+data[0].postnom+' '+data[0].prenom+' '+data[0].classe+'</Strong><hr>',
                                     type:"info",
                                     html:html ,
-                                    showCancelButton:true,
+                                    // showCancelButton:true,
                          }
                         )
                         showAllUser();

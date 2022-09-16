@@ -22,7 +22,7 @@
 
     <link rel="stylesheet" href="../font/font-awesome-4.7.0/css/font-awesome.min.css">
 
-    <title>Registre</title>
+    <title>Situations</title>
     <?php require_once("../pages/Menus/Navbar.php") ?>
     <script>
             // affiche les resultat
@@ -99,23 +99,28 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h5 class="text-center text-danger">Tableau de Bord</h5>
+                        <h5 class="text-center text-danger">La situation</h5>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <h5 class="mt-2 text-primary">Registre des paiements</h5>
+                        <h5 class="mt-2 text-primary"></h5>
                     </div>
 
                     <div class="clog-lg-6">
+                        
                     </div>
                 </div>
                 <hr class="my-1">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="table-responsive" id="showUser">
-                        </div>
-                    </div>
+                   <!-- <button type="button" class="btn btn-primary m-1 float-right"><i class="fa fa-user-plus fa-lg" data-toggle="modal" data-target="#addModal"> Nouveau</i> -->
+                        <!-- </button>&nbsp;&nbsp;&nbsp;
+                        <a href="actionEleve.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
+                            Exporter
+                        </a>&nbsp;&nbsp;&nbsp;-->
+                        <a href="impressions/listeAgents.php" class="btn btn-success m-1 float-lg"><i class="fa fa-group-user fa-lg"></i>
+                            liste des agents
+                        </a> 
                 </div>
             </div>
         </div>
