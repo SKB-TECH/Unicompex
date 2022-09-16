@@ -94,7 +94,7 @@ $taches = new crud();
                     <div class="clog-lg-6">
                         <button type="button" class="btn btn-primary m-1 float-right"><i class="fa fa-user-plus fa-lg" data-toggle="modal" data-target="#addModal"> Payer</i>
                         </button>&nbsp;&nbsp;&nbsp;
-                        <a href="./Menus/actionPaie.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
+                        <a href="./Menus/actionsPaie.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
                             Exporter</a>&nbsp;&nbsp;&nbsp;
                         <a href="#" class="btn btn-danger m-1 float-lg"><i class="fa fa-table fa-lg"></i>
                             Importer</a>
@@ -125,58 +125,56 @@ $taches = new crud();
 
                 <!-- Modal body -->
                 <div class="modal-body px-4">
-                <form action="" method="POST" id="form-data">
+                    <form action="" method="POST" id="form-data">
                         <div class="form-group">
-                            <label for="mois">Selectionner le mois</label>
                             <input type="month" name="mois" class="form-control" id="mois" placeholder="mois" required>
                         </div>
                         <div class="form-group">
-                            <select name="agent" class="form-control" id="iagent" required>
-                            <option value="Autres">Selectionner l'agent</option>
-                            <?php 
-                                $data=$taches->selectalldata('enseignants');
-                                while ($row=$data->fetch()){?>
-                                <option value='<?php echo $row['id']?>'><?php echo $row['noms']?></option>
-                               <?php } ?>
+                            <select name="idagent" class="form-control" id="iagent" required>
+                                <option value="Autres">Selectionner l'agent</option>
+                                <?php
+                                $data = $taches->selectalldata('enseignants');
+                                while ($row = $data->fetch()) { ?>
+                                    <option value='<?php echo $row['id'] ?>'><?php echo $row['noms'] ?></option>
+                                <?php } ?>
                             </select>
-        
-                        </div>
-                       
-                        <div class="form-group">
-                            <input type="text" name="montant" class="form-control" placeholder="montant" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="mituelle" class="form-control" placeholder="mituelle" required>
-                        </div>
-                        <div class="form-group" >
-                        <input type="text" id="avancement" name="avance" class="form-control text-danger" placeholder="avance" required>
+
                         </div>
 
                         <div class="form-group">
-                            <input type="text" name="net" class="form-control text-danger" placeholder="net A payer" required>
+                            <input type="text" id="montant" name="montant" class="form-control" placeholder="montant" required>
                         </div>
-                        
+                        <div class="form-group">
+                            <input type="text" id="mituelle" name="mituelle" class="form-control" placeholder="mituelle" onchange="valeurs()" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="avancement" name="avance" disabled class="form-control text-danger" value="0" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" id="netApayer" name="net" disabled class="form-control text-danger" placeholder="net A payer" required>
+                        </div>
+
                         <div class="form-group">
                             <input type="date" name="dates" class="form-control" placeholder="dates" required>
                         </div>
 
-                       
                         <div class="form-group">
-                            <input type="submit" name="insert" id="insert" class="btn btn-primary btn-block" value="ENREGISTRER">
+                            <input type="submit" name="insert" id="insert" class="btn btn-primary btn-block" value="EFFECTUER LE PAIEMENT ">
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- Modification Modal -->
     <div class="modal fade" id="editModal">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h5 class="modal-title">Modification personnel</h5>
+                    <h5 class="modal-title">Modification Paiement</h5>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
@@ -185,48 +183,37 @@ $taches = new crud();
                     <form action="" method="POST" id="edit-form-data">
                         <input type="hidden" id="id" name="id">
                         <div class="form-group">
-                            <input type="text" name="noms" class="form-control" id="noms" required>
+                            <input type="month" id="mois" name="mois" class="form-control" id="mois" placeholder="mois" required>
                         </div>
                         <div class="form-group">
-                            <select name="sexe" class="form-control" id="sexe" required>
-                                <option value="Autres">Selectionner le sexe..</option>
-                                <option value="Homme">Homme</option>
-                                <option value="Femme">Femme</option>
+                            <select name="idagent" class="form-control" id="idagent" required>
+                                <option value="Autres">Selectionner l'agent</option>
+                                <?php
+                                $data = $taches->selectalldata('enseignants');
+                                while ($row = $data->fetch()) { ?>
+                                    <option value='<?php echo $row['id'] ?>'><?php echo $row['noms'] ?></option>
+                                <?php } ?>
                             </select>
+
                         </div>
 
                         <div class="form-group">
-                            <select name="grade" class="form-control" id="grade" required>
-                                <option value="">Selectionner le grade..</option>
-                                <option value="D6">Diplome d'Etat</option>
-                                <option value="Licencie">Licencié</option>
-                                <option value="Gradue">Gradué</option>
-                                <option value="Master">Master</option>
-                                <option value="Autres">Autres</option>
-                            </select>
+                            <input type="text" id="montant" name="montant" class="form-control" placeholder="montant" required>
                         </div>
                         <div class="form-group">
-                            <select name="domaine" class="form-control" id="domaine" required>
-                                <option value="">Selectionner Domaine..</option>
-                                <label value="Anglais">Anglophne</label>
-                                <option value="Pedagogie">Pedagogue</option>
-                                <option value="Biologie">Biologiste</option>
-                                <option value="Assistant Social">Assistant Social</option>
-                                <option value="Français">Franciste</option>
-                                <option value="Mathematique">Mathematicien</option>
-                                <option value="Comptabilite">Comptable</option>
-                                <option value="Chimie">Chimiste</option>
-                                <option value="Informatique">Informaticien</option>
-                                <option value="Autres">Autres</option>
-                            </select>
+                            <input type="text" id="mituelle" name="mituelle" class="form-control" placeholder="mituelle" onchange="valeurs()" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="adresse" class="form-control" id="adresse" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="telephone" class="form-control" id="telephone" required>
+                            <input type="text" id="avancement" name="avance" disabled class="form-control text-danger" value="0" required>
                         </div>
 
+                        <div class="form-group">
+                            <input type="text" id="net" name="net" disabled class="form-control text-danger" placeholder="net A payer" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="date" name="dates" id="dates" class="form-control" placeholder="dates" required>
+                        </div>
                         <div class="form-group">
                             <input type="submit" name="update" id="update" class="btn btn-danger btn-block" value="MODIFIER">
                         </div>
@@ -237,7 +224,7 @@ $taches = new crud();
     </div>
     <!-- Fin de la fenetre modal Modification-->
 
-<!-- Fin de la fenetre modal -->
+    <!-- Fin de la fenetre modal -->
     <!-- Les lebrairies Javascript -->
     <script>
         /** fonction pour Afficher les donnes avec ajax  */
@@ -266,14 +253,14 @@ $taches = new crud();
                 if ($("#form-data")[0].checkValidity()) {
                     e.preventDefault();
                     $.ajax({
-                        url:"./Menus/actionsPaie.php",
-                        type:"POST",
-                        data: $("#form-data").serialize()+"&action=insert",
+                        url: "./Menus/actionsPaie.php",
+                        type: "POST",
+                        data: $("#form-data").serialize() + "&action=insert",
                         success: function(reponse) {
-                        Swal.fire(
-                            'Felicitation!',
-                            'personnel Ajouté(e) avec success !',
-                            'success'
+                            Swal.fire(
+                                'Felicitation!',
+                                'Paiement effectue avec success !',
+                                'success'
                             )
 
                             $("#addModal").modal('hide');
@@ -285,24 +272,26 @@ $taches = new crud();
             })
 
             /** La fonction pour la modification  */
-            $("body").on("click",".editBtn",function(e){
+            $("body").on("click", ".editBtn", function(e) {
                 e.preventDefault();
-                edit_id=$(this).attr('id');
+                edit_id = $(this).attr('id');
 
                 $.ajax({
-                    url:"./Menus/actionsPaie.php",
-                    type:"POST",
-                    data:{edit_id:edit_id},
-                    success:function(reponse){
-                       data=JSON.parse(reponse);
-                        
-                       $("#id").val(data.id);
-                       $("#noms").val(data.noms);
-                       $("#sexe").val(data.sexe);
-                       $("#grade").val(data.grade);
-                       $("#adresse").val(data.adresse)
-                       $("#domaine").val(data.domaine);
-                       $("#telephone").val(data.telephone);
+                    url: "./Menus/actionsPaie.php",
+                    type: "POST",
+                    data: {
+                        edit_id: edit_id
+                    },
+                    success: function(reponse) {
+                        data = JSON.parse(reponse);
+                        $("#id").val(data.id);
+                        $("#montant").val(data.montant);
+                        $("#mituelle").val(data.mituelle);
+                        $("#avancement").val(data.avance);
+                        $("#net").val(data.net);
+                        $("#mois").val(data.mois);
+                        $("#dates").val(data.dates);
+
                     }
                 })
             });
@@ -312,14 +301,14 @@ $taches = new crud();
                 if ($("#edit-form-data")[0].checkValidity()) {
                     e.preventDefault();
                     $.ajax({
-                        url:"./Menus/actionsPaie.php",
-                        type:"POST",
-                        data: $("#edit-form-data").serialize()+"&action=update",
+                        url: "./Menus/actionsPaie.php",
+                        type: "POST",
+                        data: $("#edit-form-data").serialize() + "&action=update",
                         success: function(reponse) {
-                        Swal.fire(
-                            'Felicitation!',
-                            'personnel Modifier avec success !',
-                            'success'
+                            Swal.fire(
+                                'Felicitation!',
+                                'Paiement Modifier avec success !',
+                                'success'
                             )
 
                             $("#editModal").modal('hide');
@@ -331,13 +320,12 @@ $taches = new crud();
             })
 
             /** Fonction Supprimer de la table */
-            $("body").on('click','.deleteBtn',function(e){
+            $("body").on('click', '.deleteBtn', function(e) {
                 e.preventDefault();
-                var tr=$(this).closest('tr');
-                del_id=$(this).attr('id');
+                var tr = $(this).closest('tr');
+                del_id = $(this).attr('id');
 
-                Swal.fire
-                ({
+                Swal.fire({
                     title: 'Voulez-vous supprimer cette information ?',
                     text: "une fois supprimer vous ne l'aurez plus !!",
                     icon: 'warning',
@@ -345,69 +333,75 @@ $taches = new crud();
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Yes,Delete !!!'
-                    }).then((result) => {
+                }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                        url:"./Menus/actionsPaie.php",
-                        type:"POST",
-                        data: {del_id:del_id},
-                        success: function(reponse) {
-                           tr.css('background-color','#ff6666')
-                            Swal.fire(
-                            'Felicitation!!!',
-                            'Suppression effectuée avec success !',
-                            'success'
-                            )
-                            showAllUser();
-                        }
-                        
-                    });
+                            url: "./Menus/actionsPaie.php",
+                            type: "POST",
+                            data: {
+                                del_id: del_id
+                            },
+                            success: function(reponse) {
+                                tr.css('background-color', '#ff6666')
+                                Swal.fire(
+                                    'Felicitation!!!',
+                                    'Suppression effectuée avec success !',
+                                    'success'
+                                )
+                                showAllUser();
+                            }
+
+                        });
                     }
                 })
-                
-                
+
+
             })
 
             // on change search
-            $("#iagent").on("change",function(){
-                var idagent=$(this).val();
-                var mois=$("#mois").val();
+            $("#iagent").on("change", function() {
+                var idagent = $(this).val();
+                var mois = $("#mois").val();
                 if (idagent && mois) {
                     $.ajax({
-                        type:'POST',
-                        url:"./Menus/actionsPaie.php",
-                        data:{'idagent':idagent,'mois':mois},
-                        
-                        success:function(reponse){
-                        
-                            data=JSON.parse(reponse);
+                        type: 'POST',
+                        url: "./Menus/actionsPaie.php",
+                        data: {
+                            'idagent': idagent,
+                            'mois': mois
+                        },
+
+                        success: function(reponse) {
+
+                            data = JSON.parse(reponse);
                             $('#avancement').val(data.montant);
-                            $("#avancement").val(data.montant);
+
+
                         }
-                        
+
                     })
                 }
-                
+
             })
 
             /** Info plus */
-            $("body").on("click",'.infoBtn',function(e)
-            {
+            $("body").on("click", '.infoBtn', function(e) {
                 e.preventDefault();
-                info_id= $(this).attr('id');
+                info_id = $(this).attr('id');
                 $.ajax({
-                    url:"./Menus/actionsPaie.php",
-                    type:"POST",
-                    data:{info_id:info_id},
-                    success:function(reponse){
-                        data=JSON.parse(reponse);
-                        Swal.fire(
-                            {
-                                title:'<Strong class="text-left"> ID:'+data.id+'</Strong>',
-                                type:"info",
-                                html:'<b class="text-left">Noms:'+data.noms+'</b></br><b class="text-left">Grade:'+data.grade+'</b></br><b class="text-left">Domaines:'+data.domaine+'</b></br><b class="text-left">Tel:'+data.telephone+'</b>',
-                                showCancelButton:true
-                           
+                    url: "./Menus/actionsPaie.php",
+                    type: "POST",
+                    data: {
+                        info_id: info_id
+                    },
+                    success: function(reponse) {
+                        data = JSON.parse(reponse);
+                        Swal.fire({
+                                title: '<Strong class="text-left"> IDAGENT:' + data.idagent + '</Strong>',
+                                type: "info",
+                                html: '<b class="text-left">Montant:' + data.montant + '</b></br><b class="text-left">Mituelle:' + data.mituelle + '</b></br><b class="text-left">Avance:' + data.avance + '</b></br><b class="text-left">Net a payer:' + data.net + '</b>',
+                                showCancelButton: true
+
                             }
 
                         )
@@ -416,13 +410,16 @@ $taches = new crud();
                         console.log(info_id);
                     }
                 })
-                
-                
+
+
             });
+
+
 
 
         });
     </script>
+    <script src="../js/script.js"></script>
 </body>
 
 </html>
