@@ -32,9 +32,9 @@ ini_set( 'display_errors', 1);
                 // affichier les donnees de la table par id
                 public function selectbyid($id,$tab)
                 {
-                        $sel = "SELECT * FROM $tab WHERE id=$id";
-                        $res = $this->connection->query($sel);
-                        return $res->fetch();
+                $sel = "SELECT * FROM $tab WHERE id=$id";
+                $res = $this->connection->query($sel);
+                return $res->fetch();
                 }
 
 
@@ -89,11 +89,17 @@ ini_set( 'display_errors', 1);
                         return $data;
                 }
 
-                public function SearchAvance($idagent,$mois){
-                        $sql="SELECT montant FROM avance WHERE idagent=$idagent AND mois=$mois";
+                public function SelectDataWherePaie($table1,$table2,$id){
+                        $select = "SELECT * FROM $table1 inner join $table2 ON $table1.idagent=$table2.idagent WHERE $table1.id=$id";
+                        $data = $this->connection->query($select);
+                        return $data;
+                }
+
+                public function SearchAvance($sql){
+                        //$sql="SELECT montant FROM avance WHERE idagent=$idagent AND mois=$mois";
                         $data = $this->connection->query($sql);
                         return $data;
-        }
+                }
 
                 public function ModDepenses($id,$motif,$montant,$um,$mois,$dates){
                 $sql="UPDATE depense SET motif=:mot,montant=:mont,um=:um,mois=:mois,dates=:dates WHERE id=:id";
