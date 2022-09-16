@@ -61,7 +61,7 @@ if (isset($_POST['action']) && $_POST['action'] == "insert") {
     if(!empty(trim($date_perception)) && !empty(trim($date_perception)))
     $sql = "INSERT INTO perception(date_perception,montant_percu,idEleve,idFrais) 
             VALUES ('$date_perception','$montant_percu','$idEleve','$idFrais')";
-      if($frais > $montant_percu + $solde ){
+      if($frais > floatval($montant_percu) + floatval($solde) ){
           if($db->insert2($sql)){
               $res = "reussi";
           }else{
@@ -70,8 +70,8 @@ if (isset($_POST['action']) && $_POST['action'] == "insert") {
           
       }else{
      
-        $reste = ( doubleval($montant_percu) + doubleval($solde) ) - $frais;
-        $res ="L'élève reste avec le reste de "+$reste+"seulement,  reessayer!"; 
+        $reste = ( floatval($montant_percu) + floatval($solde) ) - floatval($frais);
+        $res ="L'élève reste avec le reste de ".$reste."seulement,  reessayer!"; 
       }  
     echo $frais;
   

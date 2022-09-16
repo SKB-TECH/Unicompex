@@ -32,9 +32,9 @@ ini_set( 'display_errors', 1);
                 // affichier les donnees de la table par id
                 public function selectbyid($id,$tab)
                 {
-                $sel = "SELECT * FROM $tab WHERE id=$id";
-                $res = $this->connection->query($sel);
-                return $res->fetch();
+                        $sel = "SELECT * FROM $tab WHERE id=$id";
+                        $res = $this->connection->query($sel);
+                        return $res->fetch();
                 }
 
 
@@ -45,6 +45,11 @@ ini_set( 'display_errors', 1);
                                 $this->connection->query($update);
                         }
                         return true;
+                }
+                public function update2($sql)
+                {
+                                $this->connection->query($sql);
+                                 return true;
                 }
                 // suppression d'une donnees dans la table 
                 function deletedata($table, $labelId, $where)

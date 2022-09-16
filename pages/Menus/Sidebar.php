@@ -1,5 +1,5 @@
 <div class="list-group list-group-flush " style="height:900px;" style="position: fixed;">
-        <a class="list-group-item  bg-transparent text-left m-2 text-light mt-70">profil</a>
+        <a class="list-group-item  bg-transparent text-left m-2 text-light" style="margin-top:70px;">profil</a>
         <a class="list-group-item bg-transparent text-left m-2 text-light" href="Eleves.php">Eleve</a>
         <a href="Enseignants.php" class="list-group-item  bg-transparent text-left m-2 text-light">Agents</a>
         <a class="list-group-item bg-transparent text-left m-2 text-light" href="Frais.php">Frais</a>

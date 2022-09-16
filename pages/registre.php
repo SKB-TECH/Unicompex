@@ -22,7 +22,7 @@
 
     <link rel="stylesheet" href="../font/font-awesome-4.7.0/css/font-awesome.min.css">
 
-    <title>Registre</title>
+    <title>Registre des Paie</title>
     <?php require_once("../pages/Menus/Navbar.php") ?>
     <script>
             // affiche les resultat
@@ -56,7 +56,7 @@
         <!-- sidebar end -->
         <div class="container" style="z-index:0;">
             <!-- Debut card -->
-            <div class="container-fluid px-4">
+            <div class="container-fluid px-4" style="margin-top:70px;">
                 <div class="row g-3 my-3">
                     <div class="col-sm-3">
                         <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
@@ -256,7 +256,6 @@
                             ' modification reussi !',
                             'success'
                             )
-
                             $("#editModal").modal('hide');
                             $("#edit-form-data")[0].reset();
                             showAllUser();
@@ -264,13 +263,11 @@
                     });
                 }
             })
-
             /** Fonction Supprimer de la table */
             $("body").on('click','.deleteBtn',function(e){
                 e.preventDefault();
                 var tr=$(this).closest('tr');
                 del_id=$(this).attr('id');
-
                 Swal.fire
                 ({
                     title: 'Voulez-vous supprimer cette information ?',
@@ -295,13 +292,10 @@
                             )
                             showAllUser();
                         }
-                        
                     });
                     }
                 })
             })
-
-
             /** Info plus */
             $("body").on("click",'.infoBtn',function(e)
             {

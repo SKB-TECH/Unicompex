@@ -20,13 +20,7 @@
         </i>  
         </a>
       </li>
-      <li class="nav-item">
-      <a class="nav-link" href="#">
-        <i class="fa fa-home text-light" aria-hidden="true">
-          Apropos
-        </i>  
-        </a>
-      </li>
+     
       <li class="nav-item">
       <a class="nav-link" href="#">
         <i class="fa fa-logout text-light" aria-hidden="true">

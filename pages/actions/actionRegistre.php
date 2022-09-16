@@ -69,8 +69,9 @@
             $date_perception=$_POST['date_perception'];
     
         
-        $sql = "UPDATE FROM perception SET montant_percu='$montant_percu' date_perception='$date_perception'";
-        echo ($data);
+        $sql = "UPDATE  perception SET montant_percu='$montant_percu', date_perception='$date_perception' where id='$id";
+        $res = $db->update2($sql);
+        echo ($res);
     }
 
     /** Fonction Suprimmer de la table  */
