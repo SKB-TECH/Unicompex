@@ -88,12 +88,6 @@
                     </div>
 
                     <div class="clog-lg-6">
-                        <button type="button" class="btn btn-primary m-1 float-right"><i class="fa fa-user-plus fa-lg" data-toggle="modal" data-target="#addModal"> Nouveau</i>
-                        </button>&nbsp;&nbsp;&nbsp;
-                        <a href="actions/actionEleve.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
-                            Exporter</a>&nbsp;&nbsp;&nbsp;
-                        <a href="#" class="btn btn-danger m-1 float-lg"><i class="fa fa-table fa-lg"></i>
-                            Importer</a>
                     </div>
                 </div>
                 <hr class="my-1">
@@ -108,66 +102,6 @@
         </div>
     </div>
     <!-- Modal pour enregistrement -->
-    <!-- The Modal -->
-    <div class="modal fade" id="addModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h5 class="modal-title">Un élève: Ajout</h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body px-4">
-                    <form action="" method="POST" id="form-data">
-                        <div class="form-group">
-                            <label for="nom">Nom :</label>
-                            <input type="text" name="nom" class="form-control" placeholder="nom de l'élève" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="nom">Postnom :</label>
-                            <input type="text" name="postnom" class="form-control" placeholder="postnom de l'élève" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="prenom">Prenom :</label>
-                            <input type="text" name="prenom" class="form-control" placeholder="prenom de l'élève" required>
-                        </div>
-                        <div class="form-group">
-                        <label for="sexe">Sexe : </label>
-                            <select name="sexe" id="sexe" class="form-control" required>
-                                <option value="">Selectionner le sexe...</option>
-                                <option value="M">Masculin</option>
-                                <option value="F">Feminin</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                        <label for="sexe">Classe :  </label>
-                            <select name="classe" id="classe" class="form-control" required>
-                                <option value="">Selectionner le sexe...</option>
-                                <option value="1 ère">1 ère</option>
-                                <option value="2 ème">2 ème</option>
-                                <option value="3 ème">3 ème</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="date_naissance">Date de naissance :</label>
-                            <input type="date" name="date_naissance" class="form-control" placeholder="Date de naissance" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="lieu">Lieu de naissance :</label>
-                            <input type="text" name="lieu_naissance" class="form-control" placeholder="Lieu de naissance" required>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="submit" name="insert" id="insert" class="btn btn-primary btn-block" value="ENREGISTRER">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    
     <!-- Modification Modal -->
     <div class="modal fade" id="editModal">
         <div class="modal-dialog modal-dialog-centered">
@@ -182,43 +116,33 @@
                 <div class="modal-body px-4">
                     <form action="" method="POST" id="edit-form-data">
                         <input type="hidden" id="id" name="id">
-                    <div class="form-group">
-                            <label for="nom">Nom :</label>
-                            <input type="text" name="nom" class="form-control" placeholder="nom de l'élève" required>
-                        </div>
+                        <input type="hidden" id="id" name="id">
+                        <p id="details_eleve"></p>
                         <div class="form-group">
-                            <label for="nom">Postnom :</label>
-                            <input type="text" name="postnom" class="form-control" placeholder="postnom de l'élève" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="prenom">Prenom :</label>
-                            <input type="text" name="prenom" class="form-control" placeholder="prenom de l'élève" required>
-                        </div>
-                        <div class="form-group">
-                        <label for="sexe">Sexe : </label>
-                            <select name="sexe" id="sexe" class="form-control" required>
-                                <option value="">Selectionner le sexe...</option>
-                                <option value="M">Masculin</option>
-                                <option value="F">Feminin</option>
+                            <label for="idFrais">Frais :  </label>
+                            <select name="idFrais" onchange='showSolde()' id="idFrais" class="form-control" required>
+                                <option value=""></option>  
+                               <?php 
+                                         $resFrais = $taches->selectalldata("frais");
+                                         while($data=$resFrais->fetch()){                                ?>
+                                         <option value="<?php echo $data['id'] ?>"><?php echo $data['libelle']?></option>
+                                <?php } ?>
                             </select>
+                            <div id="solde">
+
+                            </div>
                         </div>
-                        <div class="form-group">
-                        <label for="sexe">Classe :  </label>
-                            <select name="classe" id="classe" class="form-control" required>
-                                <option value="">Selectionner le sexe...</option>
-                                <option value="1 ère">1 ère</option>
-                                <option value="2 ème">2 ème</option>
-                                <option value="3 ème">3 ème</option>
-                            </select>
+                        <div class="d-flex">
+                            <div class="form-group col-7">
+                                <label for="montant">Montant pércu : </label>
+                                <input type="currency" min="0" name="montant_percu" class="form-control " placeholder="Montant percu" required>
+                            </div>
+                            <div class="form-group col-5">
+                                <label for="date">Date : </label>
+                                <input type="date" name="date_perception" class="form-control " placeholder="date_perception" required>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="date_naissance">Date de naissance :</label>
-                            <input type="date" name="date_naissance" class="form-control" placeholder="Date de naissance" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="lieu">Lieu de naissance :</label>
-                            <input type="text" name="lieu_naissance" class="form-control" placeholder="Lieu de naissance" required>
-                        </div>
+
                         <div class="form-group">
                             <input type="submit" name="update" id="update" class="btn btn-danger btn-block" value="MODIFIER">
                         </div>
@@ -238,7 +162,7 @@
 
             function showAllUser() {
                 $.ajax({
-                    url: "actions/actionEleve.php",
+                    url: "actions/actionRegistre.php",
                     type: "POST",
                     data: {
                         action: "view"
@@ -258,7 +182,7 @@
                 if ($("#form-data")[0].checkValidity()) {
                     e.preventDefault();
                     $.ajax({
-                        url:"actions/actionEleve.php",
+                        url:"actions/actionRegistre.php",
                         type:"POST",
                         data: $("#form-data").serialize()+"&action=insert",
                         success: function(reponse) {
@@ -282,7 +206,7 @@
                 edit_id=$(this).attr('id');
 
                 $.ajax({
-                    url:"actions/actionEleve.php",
+                    url:"actions/actionRegistre.php",
                     type:"POST",
                     data:{edit_id:edit_id},
                     success:function(reponse){
@@ -304,7 +228,7 @@
                 if ($("#edit-form-data")[0].checkValidity()) {
                     e.preventDefault();
                     $.ajax({
-                        url:"actions/actionEleve.php",
+                        url:"actions/actionRegistre.php",
                         type:"POST",
                         data: $("#edit-form-data").serialize()+"&action=update",
                         success: function(reponse) {
@@ -340,7 +264,7 @@
                     }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                        url:"actions/actionEleve.php",
+                        url:"actions/actionRegistre.php",
                         type:"POST",
                         data: {del_id:del_id},
                         success: function(reponse) {
@@ -365,7 +289,7 @@
                 e.preventDefault();
                 info_id= $(this).attr('id');
                 $.ajax({
-                    url:"actions/actionEleve.php",
+                    url:"actions/actionRegistre.php",
                     type:"POST",
                     data:{info_id:info_id},
                     success:function(reponse){

@@ -297,7 +297,6 @@
                             'Elève Ajouté(e) avec success !',
                             'success'
                             )
-
                             $("#addModal").modal('hide');
                             $("#form-data")[0].reset();
                             showAllUser();
