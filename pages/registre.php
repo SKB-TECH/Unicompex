@@ -24,6 +24,27 @@
 
     <title>Registre des Paie</title>
     <?php require_once("../pages/Menus/Navbar.php") ?>
+    <script>
+            // affiche les resultat
+            function showSolde() {
+                    let idFrais = $('#idFrais').val()
+                    let idEleve = $('#id').val()
+                    $.ajax({
+                        url: "actions/actionRegistre.php",
+                        type: "POST",
+                        data: {
+                            action: "solde",
+                            idFrais: idFrais,
+                            idEleve: idEleve,
+                        },
+                        success: function(reponse) {
+                            console.log(reponse);
+                            $("#solde").html(reponse);
+                            // $("#solde").html(reponse);
+                        }
+                    });
+                }
+    </script>
 </head>
 
 <body>
@@ -81,10 +102,9 @@
                         <h5 class="text-center text-danger">Tableau de Bord</h5>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-lg-6">
-                        <h5 class="mt-2 text-primary">Registre des élèves</h5>
+                        <h5 class="mt-2 text-primary">Registre des paiements</h5>
                     </div>
 
                     <div class="clog-lg-6">
@@ -94,7 +114,6 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="table-responsive" id="showUser">
-
                         </div>
                     </div>
                 </div>
@@ -121,7 +140,7 @@
                         <div class="form-group">
                             <label for="idFrais">Frais :  </label>
                             <select name="idFrais" onchange='showSolde()' id="idFrais" class="form-control" required>
-                                <option value=""></option>  
+                                <option value="">Clique ici pour modifier le frais</option>  
                                <?php 
                                          $resFrais = $taches->selectalldata("frais");
                                          while($data=$resFrais->fetch()){                                ?>
@@ -135,11 +154,11 @@
                         <div class="d-flex">
                             <div class="form-group col-7">
                                 <label for="montant">Montant pércu : </label>
-                                <input type="currency" min="0" name="montant_percu" class="form-control " placeholder="Montant percu" required>
+                                <input type="currency" min="0" id="montant" name="montant_percu" class="form-control " placeholder="Montant percu" required>
                             </div>
                             <div class="form-group col-5">
                                 <label for="date">Date : </label>
-                                <input type="date" name="date_perception" class="form-control " placeholder="date_perception" required>
+                                <input type="date" id="date" name="date_perception" class="form-control " placeholder="date_perception" required>
                             </div>
                         </div>
 
@@ -211,15 +230,15 @@
                     data:{edit_id:edit_id},
                     success:function(reponse){
                        data=JSON.parse(reponse);
-                        
                        $("#id").val(data.id);
-                       $("#nom").val(data.nom);
-                       $("#postnom").val(data.postnom);
-                       $("#prenom").val(data.prenom);
-                       $("#sexe").val(data.sexe);
-                       $("#date_naissance").val(data.date_naissance);
-                       $("#lieu_naissa").val(data.lieu_naissance)
-                       $("#classe").val(data.classe);
+                       $("#details_eleve").text("Elève : "+data.nom+" "+data.postnom+" "+data.prenom+"     Classe: "+data.classe);
+                       $("#idFrais").val(data.idFrais);
+                       $("#montant").val(data.montant_percu);
+                       $("#date").val(data.date_perception);
+                    //    $("#sexe").val(data.sexe);
+                    //    $("#date_naissance").val(data.date_naissance);
+                    //    $("#lieu_naissa").val(data.lieu_naissance)
+                    //    $("#classe").val(data.classe);
                     }
                 })
             });
@@ -237,7 +256,6 @@
                             ' modification reussi !',
                             'success'
                             )
-
                             $("#editModal").modal('hide');
                             $("#edit-form-data")[0].reset();
                             showAllUser();
@@ -245,13 +263,11 @@
                     });
                 }
             })
-
             /** Fonction Supprimer de la table */
             $("body").on('click','.deleteBtn',function(e){
                 e.preventDefault();
                 var tr=$(this).closest('tr');
                 del_id=$(this).attr('id');
-
                 Swal.fire
                 ({
                     title: 'Voulez-vous supprimer cette information ?',
@@ -276,13 +292,10 @@
                             )
                             showAllUser();
                         }
-                        
                     });
                     }
                 })
             })
-
-
             /** Info plus */
             $("body").on("click",'.infoBtn',function(e)
             {

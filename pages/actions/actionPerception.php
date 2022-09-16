@@ -74,6 +74,7 @@ if (isset($_POST['action']) && $_POST['action'] == "insert") {
         $res ="L'élève reste avec le reste de ".$reste."seulement,  reessayer!"; 
       }  
     echo $frais;
+  
 }
 
 /** Fonction info plus de la table  eleves*/
@@ -83,10 +84,16 @@ if (isset($_POST['info_id'])) {
     $sql="
     SELECT *, count(perception.id) as mouvement, sum(perception.montant_percu) as somme FROM `perception` 
     inner JOIN frais on frais.id=idFrais 
-    inner join eleves on eleves.id=idEleve and idEleve ='$id' 
+    inner join eleves on eleves.id=idEleve and idEleve =1 
     GROUP by idFrais";
-    $row = $db->selectalldata2($sql);
-    echo json_encode($row);
+    $res = $db->selectalldata2($sql);
+    $rows = [];
+
+    while($row = $res->fetch()){
+        array_push($rows, $row);
+    }
+    
+    echo json_encode($rows);
 }
 
 /** Fonction modification de la table  perception*/

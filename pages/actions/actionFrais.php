@@ -2,7 +2,7 @@
     error_reporting( E_ALL );
     ini_set( 'display_errors', 1);
 
-    require_once "../Classes/crud.php";
+    require_once "../../Classes/crud.php";
     $db=new Crud();
 
     if(isset($_POST['action']) && $_POST['action']=="view"){
@@ -24,7 +24,7 @@
                 <tr class="text-center text-secondary">
                 <td>'.$data['id'].'</td>
                 <td>'.$data['libelle'].'</td>
-                <td>'.$data['montant']." ".$data['devise'].'</td>
+                <td>'.$data['montant_frais']." ".$data['devise'].'</td>
                 <td>
                     <a href="#" class="text-success infoBtn" title="Info"  id="'.$data['id'].'">
                         <i class="fa fa-info-circle fa-lg "></i>
@@ -62,7 +62,7 @@
         $devise=$_POST['devise'];
         $domaine=$_POST['domaine'];
 
-        $sql=("INSERT INTO frais(libelle,montant,devise)VALUES('$libelle','$montant','$devise')");
+        $sql=("INSERT INTO frais(libelle,montant_frais,devise)VALUES('$libelle','$montant','$devise')");
         
         $db->insert2($sql);
     }
@@ -109,7 +109,7 @@
         header('Pragma:no-cache');
         header('Expire:0');
 
-        $resultat=$db->selectalldata('enseignants');
+        $resultat=$db->selectalldata('frais');
         echo '<table border="1">';
         echo '<tr><th>N°</th><th>Libelle</th><th>Montant</th><th>Devise</th></tr>';
 
@@ -126,4 +126,5 @@
         }
         echo '</table>';
     }
+
 ?>

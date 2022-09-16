@@ -7,8 +7,9 @@
 
     if(isset($_POST['action']) && $_POST['action']=="view"){
         $output="";
-        $resultat=$db->selectalldata2('');
-        if($res=$db->total('eleves')){
+        $sql="SELECT *, perception.id as code FROM `perception` inner JOIN frais on frais.id=idFrais inner join eleves on eleves.id=idEleve";
+        
+        if($res=$db->selectalldata2($sql)){
             $output .='
             <table class="table table-striped table-sm table-bordered">
             <thead>
@@ -21,23 +22,26 @@
                 <th></th>
             </thead>
             <tbody>';
-            while ($data=$resultat->fetch()) {
+            while ($data=$res->fetch()) {
                 $output .='
                 <tr class="text-center text-secondary">
-                    <td>'.$data['id'].'</td>
+                    <td>'.$data['code'].'</td>
                     <td>'.$data['nom']." ".$data['postnom']." ".$data['prenom'].'</td>
                     <td>'.$data['classe'].'</td>
-                    <td>'.$data['montant_percu'].'</td>
+                    <td>'.$data['montant_percu'].' '.$data['devise'].'</td>
                     <td>'.$data['date_perception'].'</td>
                     
                     <td>
-                        <a href="#" class="text-primary editBtn" title="Modifier" data-toggle="modal" data-target="#editModal" id="'.$data['id'].'">
+                        <a href="#" class="text-primary editBtn" title="Modifier" data-toggle="modal" data-target="#editModal" id="'.$data['code'].'">
                             <i class="fa fa-edit fa-lg"></i>
                         </a>
-                        <a href="#" class="text-danger deleteBtn" title="Supprimer" id="'.$data['id'].'">
-                            <i class="fa fa-trash fa-lg"></i>
-                        </a>
+
                     </td>
+                    <td>
+                     <a href="impressions/recu.php?idRec='.$data['code'].'" class="text-secondary " >
+                        <i class="fa fa-print fa-lg"></i>
+                    </a>
+                </td>
                 </tr>'
                 ;
             }
@@ -54,8 +58,8 @@
     /** Fonction modification de la table  perception*/
     if(isset($_POST['edit_id'])){
         $id=$_POST['edit_id'];
-        $row=$db->selectbyid($id,'perception');
-       
+        $res=$db->selectalldata2("SELECT * FROM `perception` inner JOIN frais on frais.id=idFrais inner join eleves on eleves.id=idEleve WHERE perception.id='$id'");
+        $row = $res->fetch();
         echo json_encode($row);
     }
     if (isset($_POST['action'])&& $_POST['action']=="update") {
@@ -65,8 +69,9 @@
             $date_perception=$_POST['date_perception'];
     
         
-        $sql = "UPDATE FROM perception SET montant_percu='$montant_percu' date_perception='$date_perception'";
-        echo ($data);
+        $sql = "UPDATE  perception SET montant_percu='$montant_percu', date_perception='$date_perception' where id='$id";
+        $res = $db->update2($sql);
+        echo ($res);
     }
 
     /** Fonction Suprimmer de la table  */
@@ -114,4 +119,31 @@
         }
         echo '</table>';
     }
+
+    // affiche resultat solde 
+  if(isset($_POST['action']) && $_POST['action'] == "solde") {
+    $id = $_POST['idFrais'];
+    $idEleve = $_POST['idEleve'];
+    $output = "";
+
+    $resultat = $db->selectalldata2("select *, sum(montant_percu) as solde from perception 
+            inner join frais on idFrais = frais.id and idFrais = '$id' and idEleve='$idEleve'");
+    $data = $resultat->fetch();
+    if ($data) {
+        $output .= '
+                <p class="text-center text-secondary">
+                        <b>' . "Solde : " . $data['solde'] . " " . $data['devise'] . "
+                         / " . $data['montant_frais'] . " " . $data['devise'] . '</b> 
+                         <input type="hidden" id="solde_value" name="solde" value=' . $data['solde'] . '>
+                         <input type="hidden" id="" name="frais" value='. $data['montant_frais'].'>
+                </p>';
+    } else {
+        $output .= "
+                <p class='text-center text-secondary mt-5'>
+                     Le solde est 0 pour le frais selectionné
+                </p>";
+    }
+    echo ($output);
+}
+
 ?>

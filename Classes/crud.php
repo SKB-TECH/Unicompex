@@ -46,6 +46,11 @@ ini_set( 'display_errors', 1);
                         }
                         return true;
                 }
+                public function update2($sql)
+                {
+                                $this->connection->query($sql);
+                                 return true;
+                }
                 // suppression d'une donnees dans la table 
                 function deletedata($table, $labelId, $where)
                 {
