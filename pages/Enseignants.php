@@ -44,8 +44,9 @@ $taches = new crud();
                     <div class="col-sm-3">
                         <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
                             <div>
+                            <i class="fa fa-male" aria-hidden="true" style="font-size: 40px;"></i>
                                 <h4 class="fs-2">234 .000</h4>
-                                <p class="fs-5">Eleves</p>
+                                <p class="fs-5">Hommes</p>
                             </div>
                         </div>
                     </div>
@@ -53,8 +54,9 @@ $taches = new crud();
                     <div class="col-sm-3">
                         <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
                             <div>
+                            <i class="fa fa-female" aria-hidden="true" style="font-size: 40px;"></i>
                                 <h4 class="fs-2">234 .000</h4>
-                                <p class="fs-5">Eleves</p>
+                                <p class="fs-5">Femmes</p>
                             </div>
                         </div>
                     </div>
@@ -62,17 +64,9 @@ $taches = new crud();
                     <div class="col-sm-3">
                         <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
                             <div>
+                            <i class="fa fa-users text-2xl" aria-hidden="true" style="font-size: 40px;"></i>
                                 <h4 class="fs-2">234 .000</h4>
-                                <p class="fs-5">Eleves</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
-                            <div>
-                                <h4 class="fs-2">234 .000</h4>
-                                <p class="fs-5">Eleves</p>
+                                <p class="fs-5">Total </p>
                             </div>
                         </div>
                     </div>

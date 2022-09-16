@@ -218,7 +218,7 @@
                         type:"POST",
                         data: $("#form-data").serialize()+"&action=insert",
                         success: function(reponse) {
-                            console.log(reponse);
+                           
                             Swal.fire(
                                 'Resultat',                            // 'Felicitation!',
                                 reponse,
