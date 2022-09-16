@@ -121,6 +121,9 @@
                         <a href="impressions/listeAgents.php" class="btn btn-success m-1 float-lg"><i class="fa fa-group-user fa-lg"></i>
                             liste des agents
                         </a> 
+                        <a href="impressions/listeAgents.php" class="btn btn-success m-1 float-lg"><i class="fa fa-group-user fa-lg"></i>
+                            liste
+                        </a> 
                 </div>
             </div>
         </div>

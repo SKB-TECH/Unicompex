@@ -246,7 +246,7 @@
                     success:function(reponse){
                        data=JSON.parse(reponse);                        
                        $("#id").val(data.id);
-                       $("#details_eleve").text("Elève : "+data.nom+" "+data.postnom+" "+data.prenom+"     Classe: "+data.classe);
+                       $("#details_eleve").text("Elève : "+data.nom+" "+data.postnom+" "+data.prenom+"       Classe: "+data.classe);
                     }
                 })
             });

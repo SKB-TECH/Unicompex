@@ -198,7 +198,7 @@
 
             function showAllUser() {
                 $.ajax({
-                    url: "actionFrais.php",
+                    url: "actions/actionFrais.php",
                     type: "POST",
                     data: {
                         action: "view"
