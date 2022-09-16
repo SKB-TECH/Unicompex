@@ -209,7 +209,6 @@
                     }
                 });
             }
-
             /** Fonction insert dans la bdd */
             $("#insert").click(function(e) {
                 if ($("#form-data")[0].checkValidity()) {
@@ -262,13 +261,22 @@
                     data:{info_id:info_id},
                     success:function(reponse){
                         data=JSON.parse(reponse);
+                        let html= data.map((res)=>{
+                                return(
+                                    '<b class="text-left">Frais :'+res.libelle+
+                                    '</b><b class="text-left">Nombre veraement :'+res.mouvement+
+                                    '</b></br>'
+                                )
+                                 
+                            })
                         Swal.fire(
                             {
-                                title:'<Strong class="text-left"> ID:'+data.id+'</Strong>',
-                                type:"info",
-                                html:'<b class="text-left">Noms:'+data.noms+'</b></br><b class="text-left">Grade:'+data.grade+'</b></br><b class="text-left">Domaines:'+data.domaine+'</b></br><b class="text-left">Tel:'+data.telephone+'</b>',
-                                showCancelButton:true
-                            }
+                                
+                                    title:'<Strong class="text-left"> ID:'+data[0].nom+'</Strong><hr>',
+                                    type:"info",
+                                    html:html ,
+                                    showCancelButton:true,
+                         }
                         )
                         showAllUser();
                     }

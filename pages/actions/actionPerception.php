@@ -69,7 +69,7 @@ if (isset($_POST['action']) && $_POST['action'] == "insert") {
           }
           
       }else{
-        num
+     
         $reste = ( doubleval($montant_percu) + doubleval($solde) ) - $frais;
         $res ="L'élève reste avec le reste de "+$reste+"seulement,  reessayer!"; 
       }  
@@ -80,7 +80,12 @@ if (isset($_POST['action']) && $_POST['action'] == "insert") {
 
 if (isset($_POST['info_id'])) {
     $id = $_POST['info_id'];
-    $row = $db->selectbyid($id, 'eleves');
+    $sql="
+    SELECT *, count(perception.id) as mouvement, sum(perception.montant_percu) as somme FROM `perception` 
+    inner JOIN frais on frais.id=idFrais 
+    inner join eleves on eleves.id=idEleve and idEleve ='$id' 
+    GROUP by idFrais";
+    $row = $db->selectalldata2($sql);
     echo json_encode($row);
 }
 
