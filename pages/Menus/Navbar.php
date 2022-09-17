@@ -14,7 +14,7 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link" href="../Enseignants.php" style="font-size: 18px;">
+        <a class="nav-link" style="font-size: 18px;">
         <i class="fa fa-home text-light" aria-hidden="true">
           Accueil
         </i>  

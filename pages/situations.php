@@ -94,9 +94,18 @@
                                                         <label for="#classe"> Classe </label>
                                                            <select class="form-select col-md-12" aria-label="" id="classe" name="classe">
                                                               <option selected>Choix de la classe</option>
-                                                                <option value="1ere">1ere</option>
-                                                                <option value="4ere">2e</option>
-                                                                <option value="3ere">3e</option>
+                                                              <option value="">Selectionner ...</option>
+                                                                <option value="7EB">7 EB</option>
+                                                                <option value="8EB">8 EB</option>
+                                                                <option value="I HP/A">I HP/A</option>
+                                                                <option value="I HP/B">I HP/B</option>
+                                                                <option value="I HTS">I HTS</option>
+                                                                <option value="II HP">II HP</option>
+                                                                <option value="II HTS">II HTS</option>
+                                                                <option value="III HP">III HP</option>
+                                                                <option value="III HTC">III HTS</option>
+                                                                <option value="IV HP">IV HP</option>
+                                                                <option value="IV HTC">IV HTS</option>
                                                             </select>
                                                  </div><br>
                                                     
@@ -115,9 +124,18 @@
                                                      <label for="#classe"> Classe </label>
                                                         <select class="form-select col-md-12" aria-label="" id="classe" name="classe">
                                                            <option selected>Choix de la classe</option>
-                                                             <option value="1 ere">1 ere</option>
-                                                             <option value="2 e">2 e</option>
-                                                             <option value="3 e">3 e</option>
+                                                           <option value="">Selectionner ...</option>
+                                                                    <option value="7EB">7 EB</option>
+                                                                    <option value="8EB">8 EB</option>
+                                                                    <option value="I HP/A">I HP/A</option>
+                                                                    <option value="I HP/B">I HP/B</option>
+                                                                    <option value="I HTS">I HTS</option>
+                                                                    <option value="II HP">II HP</option>
+                                                                    <option value="II HTS">II HTS</option>
+                                                                    <option value="III HP">III HP</option>
+                                                                    <option value="III HTC">III HTS</option>
+                                                                    <option value="IV HP">IV HP</option>
+                                                                    <option value="IV HTC">IV HTS</option>
                                                          </select>
                                               </div><br>
                                               <div class="col-md-12 form-group">
@@ -148,9 +166,18 @@
                                                      <label for="#classe"> Classe </label>
                                                         <select class="form-select col-md-12" aria-label="" id="classe" name="classe">
                                                            <option selected>Choix de la classe</option>
-                                                             <option value="1 ere">1 ere</option>
-                                                             <option value="2 e">2 e</option>
-                                                             <option value="3 e">3 e</option>
+                                                           <option value="">Selectionner ...</option>
+                                                                <option value="7EB">7 EB</option>
+                                                                <option value="8EB">8 EB</option>
+                                                                <option value="I HP/A">I HP/A</option>
+                                                                <option value="I HP/B">I HP/B</option>
+                                                                <option value="I HTS">I HTS</option>
+                                                                <option value="II HP">II HP</option>
+                                                                <option value="II HTS">II HTS</option>
+                                                                <option value="III HP">III HP</option>
+                                                                <option value="III HTC">III HTS</option>
+                                                                <option value="IV HP">IV HP</option>
+                                                                <option value="IV HTC">IV HTS</option>
                                                          </select>
                                               </div><br>
                                               <div class="col-md-12 form-group">
