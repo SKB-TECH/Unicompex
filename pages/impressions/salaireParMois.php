@@ -32,10 +32,9 @@ class myPDF extends FPDF {
         $this->SetFillColor(255, 255, 255);
         $this->Cell(10,7,utf8_decode('N°'),1,0,'C', true);
         $this->Cell(50,7,'Noms de l\'agent',1,0,'C', true);
-        $this->Cell(30,7,'Domaine',1,0,'C', true);
-        $this->Cell(30,7,utf8_decode('Grade'),1,0,'C', true);
-        $this->Cell(30,7,utf8_decode('SB'),1,0,'C', true);
-        $this->Cell(20,7,utf8_decode('Mitual.'),1,0,'C', true);
+        $this->Cell(30,7,utf8_decode('Montant'),1,0,'C', true);
+        $this->Cell(30,7,utf8_decode('Avance'),1,0,'C', true);
+        $this->Cell(20,7,utf8_decode('Mitualle'),1,0,'C', true);
         $this->Cell(15,7,utf8_decode('Net'),1,0,'C', true);
         
     }
@@ -49,9 +48,8 @@ class myPDF extends FPDF {
             $this->SetFillColor(255, 255, 255);
             $this->Cell(10,7,utf8_decode($i),1,0,'C', true);
             $this->Cell(50,7,$data['noms'],1,0,'L', true);
-            $this->Cell(30,7,$data['domaine'],1,0,'L', true);
-            $this->Cell(30,7,$data['grade'],1,0,'L', true);
             $this->Cell(30,7,$data['montant'],1,0,'C', true);
+            $this->Cell(30,7,$data['avance'],1,0,'C', true);
             $this->Cell(20,7,$data['mituelle'],1,0,'C', true);
             $this->Cell(15,7,$data['net'],1,0,'C', true);
             $this->Ln();
