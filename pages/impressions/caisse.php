@@ -36,7 +36,7 @@ class myPDF extends FPDF {
         $this->Cell(40,7,utf8_decode('Libellé'),1,0,'C', true);
         $this->Cell(30,7,utf8_decode('Montant'),1,0,'C', true);
     }
-   
+
     function rowsPerception($db){
         $i = 0;
         $total = 0;
