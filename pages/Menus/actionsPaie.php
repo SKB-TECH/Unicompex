@@ -10,7 +10,7 @@
     if(isset($_POST['action']) && $_POST['action']=="view"){
         $output="";
         $resultat=$db->SelectDataWhere('enseignants','paie');
-        if($res=$db->total('enseignants')){
+        if($res=$db->total1('enseignants')){
             $output .='
             <table class="table table-striped table-sm table-bordered">
             <thead>
@@ -38,11 +38,11 @@
                 <td>'.$data['mois'].'</td>
                 <td>'.$data['dates'].'</td>
                 <td>
-                    <a href="#" class="text-success infoBtn" title="Info"  id="'.$data['id'].'">
+                    <a href="#" class="text-success infoBtn" title="Info"  id="'.$data['idagent'].'">
                         <i class="fa fa-info-circle fa-lg "></i>
                     </a>
 
-                    <a href="#" class="text-primary editBtn" title="Modifier" data-toggle="modal" data-target="#editModal" id="'.$data['id'].'">
+                    <a href="#" class="text-primary editBtn" title="Modifier" data-toggle="modal" data-target="#editModal" id="'.$data['idagent'].'">
                         <i class="fa fa-edit fa-lg"></i>
                     </a>
 
@@ -82,18 +82,15 @@
 
 
     /** Fonction insert dans la bdd */
-    if(isset($_POST['action'])&& $_POST['action']=="insert"){
-
+    if(isset($_POST['action']) && $_POST['action']=="insert"){
         $idagent=$_POST['idagent'];
         $mois=$_POST['mois'];
-        $montant=$_POST['montant'];
-        $mituelle=$_POST['mituelle'];
-        $avance=$_POST['avance'];
-        $net=$_POST['net'];
+        $montant=intval($_POST['montant']);
+        $mituelle=intval($_POST['mituelle']);
+        $avance=intval($_POST['avance']);
+        $net=intval($_POST['net']);
         $dates=$_POST['dates'];
-        
-        print_r("echo");
-        $sql=("INSERT INTO paie(idagent,montant,mituelle,avance,net,mois,dates) VALUES ('$idagent', '$montant', '$mituelle', '$avance', '$net', '$mois', '$dates');");
+        $sql="INSERT INTO paie(idagent,montant,mituelle,avance,net,mois,dates) VALUES ('$idagent', '$montant', '$mituelle', '$avance', '$net', '$mois','$dates')";
         $db->insert2($sql);
 
         print_r("OK BEN");
@@ -102,8 +99,8 @@
     /** Fonction modification de la table  enseignants*/
     if(isset($_POST['edit_id'])){
         $id=$_POST['edit_id'];
-        $row=$db->selectbyid($id,'paie');
-       
+        $res=$db->SelectDataWhere('enseignants','paie');
+        $row=$res->fetch();
         echo json_encode($row);
     }
 
@@ -124,8 +121,7 @@
     /** Fonction Suprimmer de la table  enseignants*/
     if(isset($_POST['del_id'])){
         $id=$_POST['del_id'];
-        
-        $row=$db->deletedata('enseignants','id',$id);
+        $row=$db->deletedata('paie','id',$id);
        
     }
 
@@ -165,4 +161,4 @@
         }
         echo '</table>';
     }
-?>
+    ?>

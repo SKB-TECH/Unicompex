@@ -50,13 +50,12 @@ function valeurs() {
     
     if(c){
         const d=((a)-(b)-(c));
-        net.value=d
+        net.textContent=d
     }
 
     else{
         const d=((a)-(b));
-        avance.value=0
-        net.value=d
+        net.textContent=d
     }
 }
 

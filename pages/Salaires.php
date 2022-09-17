@@ -41,38 +41,63 @@ $taches = new crud();
             <!-- Debut card -->
             <div class="container-fluid px-4" style="margin-top:70px;">
                 <div class="row g-3 my-3">
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
                             <div>
-                                <h4 class="fs-2">234 .000</h4>
-                                <p class="fs-5">Eleves</p>
+                                <?php $res=$taches->Compte("montant_percu",'perception');
+                                    $data=$res->fetch();
+                                    $entre=$data[0];
+                                ?>
+                                <h6 class="fs-2 font-bold"><?php echo($entre)?> &nbsp;FC</h6>
+                                <p class="fs-5">ENTREES</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
                             <div>
-                                <h4 class="fs-2">234 .000</h4>
-                                <p class="fs-5">Eleves</p>
+                                <?php $res=$taches->Compte("montant",'depense');
+                                    $res=$res->fetch();
+                                    $sortie1=$res[0];
+                                ?>
+                                <h6 class="fs-2 font-bold"><?php echo($sortie1)?> &nbsp;FC</h6>
+                                <p class="fs-5">DEPENSES</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
-                            <div>
-                                <h4 class="fs-2">234 .000</h4>
-                                <p class="fs-5">Eleves</p>
+                        <div>
+                                <?php $res=$taches->Compte("montant",'avance');
+                                    $des=$res->fetch();
+                                    $avance=$des[0]
+                                ?>
+                                <h6 class="fs-2 font-bold"><?php echo($avance)?> &nbsp;FC</h6>
+                                <p class="fs-5">AVANCES</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
+                        <div>
+                                <?php $res=$taches->Compte("net",'paie');
+                                    $sal=$res->fetch();
+                                    $paie=$sal[0]
+                                ?>
+                                <h6 class="fs-2 font-bold"><?php echo($paie)?> &nbsp;FC</h6>
+                                <p class="fs-5">SALAIRES</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-sm-3">
+
+                    <div class="col-sm-2">
                         <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
-                            <div>
-                                <h4 class="fs-2">234 .000</h4>
-                                <p class="fs-5">Eleves</p>
+                        <div style="font-weight: 400">
+                                <h6 class="fs-2 font-bold"><?php echo($entre-$sortie1-$avance);?> &nbsp;FC</h6>
+                                <p class="fs-5">SOLDE</p>
                             </div>
                         </div>
                     </div>
@@ -97,7 +122,8 @@ $taches = new crud();
                         <a href="./Menus/actionsPaie.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
                             Exporter</a>&nbsp;&nbsp;&nbsp;
                         <a href="#" class="btn btn-danger m-1 float-lg"><i class="fa fa-table fa-lg"></i>
-                            Importer</a>
+                            LISTE PDF    
+                    </a>
                     </div>
                 </div>
                 <hr class="my-1">
@@ -148,11 +174,11 @@ $taches = new crud();
                             <input type="text" id="mituelle" name="mituelle" class="form-control" placeholder="mituelle" onchange="valeurs()" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="avancement" name="avance" disabled class="form-control text-danger" value="0" required>
+                            <input type="text" id="avancement" name="avance" class="form-control text-danger" value="0" required>
                         </div>
 
                         <div class="form-group">
-                            <input type="text" id="netApayer" name="net" disabled class="form-control text-danger" placeholder="net A payer" required>
+                            <input type="text" id="netApayer" name="net"  class="form-control text-danger" placeholder="net A payer" required>
                         </div>
 
                         <div class="form-group">
@@ -255,14 +281,13 @@ $taches = new crud();
                     $.ajax({
                         url: "./Menus/actionsPaie.php",
                         type: "POST",
-                        data: $("#form-data").serialize() + "&action=insert",
+                        data: $("#form-data").serialize() +"&action=insert",
                         success: function(reponse) {
                             Swal.fire(
                                 'Felicitation!',
                                 'Paiement effectue avec success !',
                                 'success'
                             )
-
                             $("#addModal").modal('hide');
                             $("#form-data")[0].reset();
                             showAllUser();
@@ -284,7 +309,9 @@ $taches = new crud();
                     },
                     success: function(reponse) {
                         data = JSON.parse(reponse);
-                        $("#id").val(data.id);
+                        //console.log(data.noms);
+                        $("#id").val(data.idagent);
+                        $("#idagent").val(data.noms);
                         $("#montant").val(data.montant);
                         $("#mituelle").val(data.mituelle);
                         $("#avancement").val(data.avance);
