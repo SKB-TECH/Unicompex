@@ -97,7 +97,44 @@ class myPDF extends FPDF {
     }
     // fin du tableau de paie agent
     
-    
+    // autres depense
+            function headerAutreDepense(){
+                $this->SetFont('courier','B',11);
+                $this->Cell(80,7,'Autres depenses',0,0,'C');
+                $this->Ln(10);
+
+                $this->SetFont('courier','B',11);
+                $this->SetFillColor(255, 255, 255);
+                $this->Cell(15,7,utf8_decode('N°'),1,0,'C', true);
+                $this->Cell(40,7,utf8_decode('Libellé'),1,0,'C', true);
+                $this->Cell(30,7,utf8_decode('Montant'),1,0,'C', true);
+            }
+
+
+            function rowsAutresDepenses($db){
+                $i = 0;
+                $total = 0;
+                $res=$db->selectalldata2("SELECT *, sum(montant_percu) as somme  FROM perception 
+                    inner join frais on frais.id = idFrais 
+                    group by idFrais 
+                    order by libelle asc");
+                while($data = $res->fetch()){
+                    $i++;
+                    $this->SetFont('times','',12);
+                    $this->SetFillColor(255, 255, 255);
+                    $this->Cell(15,7,utf8_decode($i),1,0,'C', true);
+                    $this->Cell(40,7,utf8_decode($data['libelle']),1,0,'L', true);
+                    $this->Cell(30,7,$data['somme']." ".$data['devise'],1,0,'C', true);
+                    $total += $data['somme'];
+                    $devise = $data['devise'];
+                    $this->Ln();
+                }
+                 $this->Cell(55,7,"TOTAL",1,0,'C', true);
+                 $this->Cell(30,7,$total." ".$devise,1,0,'C', true);
+            }
+        
+
+    // 
     function Totalite(){ 
 $this->Ln(6);
 $this->Cell(0,0,utf8_decode("Date d'impression : ").date('d/m/Y'),0,0,'L');
