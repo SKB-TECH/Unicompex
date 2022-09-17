@@ -22,7 +22,7 @@
       </li>
      
       <li class="nav-item">
-      <a class="nav-link" href="#">
+      <a class="nav-link" href="../index.php">
         <i class="fa fa-logoin text-light" aria-hidden="true">
           Deconnexion
         </i>  

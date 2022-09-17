@@ -153,6 +153,13 @@ class Crud extends Database
                 $somme = $this->connection->query($sql);
                 return $somme;
         }
+
+        public function Authentification($log,$pwd){ 
+                $sql="SELECT * FROM User WHERE logine='$log' AND password='$pwd'";
+                $stms = $this->connection->prepare($sql);
+                $stms->execute();
+                return $total= $stms->rowCount();
+        }
 }
 
 

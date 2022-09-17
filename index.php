@@ -21,24 +21,24 @@
 <body>
 <div class="container">
   <div class="forme">
-  <form action="/action_page.php" class="was-validated w-25">
+  <form action="./pages/Menus/action_page.php" method="POST" class="was-validated w-25" id="form-data">
    <div>
    <div class="form-group">
-      <label for="uname">Username:</label>
-      <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" required>
+      <label for="uname">Nom utilisateur</label>
+      <input type="text" name="logine" class="form-control" id="uname" placeholder="Enter username" name="uname" required>
       <div class="valid-feedback">Valid.</div>
       <div class="invalid-feedback">Please fill out this field.</div>
     </div>
     <div class="form-group">
-      <label for="pwd">Password:</label>
-      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
+      <label for="pwd">Mot de passe:</label>
+      <input type="password" name="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
       <div class="valid-feedback">Valid.</div>
       <div class="invalid-feedback">Please fill out this field.</div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Connexion</button>
+    <input type="submit" class="btn btn-primary" value="Connexion"/>
    </div>
   </form>
-  </div>  
+  </div> 
 </body>
 </html>
