@@ -158,10 +158,18 @@
                         <div class="form-group">
                         <label for="sexe">Classe :  </label>
                             <select name="classe" id="classe" class="form-control" required>
-                                <option value="">Selectionner le sexe...</option>
-                                <option value="1 ère">1 ère</option>
-                                <option value="2 ème">2 ème</option>
-                                <option value="3 ème">3 ème</option>
+                                <option value="">Selectionner ...</option>
+                                <option value="7EB">7 EB</option>
+                                <option value="8EB">8 EB</option>
+                                <option value="I HP/A">I HP/A</option>
+                                <option value="I HP/B">I HP/B</option>
+                                <option value="I HTS">I HTS</option>
+                                <option value="II HP">II HP</option>
+                                <option value="II HTS">II HTS</option>
+                                <option value="III HP">III HP</option>
+                                <option value="III HTC">III HTS</option>
+                                <option value="IV HP">IV HP</option>
+                                <option value="IV HTC">IV HTS</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -219,10 +227,18 @@
                         <div class="form-group">
                         <label for="sexe">Classe :  </label>
                             <select name="classe" id="classe" class="form-control" required>
-                                <option value="">Selectionner le sexe...</option>
-                                <option value="1 ère">1 ère</option>
-                                <option value="2 ème">2 ème</option>
-                                <option value="3 ème">3 ème</option>
+                            <option value="">Selectionner ...</option>
+                                <option value="7EB">7 EB</option>
+                                <option value="8EB">8 EB</option>
+                                <option value="I HP/A">I HP/A</option>
+                                <option value="I HP/B">I HP/B</option>
+                                <option value="I HTS">I HTS</option>
+                                <option value="II HP">II HP</option>
+                                <option value="II HTS">II HTS</option>
+                                <option value="III HP">III HP</option>
+                                <option value="III HTC">III HTS</option>
+                                <option value="IV HP">IV HP</option>
+                                <option value="IV HTC">IV HTS</option>
                             </select>
                         </div>
                         <div class="form-group">
