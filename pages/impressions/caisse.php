@@ -83,8 +83,9 @@ class myPDF extends FPDF {
             $this->Cell(15,7,utf8_decode(1),1,0,'C', true);
             $this->Cell(40,7,utf8_decode("Salaire"),1,0,'C', true);
             $this->Cell(30,7,$data['salaire'],1,0,'L', true);
+            $this->Ln();
             
-            $this->Cell(15,7,utf8_decode(1),1,0,'C', true);
+            $this->Cell(15,7,utf8_decode(2),1,0,'C', true);
             $this->Cell(40,7,utf8_decode("Mituelle"),1,0,'C', true);
             $this->Cell(30,7,$data['mituelle'],1,0,'L', true);
 
@@ -116,13 +117,14 @@ $pdf->AddPage('M','A4',0);
 $pdf->Table($db);
 $pdf->Ln(7);
 $pdf->headerPerception();
-$pdf->Cell(50,10,'',0,0);
-$pdf->headerPaie();
+$pdf->Cell(30,10,'',0,0);
+$pdf->headerPerception();
+// $pdf->headerPaie();
 $pdf->Ln(7);
-$pdf->rowsPerception($db);
+// $pdf->rowsPerception($db);
 // $pdf->Cell(50,10,'',0,0);
 // $pdf->rowsPaie($db);
-// $pdf->Ln(5);
+$pdf->Ln(5);
 
 
 $pdf->Totalite($db);

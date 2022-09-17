@@ -56,7 +56,7 @@
         <!-- sidebar end -->
         <div class="container mt-10" style="z-index:0;">
             <!-- Debut card -->
-            <div class="container-fluid px-4" style="margin-top:70px;">
+            <!-- <div class="container-fluid px-4" style="margin-top:70px;">
                 <div class="row g-3 my-3">
                     <div class="col-sm-3">
                         <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
@@ -94,7 +94,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
+            <br><br>
             <!-- Fin card -->
             <div class="container">
                 <div class="row">
@@ -176,6 +177,43 @@
                                                                         <?php }   ?>
                                                             </select>
                                                  </div><br>
+                                                 
+                                                     <button type="submit" class="btn btn-success form-control  col-md-12" name="valider"><i class="fa fa-print"></i>Voir et imprimer</button>
+                                     </form>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-sm-3">
+                     
+                     <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
+                         <div>
+                             <h4 class="fs-2">Frais scolaire par classe et par tranche(s) : </h4>
+                             <form method="POST" action="impressions/perceptionParTranche.php" >
+                                              <div class="col-md-12 form-group">
+                                                     <label for="#classe"> Classe </label>
+                                                        <select class="form-select col-md-12" aria-label="" id="classe" name="classe">
+                                                           <option selected>Choix de la classe</option>
+                                                             <option value="1 ere">1 ere</option>
+                                                             <option value="2 e">2 e</option>
+                                                             <option value="3 e">3 e</option>
+                                                         </select>
+                                              </div><br>
+                                              <div class="col-md-12 form-group">
+                                                        <label for="#agent"> Frais </label>
+                                                           <select class="form-select col-md-12" aria-label="" id="idFrais" name="idFrais">
+                                                              <option selected>Choix du frais concerné</option>
+                                                
+                                                                    <?php 
+                                                                        $resFrais =  $db->selectalldata('frais');
+                                                                        while($frais = $resFrais->fetch()){ ?>
+                                                                              <option value="<?php echo $frais['id']?>"> <?php echo $frais['libelle']; ?></option>
+                                                                        <?php }   ?>
+                                                            </select>
+                                                 </div><br>
+                                                 <div class="col-md-12 form-group">
+                                                          <label for="#date">Valeur de la (des) tranche(s):  </label>
+                                                          <input type="number" min="0" name="tranche" class="form-control mb-6 mr-sm-2" placeholder="Entres la valeur (des) de la tranche(s)"  required>    
+                                                    </div><br>
                                                  
                                                      <button type="submit" class="btn btn-success form-control  col-md-12" name="valider"><i class="fa fa-print"></i>Voir et imprimer</button>
                                      </form>
