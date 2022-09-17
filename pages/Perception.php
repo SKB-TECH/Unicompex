@@ -137,11 +137,6 @@
                     </div>
 
                     <div class="clog-lg-6"> 
-                        <!-- <button type="button" class="btn btn-primary m-1 float-right"><i class="fa fa-user-plus fa-lg" data-toggle="modal" data-target="#addModal"> Nouveau</i> -->
-                        <!-- </button>&nbsp;&nbsp;&nbsp;
-                        <a href="actionEleve.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
-                            Exporter
-                        </a>&nbsp;&nbsp;&nbsp;-->
                         <a href="registre.php" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
                             Voir le registre des paiements
                         </a> 

@@ -121,9 +121,6 @@ $taches = new crud();
                         </button>&nbsp;&nbsp;&nbsp;
                         <a href="./Menus/actionsPaie.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
                             Exporter</a>&nbsp;&nbsp;&nbsp;
-                        <a href="#" class="btn btn-danger m-1 float-lg"><i class="fa fa-table fa-lg"></i>
-                            LISTE PDF    
-                    </a>
                     </div>
                 </div>
                 <hr class="my-1">

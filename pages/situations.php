@@ -55,46 +55,6 @@
         </div>
         <!-- sidebar end -->
         <div class="container mt-10" style="z-index:0;">
-            <!-- Debut card -->
-            <!-- <div class="container-fluid px-4" style="margin-top:70px;">
-                <div class="row g-3 my-3">
-                    <div class="col-sm-3">
-                        <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
-                            <div>
-                                <h4 class="fs-2">234 .000</h4>
-                                <p class="fs-5">Eleves</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
-                            <div>
-                                <h4 class="fs-2">234 .000</h4>
-                                <p class="fs-5">Eleves</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
-                            <div>
-                                <h4 class="fs-2">234 .000</h4>
-                                <p class="fs-5">Eleves</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
-                            <div>
-                                <h4 class="fs-2">234 .000</h4>
-                                <p class="fs-5">Eleves</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
             <br><br>
             <!-- Fin card -->
             <div class="container">
@@ -114,11 +74,6 @@
                 </div>
                 <hr class="my-1">
                 <div class="row">
-                   <!-- <button type="button" class="btn btn-primary m-1 float-right"><i class="fa fa-user-plus fa-lg" data-toggle="modal" data-target="#addModal"> Nouveau</i> -->
-                        <!-- </button>&nbsp;&nbsp;&nbsp;
-                        <a href="actionEleve.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
-                            Exporter
-                        </a>&nbsp;&nbsp;&nbsp;-->
                         <div class="col-sm-3">
                             <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
                                 <div>
