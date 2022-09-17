@@ -95,7 +95,6 @@
         print_r("echo");
         $sql=("INSERT INTO paie(idagent,montant,mituelle,avance,net,mois,dates) VALUES ('$idagent', '$montant', '$mituelle', '$avance', '$net', '$mois', '$dates');");
         $db->insert2($sql);
-
         print_r("OK BEN");
     }
 

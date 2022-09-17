@@ -1,6 +1,6 @@
 <?php
     require_once("../Classes/crud.php");
-    $taches = new crud();
+    $db = new crud();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,7 +54,7 @@
             <?php require_once("../pages/Menus/Sidebar.php") ?>
         </div>
         <!-- sidebar end -->
-        <div class="container" style="z-index:0;">
+        <div class="container mt-10" style="z-index:0;">
             <!-- Debut card -->
             <div class="container-fluid px-4">
                 <div class="row g-3 my-3">
@@ -99,7 +99,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h5 class="text-center text-danger">La situation</h5>
+                        <h5 class="text-center text-danger"></h5>
                     </div>
                 </div>
                 <div class="row">
@@ -118,12 +118,70 @@
                         <a href="actionEleve.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
                             Exporter
                         </a>&nbsp;&nbsp;&nbsp;-->
-                        <a href="impressions/listeAgents.php" class="btn btn-success m-1 float-lg"><i class="fa fa-group-user fa-lg"></i>
-                            liste des agents
-                        </a> 
-                        <a href="impressions/listeAgents.php" class="btn btn-success m-1 float-lg"><i class="fa fa-group-user fa-lg"></i>
-                            liste
-                        </a> 
+                        <div class="col-sm-3">
+                            <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
+                                <div>
+                                    <h4 class="fs-2">Liste des agents</h4>
+                                    <a href="impressions/listeAgents.php" class="btn btn-success m-1 float-lg"><i class="fa fa-group-user fa-lg"></i>
+                                    <i class="fa fa-print"></i> Visualiser
+                                    </a> 
+                                </div>
+                            </div>
+                        </div>
+                    <div class="col-sm-3">
+                     
+                        <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
+                            <div>
+                                <h4 class="fs-2">Liste de eleves par classe </h4>
+                                <form method="POST" action="impressions/elevesParClasse.php" >
+                                                 <div class="col-md-12 form-group">
+                                                        <label for="#classe"> Classe </label>
+                                                           <select class="form-select col-md-12" aria-label="" id="classe" name="classe">
+                                                              <option selected>Choix de la classe</option>
+                                                                <option value="1ere">1ere</option>
+                                                                <option value="4ere">2e</option>
+                                                                <option value="3ere">3e</option>
+                                                            </select>
+                                                 </div><br>
+                                                    
+                                                        <button type="submit" class="btn btn-success form-control  col-md-12" name="valider"><i class="fa fa-print"></i>Voir et imprimer</button>
+                                        </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                     
+                     <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
+                         <div>
+                             <h4 class="fs-2">Frais scolaire par classe </h4>
+                             <form method="POST" action="impressions/solvableParFrais.php" >
+                                              <div class="col-md-12 form-group">
+                                                     <label for="#classe"> Classe </label>
+                                                        <select class="form-select col-md-12" aria-label="" id="classe" name="classe">
+                                                           <option selected>Choix de la classe</option>
+                                                             <option value="1 ere">1 ere</option>
+                                                             <option value="2 e">2 e</option>
+                                                             <option value="3 e">3 e</option>
+                                                         </select>
+                                              </div><br>
+                                              <div class="col-md-12 form-group">
+                                                        <label for="#agent"> Frais </label>
+                                                           <select class="form-select col-md-12" aria-label="" id="idFrais" name="idFrais">
+                                                              <option selected>Choix du frais concerné</option>
+                                                
+                                                                    <?php 
+                                                                        $resFrais =  $db->selectalldata('frais');
+                                                                        while($frais = $resFrais->fetch()){ ?>
+                                                                              <option value="<?php echo $frais['id']?>"> <?php echo $frais['libelle']; ?></option>
+                                                                        <?php }   ?>
+                                                            </select>
+                                                 </div><br>
+                                                 
+                                                     <button type="submit" class="btn btn-success form-control  col-md-12" name="valider"><i class="fa fa-print"></i>Voir et imprimer</button>
+                                     </form>
+                         </div>
+                     </div>
+                 </div>
                 </div>
             </div>
         </div>
