@@ -175,6 +175,55 @@
                          </div>
                      </div>
                  </div>
+                 <!-- depenses -->
+                 <div class="col-sm-3">
+                     
+                     <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
+                         <div>
+                             <h4 class="fs-2">Paiement Agent par mois </h4>
+                             <form method="POST" action="impressions/salaireParMois.php" >
+                                             <div class="col-md-12 form-group">
+                                                          <label for="#mois">Choisir un moi </label>
+                                                          <input type="month" id="mois" name="mois" class="form-control mb-6 mr-sm-2" placeholder="Choix du mois"  required>    
+                                                    </div><br>
+                                             
+                                                     <button type="submit" class="btn btn-success form-control  col-md-12" name="valider"><i class="fa fa-print"></i>Voir et imprimer</button>
+                                     </form>
+                         </div>
+                     </div>
+                 </div>
+                 
+
+
+                 <div class="col-sm-3">
+                     
+                     <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
+                         <div>
+                             <h4 class="fs-2">Frais scolaire par classe et par tranche(s) : </h4>
+                             <form method="POST" action="impressions/fichePaie.php" >
+                                              <div class="col-md-12 form-group">
+                                                        <label for="#agent"> Agent </label>
+                                                           <select class="form-select col-md-12" aria-label="" id="idFrais" name="idFrais">
+                                                              <option selected>Choix de l'agent concerne : </option>
+                                                
+                                                                    <?php 
+                                                                        $resEns =  $db->selectalldata("enseignants");
+                                                                        while($ens = $resEns->fetch()){ ?>
+                                                                              <option value="<?php echo $ens['id']?>"> <?php echo $frais['noms']; ?></option>
+                                                                        <?php }   ?>
+                                                            </select>
+                                                 </div><br>
+                                                 <div class="col-md-12 form-group">
+                                                          <label for="#date">Mois  </label>
+                                                          <input type="month"  name="mois" class="form-control mb-6 mr-sm-2" placeholder="le mois"  required>    
+                                                    </div><br>
+                                                 
+                                                     <button type="submit" class="btn btn-success form-control  col-md-12" name="valider"><i class="fa fa-print"></i>Voir et imprimer</button>
+                                     </form>
+                         </div>
+                     </div>
+                 </div>
+                 <!-- fin depense -->
                 </div>
             </div>
         </div>

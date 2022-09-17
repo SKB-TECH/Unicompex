@@ -89,6 +89,7 @@
             $classe=$_POST['classe'];
         
         $sql = "UPDATE FROM eleves SET nom='$nom',postnom='$postnom',prenom='$prenom',sexe='$sexe',date_naissance='$date_naissance',lieu_naissance='$lieu_naissance',classe='$classe' where id='$id";
+       
         echo ($data);
     }
 
