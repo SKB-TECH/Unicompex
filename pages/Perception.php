@@ -59,40 +59,65 @@
         <!-- sidebar end -->
         <div class="container" style="z-index:0;">
             <!-- Debut card -->
-            <div class="container-fluid px-4">
+            <div class="container-fluid px-4" style="margin-top:70px;">
                 <div class="row g-3 my-3">
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
                             <div>
-                                <h4 class="fs-2">234 .000</h4>
-                                <p class="fs-5">Eleves</p>
+                                <?php $res=$taches->Compte("montant_percu",'perception');
+                                    $data=$res->fetch();
+                                    $entre=$data[0];
+                                ?>
+                                <h6 class="fs-2 font-bold"><?php echo($entre)?> &nbsp;FC</h6>
+                                <p class="fs-5">ENTREES</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
                             <div>
-                                <h4 class="fs-2">234 .000</h4>
-                                <p class="fs-5">Eleves</p>
+                                <?php $res=$taches->Compte("montant",'depense');
+                                    $res=$res->fetch();
+                                    $sortie1=$res[0];
+                                ?>
+                                <h6 class="fs-2 font-bold"><?php echo($sortie1)?> &nbsp;FC</h6>
+                                <p class="fs-5">DEPENSES</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
-                            <div>
-                                <h4 class="fs-2">234 .000</h4>
-                                <p class="fs-5">Eleves</p>
+                        <div>
+                                <?php $res=$taches->Compte("montant",'avance');
+                                    $des=$res->fetch();
+                                    $avance=$des[0]
+                                ?>
+                                <h6 class="fs-2 font-bold"><?php echo($avance)?> &nbsp;FC</h6>
+                                <p class="fs-5">AVANCES</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
+                        <div>
+                                <?php $res=$taches->Compte("net",'paie');
+                                    $sal=$res->fetch();
+                                    $paie=$sal[0]
+                                ?>
+                                <h6 class="fs-2 font-bold"><?php echo($paie)?> &nbsp;FC</h6>
+                                <p class="fs-5">SALAIRES</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-sm-3">
+
+                    <div class="col-sm-2">
                         <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
-                            <div>
-                                <h4 class="fs-2">234 .000</h4>
-                                <p class="fs-5">Eleves</p>
+                        <div style="font-weight: 400">
+                                <h6 class="fs-2 font-bold"><?php echo($entre-$sortie1-$avance);?> &nbsp;FC</h6>
+                                <p class="fs-5">SOLDE</p>
                             </div>
                         </div>
                     </div>

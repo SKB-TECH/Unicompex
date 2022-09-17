@@ -38,7 +38,7 @@ class myPDF extends FPDF {
         $this->Cell(25,7,utf8_decode('Telephone'),1,0,'C', true);
         $this->Cell(20,7,utf8_decode('Sexe'),1,0,'C', true);
         $this->Cell(15,7,utf8_decode('Grade'),1,0,'C', true);
-        $this->Cell(40,7,utf8_decode('Domaine'),1,0,'C', true);
+        $this->Cell(40,7,utf8_decode('Fonction'),1,0,'C', true);
         
     }
     function vieTable($db){

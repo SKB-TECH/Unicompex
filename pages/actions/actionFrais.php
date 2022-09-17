@@ -8,7 +8,7 @@
     if(isset($_POST['action']) && $_POST['action']=="view"){
         $output="";
         $resultat=$db->selectalldata('frais');
-        if($res=$db->total('frais')){
+        if($res=$db->total1('frais')){
             $output .='
             <table class="table table-striped table-sm table-bordered">
             <thead>

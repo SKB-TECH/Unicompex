@@ -8,7 +8,7 @@ $db = new Crud();
 if (isset($_POST['action']) && $_POST['action'] == "view") {
     $output = "";
     $resultat = $db->selectalldata('eleves');
-    if ($res = $db->total('eleves')) {
+    if ($res = $db->total1('eleves')) {
         $output .= '
             <table class="table table-striped table-sm table-bordered">
                 <thead>

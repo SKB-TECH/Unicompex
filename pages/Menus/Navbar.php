@@ -23,7 +23,7 @@
      
       <li class="nav-item">
       <a class="nav-link" href="#">
-        <i class="fa fa-logout text-light" aria-hidden="true">
+        <i class="fa fa-logoin text-light" aria-hidden="true">
           Deconnexion
         </i>  
         </a>

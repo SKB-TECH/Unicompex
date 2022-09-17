@@ -44,8 +44,14 @@ $taches = new crud();
                     <div class="col-sm-3">
                         <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
                             <div>
+                                <?php
+                                    
+                                    $homme=$taches->Total('enseignants','sexe','Homme');
+                                    $femme=$taches->Total('enseignants','sexe','Femme');
+                
+                                ?>
                             <i class="fa fa-male" aria-hidden="true" style="font-size: 40px;"></i>
-                                <h4 class="fs-2">234 .000</h4>
+                                <h4 class="fs-2"><?php echo($homme)?></h4>
                                 <p class="fs-5">Hommes</p>
                             </div>
                         </div>
@@ -55,8 +61,22 @@ $taches = new crud();
                         <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
                             <div>
                             <i class="fa fa-female" aria-hidden="true" style="font-size: 40px;"></i>
-                                <h4 class="fs-2">234 .000</h4>
+                                <h4 class="fs-2"><?php echo($femme)?></h4></h4>
                                 <p class="fs-5">Femmes</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
+                            <div>
+                                <?php
+                                    
+                                    $ensei=$taches->Total('enseignants','domaine','Enseignant');
+                
+                                ?>
+                            <i class="fa fa-male" aria-hidden="true" style="font-size: 40px;"></i>
+                                <h4 class="fs-2"><?php echo($ensei)?></h4>
+                                <p class="fs-5">Enseignants</p>
                             </div>
                         </div>
                     </div>
@@ -65,7 +85,7 @@ $taches = new crud();
                         <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
                             <div>
                             <i class="fa fa-users text-2xl" aria-hidden="true" style="font-size: 40px;"></i>
-                                <h4 class="fs-2">234 .000</h4>
+                                <h4 class="fs-2"><?php echo($homme+$femme)?></h4>
                                 <p class="fs-5">Total </p>
                             </div>
                         </div>
@@ -90,8 +110,10 @@ $taches = new crud();
                         </button>&nbsp;&nbsp;&nbsp;
                         <a href="./Menus/actionsEnsei.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
                             Exporter</a>&nbsp;&nbsp;&nbsp;
-                        <a href="#" class="btn btn-danger m-1 float-lg"><i class="fa fa-table fa-lg"></i>
-                            Importer</a>
+                        <a href="./impressions/listeAgents.php" class="btn btn-danger m-1 float-lg"><i class="fa fa-table fa-lg"></i>
+                            LISTE PDF    
+                    </a>
+                
                     </div>
                 </div>
                 <hr class="my-1">
