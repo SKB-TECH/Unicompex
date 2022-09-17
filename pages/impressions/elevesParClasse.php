@@ -23,7 +23,7 @@ class myPDF extends FPDF {
         $this->Ln(4);
         $classe = $_POST['classe'];
 
-        $this->cell(170,6,utf8_decode("Liste des  eleves ".$classe,0,0,'C');
+        $this->cell(170,6,utf8_decode("Liste des  élèves "),0,0,'C');
         $this->Ln();
          //Fin En-tête page 
     }
