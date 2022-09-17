@@ -16,7 +16,7 @@
                 <th>Noms</th>
                 <th>Sexe</th>
                 <th>Grade</th>
-                <th>Domaine</th>
+                <th>Poste</th>
                 <th>Adresse</th>
                 <th>Telephone</th>
                 <th>Actions</th>

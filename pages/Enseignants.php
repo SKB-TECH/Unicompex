@@ -165,16 +165,11 @@ $taches = new crud();
                         </div>
                         <div class="form-group">
                             <select name="domaine" class="form-control" required>
-                                <option value="">Selectionner Domaine..</option>
-                                <label value="Anglais">Anglophne</label>
-                                <option value="Pedagogie">Pedagogue</option>
-                                <option value="Biologie">Biologiste</option>
-                                <option value="Assistant Social">Assistant Social</option>
-                                <option value="Français">Franciste</option>
-                                <option value="Mathematique">Mathematicien</option>
-                                <option value="Comptabilite">Comptable</option>
-                                <option value="Chimie">Chimiste</option>
-                                <option value="Informatique">Informaticien</option>
+                            <option value="">Selectionner Poste</option>
+                                <option value="Prefet">Prefet</option>
+                                <option value="Proviseur">Proviseur</option>
+                                <option value="Enseignant">Enseignant</option>
+                                <option value="Ouvrier">Ouvrier</option>
                                 <option value="Autres">Autres</option>
                             </select>
                         </div>

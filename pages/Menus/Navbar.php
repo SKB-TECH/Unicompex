@@ -14,18 +14,18 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="../Enseignants.php" style="font-size: 18px;">
         <i class="fa fa-home text-light" aria-hidden="true">
-        Accueil
+          Accueil
         </i>  
         </a>
       </li>
      
       <li class="nav-item">
-      <a class="nav-link" href="../index.php">
-        <i class="fa fa-logoin text-light" aria-hidden="true">
-          Deconnexion
-        </i>  
+      <a class="nav-link" href="../index.php" style="font-size: 18px;">
+        <i class="fa fa-sign-out" aria-hidden="true">
+        </i> 
+          Deconnexion 
         </a>
       </li>
     </ul>
