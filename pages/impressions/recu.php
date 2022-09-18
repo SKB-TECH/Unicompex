@@ -14,7 +14,6 @@
 			    $data= $resultat->fetch();
 			    $idEleve = $data['idEleve'];
 			    $idFrais = $data['idFrais'];
-			    
 
                 // recherche des informations sur l'eleve et le frais paye
                 $resultat1=$db->selectalldata2("select *, sum(montant_percu) as solde from perception 
@@ -64,7 +63,7 @@
 <body onload="window.print();">
     <div id='printContainer'>
         <h3 id="logo" class="text-center">Institut NYALUKEMBA</h3>
-    <h5 id="slogan" style="margin-top:0" class="text-center">Réçu n° <?php echo $idFrais?></h5>
+    <h5 id="slogan" style="margin-top:0" class="text-center">Réçu n° <?php echo $idFrais ?></h5>
     <table>
         <tr>
             <td>Noms  : </td>
@@ -79,20 +78,29 @@
     <table>
         <tr><td colspan="2"><hr></td></tr>
         <tr>
-            <td>Montant payé:</td>
+            <td>Montant payé : </td>
             <td><b ><?php echo $data['montant_percu']." ".$data['devise'] ?> </b></td>
         </tr>
         <tr>
-            <td>Motif  : </td>
+            <td>Frais payé  : </td>
             <td><?php echo $data['libelle']?></td>
         </tr>
         <tr><td colspan="2"><hr></td></tr>
-        <tr>
-            <td>Situation :</td>
-            <td><?php echo $data1['solde']." ".$data['devise'] ?> / <?php echo $data1['montant_frais']." ".$data['devise'] ?>  </td>
+
         </tr>
         
     </table>
+            
+            <?php
+                    $tr1= $data1['solde'] - ($data1['solde'] - $data['tranche1']);
+                    $tr2= ($data1['solde']- $tr1) - (($data1['solde']- $tr1)-$data['tranche2']);
+                    $tr3= $data1['solde'] - $tr1 - $tr2;    
+            ?>
+                        <ol>
+                            <li>Premiere tranche : <?php echo $tr1." ".$data['devise'] ?></li>
+                            <li>Deuxieme tranche : <?php echo $tr2." ".$data['devise'] ?> </li>
+                            <li>Troisieme tranche : <?php echo $tr3." ".$data['devise'] ?></li>
+                        </ol>
     <?php setlocale(LC_TIME, 'fra_fra'); ?>
     <p>Percepteur(trice): Caissier </p>
     <p>Date: <?php 

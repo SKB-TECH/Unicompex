@@ -356,9 +356,11 @@
                         data=JSON.parse(reponse);
                         Swal.fire(
                             {
-                                title:'<Strong class="text-left"> ID:'+data.id+'</Strong>',
+                                title:'<Strong class="text-left"> ID:  '+data.id+'</Strong>',
                                 type:"info",
-                                html:'<b class="text-left">Libellé:'+data.libelle+' '+data.devise+'</b>',
+                                html:'<b class="text-left">Libellé:  '+data.libelle+'</b><br><b class="text-left">Montant total:  '+data.montant_frais+' '
+                                +data.devise+'</b><hr><b class="text-left">Premiere tranche:   '+data.tranche1+' '+data.devise+'</b><br><b class="text-left"> Deuxime tranche:  '
+                                +data.tranche2+' '+data.devise+'</b><br><b class="text-left">Troisieme tranche:  '+data.tranche3+' '+data.devise+'</b>',
                                 showCancelButton:true
                             }
                         )
