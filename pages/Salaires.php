@@ -168,14 +168,14 @@ $taches = new crud();
                             <input type="text" id="montant" name="montant" class="form-control" placeholder="montant" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="mituelle" name="mituelle" class="form-control" placeholder="mituelle" onchange="valeurs()" required>
+                            <input type="text" id="mituelle" name="mituelle" class="form-control" placeholder="mituelle" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="avancement" name="avance" class="form-control text-danger" value="0" required>
+                            <input type="text" disabled id="avancement" name="avance" class="form-control text-danger" value='0' required>
                         </div>
 
                         <div class="form-group">
-                            <input type="text" id="netApayer" name="net"  class="form-control text-danger" placeholder="net A payer" required>
+                            <input type="text"  disabled id="net" name="net"  class="form-control text-danger" placeholder="net A payer" class="nets" required>
                         </div>
 
                         <div class="form-group">
@@ -224,10 +224,10 @@ $taches = new crud();
                             <input type="text" id="montant" name="montant" class="form-control" placeholder="montant" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="mituelle" name="mituelle" class="form-control" placeholder="mituelle" onchange="valeurs()" required>
+                            <input type="text" id="mituelle" name="mituelle" class="form-control" placeholder="mituelle"  required>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="avancement" name="avance" disabled class="form-control text-danger" value="0" required>
+                            <input type="text" id="avancement" name="avance" disabled class="form-control text-danger" value=0 required>
                         </div>
 
                         <div class="form-group">
@@ -442,8 +442,8 @@ $taches = new crud();
 
 
         });
-    </script>
-    <script src="../js/script.js"></script>
-</body>
 
+        </script>
+</body>
+    <script src="../js/calculs.js"></script>
 </html>

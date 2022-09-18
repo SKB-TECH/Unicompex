@@ -1,7 +1,4 @@
-const montant=document.getElementById('montant');
-const mituelle=document.getElementById('mituelle');
-const avance=document.getElementById('avancement');
-const net=document.getElementById('netApayer');
+
 
 const nom=$('#name');
 const sname=$("#txtname");
@@ -43,21 +40,7 @@ form.submit((e)=>{
 e.preventDefault();
 })
 
-function valeurs() {   
-    const a=parseFloat(montant.value) 
-    const b=parseFloat(mituelle.value)
-    const c=parseFloat(avance.value)
-    
-    if(c){
-        const d=((a)-(b)-(c));
-        net.textContent=d
-    }
 
-    else{
-        const d=((a)-(b));
-        net.textContent=d
-    }
-}
-
+console.log("bonjour a tous")
 
 

@@ -358,7 +358,7 @@
                             {
                                 title:'<Strong class="text-left"> ID:'+data.id+'</Strong>',
                                 type:"info",
-                                html:'<b class="text-left">Libellé:'+data.libelle+' '+data.devise+'</b>',
+                                html:'<b class="text-left">Libellé:'+data.libelle+' '+  data.montant_frais+data.devise+'</b>',
                                 showCancelButton:true
                             }
                         )
