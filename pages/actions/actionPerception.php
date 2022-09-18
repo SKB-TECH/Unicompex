@@ -62,8 +62,9 @@ if (isset($_POST['action']) && $_POST['action'] == "insert") {
     $sql = "INSERT INTO perception(date_perception,montant_percu,idEleve,idFrais) 
             VALUES ('$date_perception','$montant_percu','$idEleve','$idFrais')";
       if($frais > floatval($montant_percu) + floatval($solde) ){
-          if($db->insert2($sql)){
-              $res = "reussi";
+          if($lastId = $db->insert2($sql)){
+
+              $res = $lastId;
           }else{
               $res ="echec";    
           }
@@ -73,7 +74,7 @@ if (isset($_POST['action']) && $_POST['action'] == "insert") {
         $reste = ( floatval($montant_percu) + floatval($solde) ) - floatval($frais);
         $res ="L'élève reste avec le reste de ".$reste."seulement,  reessayer!"; 
       }  
-    echo $frais;
+    echo $res;
   
 }
 
@@ -118,24 +119,35 @@ if (isset($_POST['edit_id'])) {
 if (isset($_POST['action']) && $_POST['action'] == "solde") {
     $id = $_POST['idFrais'];
     $idEleve = $_POST['idEleve'];
-    $output = "";
+    $output = "<hr><b>Situation de l'eleve : </b> <hr>";
 
     $resultat = $db->selectalldata2("select *, sum(montant_percu) as solde from perception 
             inner join frais on idFrais = frais.id and idFrais = '$id' and idEleve='$idEleve'");
+    
+    $resFrais = $db->selectalldata2("Select * from frais where id ='$id'");
+    $dataFrais = $resFrais->fetch();
     $data = $resultat->fetch();
-    if ($data) {
-        $output .= '
-                <p class="text-center text-secondary">
-                        <b>' . "Solde : " . $data['solde'] . " " . $data['devise'] . "
-                         / " . $data['montant_frais'] . " " . $data['devise'] . '</b> 
-                         <input type="hidden" id="solde_value" name="solde" value=' . $data['solde'] . '>
-                         <input type="hidden" id="" name="frais" value='. $data['montant_frais'].'>
-                </p>';
-    } else {
-        $output .= "
-                <p class='text-center text-secondary mt-5'>
-                     Le solde est 0 pour le frais selectionné
-                </p>";
-    }
+
+    $tot = $dataFrais['montant_frais'];
+    if ($data['solde']!=NULL) {
+        $tr1= $data['solde'] - ($data['solde'] - $data['tranche1']);
+        $tr2= ($data['solde']- $tr1) - (($data['solde']- $tr1)-$data['tranche2']);
+        $tr3= $data['solde'] - $tr1 - $tr2;
+
+        $output .= "    <ol>
+                            <li>Premiere tranche : " .$tr1." </li>
+                            <li>Deuxieme tranche : " .$tr2." </li>
+                            <li>Troisieme tranche : ".$tr3." </li>
+                        </ol>
+                             <input type='hidden' id='solde_value' name='solde' value='".$data['solde']."'>                             "; 
+                            }else{
+                                $output .="
+                                <p>L'élève n'a pas encore  payé  ce frais jusque là.</p>
+                                <input type='hidden' id='solde_value' name='solde' value=0'>
+
+                                ";   
+                            } 
+                            $output .="<input type='hidden' id='' name='frais' value='$tot'>";
+
     echo ($output);
 }

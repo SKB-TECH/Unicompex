@@ -68,9 +68,9 @@ class Crud extends Database
         {
                 if ($sql != "") {
                         $insert1 = $this->connection->query($sql);
-                        return true;
+                        return $this->connection->lastInsertId();
                 } else {
-                        return false;
+                        return null;
                 }
         }
         public function escape_string($value)

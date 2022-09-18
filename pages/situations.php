@@ -232,7 +232,6 @@
                                                         <label for="#agent"> Agent </label>
                                                            <select class="form-select col-md-12" aria-label="" id="idFrais" name="idFrais">
                                                               <option selected>Choix de l'agent concerne : </option>
-                                                
                                                                     <?php 
                                                                         $resEns =  $db->selectalldata("enseignants");
                                                                         while($ens = $resEns->fetch()){ ?>
@@ -244,7 +243,6 @@
                                                           <label for="#date">Mois  </label>
                                                           <input type="month"  name="mois" class="form-control mb-6 mr-sm-2" placeholder="le mois"  required>    
                                                     </div><br>
-                                                 
                                                      <button type="submit" class="btn btn-success form-control  col-md-12" name="valider"><i class="fa fa-print"></i>Voir et imprimer</button>
                                      </form>
                          </div>
