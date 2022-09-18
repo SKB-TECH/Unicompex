@@ -149,7 +149,7 @@
                         </div>
                         <div class="form-group">
                         <label for="sexe">Sexe : </label>
-                            <select name="sexe" id="sexe" class="form-control" required>
+                            <select name="sexe" class="form-control" required>
                                 <option value="">Selectionner le sexe...</option>
                                 <option value="M">Masculin</option>
                                 <option value="F">Feminin</option>
@@ -157,7 +157,7 @@
                         </div>
                         <div class="form-group">
                         <label for="sexe">Classe :  </label>
-                            <select name="classe" id="classe" class="form-control" required>
+                            <select name="classe" class="form-control" required>
                                 <option value="">Selectionner ...</option>
                                 <option value="7EB">7 EB</option>
                                 <option value="8EB">8 EB</option>
@@ -178,7 +178,7 @@
                         </div>
                         <div class="form-group">
                             <label for="lieu">Lieu de naissance :</label>
-                            <input type="text" name="lieu_naissance" class="form-control" placeholder="Lieu de naissance" required>
+                            <input type="text" name="lieu_naissance" class="form-control"  placeholder="Lieu de naissance" required>
                         </div>
 
                         <div class="form-group">
@@ -196,7 +196,7 @@
             <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h5 class="modal-title">Modification Enseignant</h5>
+                    <h5 class="modal-title">Eleve: Modification </h5>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
@@ -206,15 +206,15 @@
                         <input type="hidden" id="id" name="id">
                     <div class="form-group">
                             <label for="nom">Nom :</label>
-                            <input type="text" name="nom" class="form-control" placeholder="nom de l'élève" required>
+                            <input  id="nom" type="text" name="nom" class="form-control" placeholder="nom de l'élève" required>
                         </div>
                         <div class="form-group">
                             <label for="nom">Postnom :</label>
-                            <input type="text" name="postnom" class="form-control" placeholder="postnom de l'élève" required>
+                            <input id="postnom" type="text" name="postnom" class="form-control" placeholder="postnom de l'élève" required>
                         </div>
                         <div class="form-group">
                             <label for="prenom">Prenom :</label>
-                            <input type="text" name="prenom" class="form-control" placeholder="prenom de l'élève" required>
+                            <input id="prenom" type="text" name="prenom" class="form-control" placeholder="prenom de l'élève" required>
                         </div>
                         <div class="form-group">
                         <label for="sexe">Sexe : </label>
@@ -243,14 +243,14 @@
                         </div>
                         <div class="form-group">
                             <label for="date_naissance">Date de naissance :</label>
-                            <input type="date" name="date_naissance" class="form-control" placeholder="Date de naissance" required>
+                            <input id="date_naissance" type="date" name="date_naissance" class="form-control" placeholder="Date de naissance" required>
                         </div>
                         <div class="form-group">
                             <label for="lieu">Lieu de naissance :</label>
-                            <input type="text" name="lieu_naissance" class="form-control" placeholder="Lieu de naissance" required>
+                            <input type="text" name="lieu_naissance" class="form-control" placeholder="Lieu de naissance" id="lieu_naissance" required>
                         </div>
                         <div class="form-group">
-                            <input type="submit" name="update" id="update" class="btn btn-danger btn-block" value="MODIFIER">
+                            <input type="submit" name="update" id="update" class="btn btn-danger btn-block"  value="MODIFIER">
                         </div>
                     </form>
                 </div>
@@ -295,7 +295,6 @@
         /** fonction pour Afficher les donnes avec ajax  */
         $(document).ready(() => {
             showAllUser()
-
             function showAllUser() {
                 $.ajax({
                     url: "actions/actionEleve.php",
@@ -346,14 +345,14 @@
                     data:{edit_id:edit_id},
                     success:function(reponse){
                        data=JSON.parse(reponse);
-                        
+                        console.log(data)
                        $("#id").val(data.id);
                        $("#nom").val(data.nom);
                        $("#postnom").val(data.postnom);
                        $("#prenom").val(data.prenom);
                        $("#sexe").val(data.sexe);
                        $("#date_naissance").val(data.date_naissance);
-                       $("#lieu_naissa").val(data.lieu_naissance)
+                       $("#lieu_naissance").val(data.lieu_naissance)
                        $("#classe").val(data.classe);
                     }
                 })
@@ -367,6 +366,7 @@
                         type:"POST",
                         data: $("#edit-form-data").serialize()+"&action=update",
                         success: function(reponse) {
+                            console.log(reponse)
                         Swal.fire(
                             'Felicitation!',
                             ' modification reussi !',
