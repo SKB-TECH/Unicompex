@@ -62,8 +62,9 @@ if (isset($_POST['action']) && $_POST['action'] == "insert") {
     $sql = "INSERT INTO perception(date_perception,montant_percu,idEleve,idFrais) 
             VALUES ('$date_perception','$montant_percu','$idEleve','$idFrais')";
       if($frais > floatval($montant_percu) + floatval($solde) ){
-          if($db->insert2($sql)){
-              $res = "reussi";
+          if($lastId = $db->insert2($sql)){
+
+              $res = $lastId;
           }else{
               $res ="echec";    
           }
@@ -130,15 +131,15 @@ if (isset($_POST['action']) && $_POST['action'] == "solde") {
     $tot = $dataFrais['montant_frais'];
     if ($data['solde']!=NULL) {
         $tr1= $data['solde'] - ($data['solde'] - $data['tranche1']);
-        $tr2= ($data['solde']- $tr1) - (($data['solde']- $tr1) - $data['tranche2']);
-        $tr3= ($data['solde']- $tr1-$tr2) - (($data['solde']- $tr1-$tr2)  - $data['tranche3']);
+        $tr2= ($data['solde']- $tr1) - (($data['solde']- $tr1)-$data['tranche2']);
+        $tr3= $data['solde'] - $tr1 - $tr2;
+
         $output .= "    <ol>
                             <li>Premiere tranche : " .$tr1." </li>
                             <li>Deuxieme tranche : " .$tr2." </li>
                             <li>Troisieme tranche : ".$tr3." </li>
                         </ol>
-                             <input type='hidden' id='solde_value' name='solde' value='".$data['solde']."'>
-                             "; 
+                             <input type='hidden' id='solde_value' name='solde' value='".$data['solde']."'>                             "; 
                             }else{
                                 $output .="
                                 <p>L'élève n'a pas encore  payé  ce frais jusque là.</p>

@@ -239,13 +239,14 @@
                         type:"POST",
                         data: $("#form-data").serialize()+"&action=insert",
                         success: function(reponse) {
-                           console.log(reponse)
+
+                             window.location.href=`./impressions/recu.php?idRec=${reponse}`,
+
                             Swal.fire(
                                 'Felicitation',                            // 'Felicitation!',
-                                reponse,
+                                "Payement enregistré",
                                 'success'
                             )
-                           
                             $("#addModal").modal('hide');
                             $("#form-data")[0].reset();
                             showAllUser();
