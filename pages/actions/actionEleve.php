@@ -66,7 +66,6 @@
         $lieu_naissance=$_POST['lieu_naissance'];
         $classe=$_POST['classe'];
         $sql=("INSERT INTO eleves(nom,postnom,prenom,sexe,date_naissance,lieu_naissance,classe)VALUES('$nom','$postnom','$prenom','$sexe','$date_naissance','$lieu_naissance','$classe')");
-        
         $db->insert2($sql);
     }
 

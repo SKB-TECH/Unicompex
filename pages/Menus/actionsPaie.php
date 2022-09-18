@@ -1,9 +1,8 @@
 <?php
 
-
     error_reporting( E_ALL );
     ini_set( 'display_errors', 1);
-
+    
     require_once "../../Classes/crud.php";
     $db=new Crud();
 
@@ -90,28 +89,27 @@
         $avance=intval($_POST['avance']);
         $net=intval($_POST['net']);
         $dates=$_POST['dates'];
-        $sql="INSERT INTO paie(idagent,montant,mituelle,avance,net,mois,dates) VALUES ('$idagent', '$montant', '$mituelle', '$avance', '$net', '$mois','$dates')";
+
+        $sql="INSERT INTO paie (`idagent`,`montant`,`mituelle`,`avance`,`net`,`mois`,`dates`) VALUES ('$id', '$montant', '$mituelle', '$avance', '$net', '$mois', '$dates')";
         $db->insert2($sql);
-        print_r("OK BEN");
     }
 
     /** Fonction modification de la table  enseignants*/
     if(isset($_POST['edit_id'])){
         $id=$_POST['edit_id'];
-        $res=$db->SelectDataWhere('enseignants','paie');
+        $res=$db->selectalldata('paie');
         $row=$res->fetch();
         echo json_encode($row);
     }
 
     if (isset($_POST['action'])&& $_POST['action']=="update") {
-            
-            $id=$_POST['id'];
-            $noms=$_POST['noms'];
-            $sexe=$_POST['sexe'];
-            $grade=$_POST['grade'];
-            $domaine=$_POST['domaine'];
-            $adresse=$_POST['adresse'];
-            $telephone=$_POST['telephone'];
+            $idagent=$_POST['idagent'];
+            $mois=$_POST['mois'];
+            $montant=intval($_POST['montant']);
+            $mituelle=intval($_POST['mituelle']);
+            $avance=intval($_POST['avance']);
+            $net=intval($_POST['net']);
+            $dates=$_POST['dates'];
         
         $db->Modification($id,$noms,$sexe,$grade,$domaine,$adresse,$telephone);
         echo ($data);

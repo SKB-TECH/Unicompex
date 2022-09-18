@@ -116,7 +116,7 @@
                     <div class="col-sm-2">
                         <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
                         <div style="font-weight: 400">
-                                <h6 class="fs-2 font-bold"><?php echo($entre-$sortie1-$avance);?> &nbsp;FC</h6>
+                                <h6 class="fs-2 font-bold"><?php echo($entre-$sortie1-$avance-$paie);?> &nbsp;FC</h6>
                                 <p class="fs-5">SOLDE</p>
                             </div>
                         </div>

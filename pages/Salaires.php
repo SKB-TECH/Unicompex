@@ -1,6 +1,7 @@
 <?php
-require_once("../Classes/crud.php");
-$taches = new crud();
+
+    require_once("../Classes/crud.php");
+    $taches = new crud();
 ?>
 
 
@@ -96,7 +97,7 @@ $taches = new crud();
                     <div class="col-sm-2">
                         <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
                         <div style="font-weight: 400">
-                                <h6 class="fs-2 font-bold"><?php echo($entre-$sortie1-$avance);?> &nbsp;FC</h6>
+                                <h6 class="fs-2 font-bold"><?php echo($entre-$sortie1-$avance-$paie);?> &nbsp;FC</h6>
                                 <p class="fs-5">SOLDE</p>
                             </div>
                         </div>
@@ -171,11 +172,11 @@ $taches = new crud();
                             <input type="text" id="mituelle" name="mituelle" class="form-control" placeholder="mituelle" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" disabled id="avancement" name="avance" class="form-control text-danger" value='0' required>
+                            <input type="text"  id="avancement" name="avance" class="form-control text-danger" value='0' required>
                         </div>
 
                         <div class="form-group">
-                            <input type="text"  disabled id="net" name="net"  class="form-control text-danger" placeholder="net A payer" class="nets" required>
+                            <input type="text"   id="net" name="net"  class="form-control text-danger" placeholder="net A payer" class="nets" required>
                         </div>
 
                         <div class="form-group">
@@ -206,10 +207,10 @@ $taches = new crud();
                     <form action="" method="POST" id="edit-form-data">
                         <input type="hidden" id="id" name="id">
                         <div class="form-group">
-                            <input type="month" id="mois" name="mois" class="form-control" id="mois" placeholder="mois" required>
+                            <input type="month" name="mois" class="form-control" id="mois" placeholder="mois" required>
                         </div>
                         <div class="form-group">
-                            <select name="idagent" class="form-control" id="idagent" required>
+                            <select name="idagent" class="form-control" id="iagent" required>
                                 <option value="Autres">Selectionner l'agent</option>
                                 <?php
                                 $data = $taches->selectalldata('enseignants');
@@ -224,21 +225,21 @@ $taches = new crud();
                             <input type="text" id="montant" name="montant" class="form-control" placeholder="montant" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="mituelle" name="mituelle" class="form-control" placeholder="mituelle"  required>
+                            <input type="text" id="mituelle" name="mituelle" class="form-control" placeholder="mituelle" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="avancement" name="avance" disabled class="form-control text-danger" value=0 required>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="text" id="net" name="net" disabled class="form-control text-danger" placeholder="net A payer" required>
+                            <input type="text"  id="avancement" name="avance" class="form-control text-danger" value='0' required>
                         </div>
 
                         <div class="form-group">
-                            <input type="date" name="dates" id="dates" class="form-control" placeholder="dates" required>
+                            <input type="text"   id="net" name="net"  class="form-control text-danger" placeholder="net A payer" class="nets" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="date" id="dates" name="dates" class="form-control" placeholder="dates" required>
                         </div>
                         <div class="form-group">
-                            <input type="submit" name="update" id="update" class="btn btn-danger btn-block" value="MODIFIER">
+                            <input type="submit" name="update" id="update" class="btn btn-danger btn-block" value="MODIFIER LE PAIEMENT">
                         </div>
                     </form>
                 </div>
@@ -306,16 +307,14 @@ $taches = new crud();
                     },
                     success: function(reponse) {
                         data = JSON.parse(reponse);
-                        //console.log(data.noms);
-                        $("#id").val(data.idagent);
-                        $("#idagent").val(data.noms);
+
+                        $("#id").val(data.id);
                         $("#montant").val(data.montant);
                         $("#mituelle").val(data.mituelle);
                         $("#avancement").val(data.avance);
                         $("#net").val(data.net);
                         $("#mois").val(data.mois);
                         $("#dates").val(data.dates);
-
                     }
                 })
             });

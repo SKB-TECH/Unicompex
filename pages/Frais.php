@@ -37,38 +37,63 @@
             <!-- Debut card -->
             <div class="container-fluid px-4" style="margin-top:70px;">
                 <div class="row g-3 my-3">
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
                             <div>
-                                <h4 class="fs-2">234 .000</h4>
-                                <p class="fs-5">Eleves</p>
+                                <?php $res=$taches->Compte("montant_percu",'perception');
+                                    $data=$res->fetch();
+                                    $entre=$data[0];
+                                ?>
+                                <h6 class="fs-2 font-bold"><?php echo($entre)?> &nbsp;FC</h6>
+                                <p class="fs-5">ENTREES</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
                             <div>
-                                <h4 class="fs-2">234 .000</h4>
-                                <p class="fs-5">Eleves</p>
+                                <?php $res=$taches->Compte("montant",'depense');
+                                    $res=$res->fetch();
+                                    $sortie1=$res[0];
+                                ?>
+                                <h6 class="fs-2 font-bold"><?php echo($sortie1)?> &nbsp;FC</h6>
+                                <p class="fs-5">DEPENSES</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
-                            <div>
-                                <h4 class="fs-2">234 .000</h4>
-                                <p class="fs-5">Eleves</p>
+                        <div>
+                                <?php $res=$taches->Compte("montant",'avance');
+                                    $des=$res->fetch();
+                                    $avance=$des[0]
+                                ?>
+                                <h6 class="fs-2 font-bold"><?php echo($avance)?> &nbsp;FC</h6>
+                                <p class="fs-5">AVANCES</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
+                        <div>
+                                <?php $res=$taches->Compte("net",'paie');
+                                    $sal=$res->fetch();
+                                    $paie=$sal[0]
+                                ?>
+                                <h6 class="fs-2 font-bold"><?php echo($paie)?> &nbsp;FC</h6>
+                                <p class="fs-5">SALAIRES</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-sm-3">
+
+                    <div class="col-sm-2">
                         <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
-                            <div>
-                                <h4 class="fs-2">234 .000</h4>
-                                <p class="fs-5">Eleves</p>
+                        <div style="font-weight: 400">
+                                <h6 class="fs-2 font-bold"><?php echo($entre-$sortie1-$avance-$paie);?> &nbsp;FC</h6>
+                                <p class="fs-5">SOLDE</p>
                             </div>
                         </div>
                     </div>
@@ -358,13 +383,11 @@
                             {
                                 title:'<Strong class="text-left"> ID:  '+data.id+'</Strong>',
                                 type:"info",
-<<<<<<< HEAD
-                                html:'<b class="text-left">Libellé:'+data.libelle+' '+  data.montant_frais+data.devise+'</b>',
-=======
+
                                 html:'<b class="text-left">Libellé:  '+data.libelle+'</b><br><b class="text-left">Montant total:  '+data.montant_frais+' '
                                 +data.devise+'</b><hr><b class="text-left">Premiere tranche:   '+data.tranche1+' '+data.devise+'</b><br><b class="text-left"> Deuxime tranche:  '
                                 +data.tranche2+' '+data.devise+'</b><br><b class="text-left">Troisieme tranche:  '+data.tranche3+' '+data.devise+'</b>',
->>>>>>> 51d1a26602be511860f5ea880149e7fb1b568873
+
                                 showCancelButton:true
                             }
                         )

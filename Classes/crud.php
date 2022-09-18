@@ -160,6 +160,14 @@ class Crud extends Database
                 $stms->execute();
                 return $total= $stms->rowCount();
         }
+
+        public function insert($sql)
+        {
+                if ($sql != "") {
+                        $stmt=$this->connection->prepare($sql);
+                        $stmt->execute();
+                }
+        }
+
+
 }
-
-
