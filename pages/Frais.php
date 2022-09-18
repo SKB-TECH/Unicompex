@@ -22,7 +22,7 @@
 
     <link rel="stylesheet" href="../font/font-awesome-4.7.0/css/font-awesome.min.css">
 
-    <title>Gestion  </title>
+    <title>Gestion  des frais </title>
     <?php require_once("../pages/Menus/Navbar.php") ?>
 </head>
 
@@ -124,19 +124,31 @@
                     <form action="" method="POST" id="form-data">
                         <div class="form-group">
                             <label for="libelle">Libelle</label>
-                            <input type="text" id="libelle" name="libelle" class="form-control" placeholder="Libellé frais" required>
+                            <input type="text" name="libelle" class="form-control" placeholder="Libellé frais" required>
                         </div>
                        
                         
                         <div class="form-group">
-                            <label for="montqnt">Montant</label>
+                            <label for="montant">Montant</label>
 
-                            <input type="number" min="1" name="montant" class="form-control" placeholder="Montant" id="montant" required>
+                            <input type="number" min="1" name="montant" class="form-control" placeholder="Montant"  required>
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="montant" class="col-12">Valeur de  tranches (Laissez vide sinon) : </label>
+                            <div class="d-flex">
+                                 <input type="number" min="0"  name="tranche1" class="form-control col-4" placeholder="Tranche 1" id="montant" required>
+                                <input type="number" min="0"  name="tranche2"  class="form-control col-4" placeholder="Tranche 2" id="montant" required>
+                                <input type="number" min="0"  name="tranche3"  class="form-control col-4" placeholder="Tranche 3" id="montant" required>
+                            </div>
                         </div>
                         <div class="form-group">
                              <label for="Devise">Devise</label>
-
-                            <input type="text" name="devise" class="form-control" placeholder="Devise" required>
+                             <select name="devise" class="form-control"  required>
+                                <option value="">Selectionner une devise monnetaire</option>
+                                <option value="$">Dollars</option>
+                                <option value="FC">Francs Congolais</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
@@ -173,11 +185,24 @@
 
                             <input type="number" min="1" name="montant" class="form-control" placeholder="Montant" id="montant" required>
                         </div>
+
+                        <div class="form-group ">
+                            <label for="montant" class="col-12">Valeur de  tranches (Laissez vide sinon) : </label>
+                            <div class="d-flex">
+                                 <input type="number" min="0"  name="tranche1" id="tranche1" class="form-control col-4" placeholder="Tranche 1" id="montant" required>
+                                <input type="number" min="0"  name="tranche2" id="tranche2" class="form-control col-4" placeholder="Tranche 2" id="montant" required>
+                                <input type="number" min="0"  name="tranche3" id="tranche3" class="form-control col-4" placeholder="Tranche 3" id="montant" required>
+                            </div>
+                        </div>
                         <div class="form-group">
                              <label for="Devise">Devise</label>
-
-                            <input type="text" name="devise" class="form-control" placeholder="Devise" required>
+                             <select name="devise" class="form-control" id="devise" required>
+                                <option value="">Selectionner une devise monnetaire</option>
+                                <option value="$">Dollars</option>
+                                <option value="FC">Francs Congolais</option>
+                            </select>
                         </div>
+
 
                         <div class="form-group">
                             <input type="submit" name="update" id="update" class="btn btn-danger btn-block" value="MODIFIER">
@@ -222,7 +247,8 @@
                         type:"POST",
                         data: $("#form-data").serialize()+"&action=insert",
                         success: function(reponse) {
-                        Swal.fire(
+                            console.log(reponse)
+                            Swal.fire(
                             'Felicitation!',
                             'Frias Ajouté(e) avec success !',
                             'success'
@@ -247,10 +273,14 @@
                     data:{edit_id:edit_id},
                     success:function(reponse){
                        data=JSON.parse(reponse);
-                        
+                    console.log(data)                        
                        $("#id").val(data.id);
-                       $("#libelle").val(data.noms);
-                       $("#montant").val(data.montant+""+data.devise);
+                       $("#libelle").val(data.libelle);
+                       $("#montant").val(data.montant_frais);
+                       $("#tranche1").val(data.tranche1);
+                       $("#tranche2").val(data.tranche2);
+                       $("#tranche3").val(data.tranche3);
+                       $("#devise").val(data.devise);
                     }
                 })
             });
@@ -264,12 +294,12 @@
                         type:"POST",
                         data: $("#edit-form-data").serialize()+"&action=update",
                         success: function(reponse) {
+                            console.log(reponse)
                         Swal.fire(
                             'Felicitation!',
                             ' Mise a jour reussie !',
                             'success'
                             )
-
                             $("#editModal").modal('hide');
                             $("#edit-form-data")[0].reset();
                             showAllUser();
@@ -283,7 +313,6 @@
                 e.preventDefault();
                 var tr=$(this).closest('tr');
                 del_id=$(this).attr('id');
-
                 Swal.fire
                 ({
                     title: 'Voulez-vous supprimer cette information ?',
@@ -308,7 +337,6 @@
                             )
                             showAllUser();
                         }
-                        
                     });
                     }
                 })

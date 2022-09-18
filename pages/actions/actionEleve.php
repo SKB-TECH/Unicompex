@@ -73,8 +73,8 @@
     /** Fonction modification de la table  enseignants*/
     if(isset($_POST['edit_id'])){
         $id=$_POST['edit_id'];
-        $row=$db->selectbyid($id,'enseignants');
-       
+        $row=$db->selectbyid($id,'eleves');
+        // print_r($row); 
         echo json_encode($row);
     }
     if (isset($_POST['action'])&& $_POST['action']=="update") {
@@ -88,9 +88,9 @@
             $lieu_naissance=$_POST['lieu_naissance'];
             $classe=$_POST['classe'];
         
-        $sql = "UPDATE FROM eleves SET nom='$nom',postnom='$postnom',prenom='$prenom',sexe='$sexe',date_naissance='$date_naissance',lieu_naissance='$lieu_naissance',classe='$classe' where id='$id";
-       
-        echo ($data);
+        $sql = "UPDATE  eleves SET nom='$nom',postnom='$postnom',prenom='$prenom',sexe='$sexe',date_naissance='$date_naissance',lieu_naissance='$lieu_naissance',classe='$classe' where id='$id'";
+        $data= $db->update2($sql);
+        print_r($data);
     }
 
     /** Fonction Suprimmer de la table  enseignants*/

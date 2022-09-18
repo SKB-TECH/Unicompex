@@ -254,7 +254,6 @@ $taches = new crud();
         /** fonction pour Afficher les donnes avec ajax  */
         $(document).ready(() => {
             showAllUser()
-
             function showAllUser() {
                 $.ajax({
                     url: "./Menus/actionsEnsei.php",
