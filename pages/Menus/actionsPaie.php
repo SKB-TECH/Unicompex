@@ -37,7 +37,7 @@
                 <td>'.$data['mois'].'</td>
                 <td>'.$data['dates'].'</td>
                 <td>
-                    <a href="#" class="text-success infoBtn" title="Info"  id="'.$data['idagent'].'">
+                    <a href="#" class="text-success infoBtn" title="Info"  id="'.$data['id'].'">
                         <i class="fa fa-info-circle fa-lg "></i>
                     </a>
 

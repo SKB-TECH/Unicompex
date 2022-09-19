@@ -116,9 +116,9 @@
         $resultat=$db->SelectDataWhere('enseignants','avance');
         echo '<table border="1">';
         echo '<tr><th>N°</th><th>Noms</th><th>Mois</th><th>Montant</th><th>Um</th><th>Date</th></tr>';
-
+        $i=1;
         while ($data=$resultat->fetch()) {
-            $i=1;
+           
             echo '<tr>
             <tr class="text-center text-secondary">
             <td>'.$i.'</td>

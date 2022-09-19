@@ -117,9 +117,9 @@
         $resultat=$db->selectalldata('depense');
         echo '<table border="1">';
         echo '<tr><th>N°</th><th>Motif</th><th>Montant</th><th>Mois</th><th>Um</th><th>Date</th></tr>';
-
+        $i=1;
         while ($data=$resultat->fetch()) {
-            $i=1;
+            ;
             echo '<tr>
             <tr class="text-center text-secondary">
             <td>'.$i.'</td>

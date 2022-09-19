@@ -419,10 +419,11 @@
                     },
                     success: function(reponse) {
                         data = JSON.parse(reponse);
+                        console.log(data);
                         Swal.fire({
                                 title: '<Strong class="text-left"> IDAGENT:' + data.idagent + '</Strong>',
                                 type: "info",
-                                html: '<b class="text-left">Montant:' + data.montant + '</b></br><b class="text-left">Mituelle:' + data.mituelle + '</b></br><b class="text-left">Avance:' + data.avance + '</b></br><b class="text-left">Net a payer:' + data.net + '</b>',
+                                html: '<b class="text-left">Montant:' + data.montant + '</b></br><b class="text-left">Mituelle:' + data.mituelle + '</b></br><b class="text-left">Avance:' + data.avance + '</b></br><b class="text-left">Net a payer:' + data.net + '</b><br/><b class="text-left">Mois:' + data.mois + '</b><br/><b class="text-left">Date:' + data.dates + '</b>',
                                 showCancelButton: true
 
                             }

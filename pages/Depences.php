@@ -119,10 +119,8 @@ $taches = new crud();
                         <button type="button" class="btn btn-primary m-1 float-right"><i class="fa fa-briefcase" data-toggle="modal" data-target="#addModal"> Ajouter</i>
                         </button>&nbsp;&nbsp;&nbsp;
                     
-                        <a href="./Menus/actionsAvance.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
+                        <a href="./Menus/actionDepense.php?export=excel" class="btn btn-success m-1 float-lg"><i class="fa fa-table fa-lg"></i>
                             Exporter</a>&nbsp;&nbsp;&nbsp;
-                        <a href="#" class="btn btn-danger m-1 float-lg"><i class="fa fa-table fa-lg"></i>
-                            Importer</a>
                     </div>
                 </div>
                 <hr class="my-1">
