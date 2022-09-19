@@ -2,7 +2,7 @@
 
     error_reporting( E_ALL );
     ini_set( 'display_errors', 1);
-    
+
     require_once "../../Classes/crud.php";
     $db=new Crud();
 
@@ -39,10 +39,6 @@
                 <td>
                     <a href="#" class="text-success infoBtn" title="Info"  id="'.$data['idagent'].'">
                         <i class="fa fa-info-circle fa-lg "></i>
-                    </a>
-
-                    <a href="#" class="text-primary editBtn" title="Modifier" data-toggle="modal" data-target="#editModal" id="'.$data['idagent'].'">
-                        <i class="fa fa-edit fa-lg"></i>
                     </a>
 
                     <a href="#" class="text-danger deleteBtn" title="Supprimer" id="'.$data['id'].'">
@@ -125,7 +121,6 @@
     /** Fonction info plus de la table  enseignants*/
     if(isset($_POST['info_id'])){
         $id=$_POST['info_id'];
-
         $row=$db->selectbyid($id,'paie');
     
         echo json_encode($row);

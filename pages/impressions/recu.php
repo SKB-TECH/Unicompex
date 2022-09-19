@@ -1,8 +1,7 @@
  <?php
            error_reporting( E_ALL );
            ini_set( 'display_errors', 1);
-        // require_once("session.php");
-        // include "connexion.php";
+        include ("./phpqrcode/qrlib.php");
         require_once("../../Classes/crud.php");
         $db = new crud();
         // $idRec = 2;
@@ -106,7 +105,15 @@
     <p>Date: <?php 
                 $dat = date_create($data['date_perception']);
                 echo date_format($dat, "d/m/Y"); 
-        ?> </p>
+        ?> 
+    </p> 
+    <?php
+        $path="./images/";
+        $file=$path.uniqid().".png";
+        $text=$data['montant_percu']." ".$data['nom']." ".$data['postnom'];
+        QRcode::png($text,$file,'L',4);
+        echo "<center><img src='".$file."'</center>"
+    ?>
 </div>
 <a href="../registre.php">Retour </a>
     </body>
