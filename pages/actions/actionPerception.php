@@ -27,11 +27,6 @@ if (isset($_POST['action']) && $_POST['action'] == "view") {
                 <td>' . $data['nom'] . " " . $data['postnom'] . " " . $data['prenom'] . '</td>
                 <td>' . $data['classe'] . '</td>
                 <td>
-                        <a href="#" class="text-success infoBtn" title="Info"  id="' . $data['id'] . '">
-                            <i class="fa fa-info-circle fa-lg ">Solde</i>
-                        </a>
-                </td>
-                <td>
                         <a href="#" class="text-primary editBtn" title="Modifier" data-toggle="modal" data-target="#addModal" id="' . $data['id'] . '">
                             <i class="fa fa-dollar fa-lg"> Payer</i>
                         </a>
@@ -84,7 +79,7 @@ if (isset($_POST['info_id'])) {
     $id = $_POST['info_id'];
     $sql="SELECT *count(perception.id) as mouvement, sum(perception.montant_percu) as somme FROM `perception` 
     inner JOIN frais on frais.id=idFrais 
-    inner join eleves on eleves.id=idEleve and idEleve =1 
+    inner join eleves on eleves.id=idEleve and idEleve ='$id' 
     GROUP by idFrais";
     $res = $db->selectalldata2($sql);
     
@@ -127,7 +122,7 @@ if (isset($_POST['action']) && $_POST['action'] == "solde") {
     $data = $resultat->fetch();
 
     $tot = $dataFrais['montant_frais'];
-    if ($data['solde']!=NULL) {
+    if ($data['solde']!=NULL){
         $tr1= $data['solde'] - ($data['solde'] - $data['tranche1']);
         $tr2= ($data['solde']- $tr1) - (($data['solde']- $tr1)-$data['tranche2']);
         $tr3= $data['solde'] - $tr1 - $tr2;
@@ -142,10 +137,8 @@ if (isset($_POST['action']) && $_POST['action'] == "solde") {
                                 $output .="
                                 <p>L'élève n'a pas encore  payé  ce frais jusque là.</p>
                                 <input type='hidden' id='solde_value' name='solde' value=0'>
-
                                 ";   
                             } 
                             $output .="<input type='hidden' id='' name='frais' value='$tot'>";
-
     echo ($output);
 }
