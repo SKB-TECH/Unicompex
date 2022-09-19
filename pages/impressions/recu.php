@@ -62,7 +62,7 @@
 <body onload="window.print();">
     <div id='printContainer'>
         <h3 id="logo" class="text-center">Institut NYALUKEMBA</h3>
-    <h5 id="slogan" style="margin-top:0" class="text-center">Réçu n° <?php echo $idFrais ?></h5>
+    <h5 id="slogan" style="margin-top:0" class="text-center">Réçu n° <?php echo $idRec ?></h5>
     <table>
         <tr>
             <td>Noms  : </td>
