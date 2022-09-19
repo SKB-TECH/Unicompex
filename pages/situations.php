@@ -95,17 +95,22 @@
                                                            <select class="form-select col-md-12" aria-label="" id="classe" name="classe">
                                                               <option selected>Choix de la classe</option>
                                                               <option value="">Selectionner ...</option>
-                                                                <option value="7EB">7 EB</option>
-                                                                <option value="8EB">8 EB</option>
-                                                                <option value="I HP/A">I HP/A</option>
-                                                                <option value="I HP/B">I HP/B</option>
-                                                                <option value="I HTS">I HTS</option>
-                                                                <option value="II HP">II HP</option>
-                                                                <option value="II HTS">II HTS</option>
-                                                                <option value="III HP">III HP</option>
-                                                                <option value="III HTC">III HTS</option>
-                                                                <option value="IV HP">IV HP</option>
-                                                                <option value="IV HTC">IV HTS</option>
+                                                              <option value="">Selectionner ...</option>
+                                                                    <option value="7emeEB/A">7emeEB/A</option>
+                                                                    <option value="7emeEB/B">7emeEB/B</option>
+                                                                    <option value="7emeEB/C">7emeEB/C</option>
+                                                                    <option value="8emeEB/A">8emeEB/A</option>
+                                                                    <option value="8emeEB/B">8emeEB/B</option>
+                                                                    <option value="8emeEB/C">8emeEB/C</option>
+                                                                    <option value="IemeHP/A">IemeHP/A</option>
+                                                                    <option value="IemeHP/B">IemeHP/B</option>
+                                                                    <option value="IemeHTS">IemeHTS</option>
+                                                                    <option value="IIemeHP">IIemeHP</option>
+                                                                    <option value="IIemeHTS">IIemeHTS</option>
+                                                                    <option value="IIIemeHP">IIIemeHP</option>
+                                                                    <option value="IIIemeHTC">IIIemeHTS</option>
+                                                                    <option value="IVemeHP">IVemeHP</option>
+                                                                    <option value="IVemeHTC">IVemeHTS</option>
                                                             </select>
                                                  </div><br>
                                                     
@@ -125,17 +130,21 @@
                                                         <select class="form-select col-md-12" aria-label="" id="classe" name="classe">
                                                            <option selected>Choix de la classe</option>
                                                            <option value="">Selectionner ...</option>
-                                                                    <option value="7EB">7 EB</option>
-                                                                    <option value="8EB">8 EB</option>
-                                                                    <option value="I HP/A">I HP/A</option>
-                                                                    <option value="I HP/B">I HP/B</option>
-                                                                    <option value="I HTS">I HTS</option>
-                                                                    <option value="II HP">II HP</option>
-                                                                    <option value="II HTS">II HTS</option>
-                                                                    <option value="III HP">III HP</option>
-                                                                    <option value="III HTC">III HTS</option>
-                                                                    <option value="IV HP">IV HP</option>
-                                                                    <option value="IV HTC">IV HTS</option>
+                                                                <option value="7emeEB/A">7emeEB/A</option>
+                                                                <option value="7emeEB/B">7emeEB/B</option>
+                                                                <option value="7emeEB/C">7emeEB/C</option>
+                                                                <option value="8emeEB/A">8emeEB/A</option>
+                                                                <option value="8emeEB/B">8emeEB/B</option>
+                                                                <option value="8emeEB/C">8emeEB/C</option>
+                                                                <option value="IemeHP/A">IemeHP/A</option>
+                                                                <option value="IemeHP/B">IemeHP/B</option>
+                                                                <option value="IemeHTS">IemeHTS</option>
+                                                                <option value="IIemeHP">IIemeHP</option>
+                                                                <option value="IIemeHTS">IIemeHTS</option>
+                                                                <option value="IIIemeHP">IIIemeHP</option>
+                                                                <option value="IIIemeHTC">IIIemeHTS</option>
+                                                                <option value="IVemeHP">IVemeHP</option>
+                                                                <option value="IVemeHTC">IVemeHTS</option>
                                                          </select>
                                               </div><br>
                                               <div class="col-md-12 form-group">
@@ -167,17 +176,21 @@
                                                         <select class="form-select col-md-12" aria-label="" id="classe" name="classe">
                                                            <option selected>Choix de la classe</option>
                                                            <option value="">Selectionner ...</option>
-                                                                <option value="7EB">7 EB</option>
-                                                                <option value="8EB">8 EB</option>
-                                                                <option value="I HP/A">I HP/A</option>
-                                                                <option value="I HP/B">I HP/B</option>
-                                                                <option value="I HTS">I HTS</option>
-                                                                <option value="II HP">II HP</option>
-                                                                <option value="II HTS">II HTS</option>
-                                                                <option value="III HP">III HP</option>
-                                                                <option value="III HTC">III HTS</option>
-                                                                <option value="IV HP">IV HP</option>
-                                                                <option value="IV HTC">IV HTS</option>
+                                                                <option value="7emeEB/A">7emeEB/A</option>
+                                                                <option value="7emeEB/B">7emeEB/B</option>
+                                                                <option value="7emeEB/C">7emeEB/C</option>
+                                                                <option value="8emeEB/A">8emeEB/A</option>
+                                                                <option value="8emeEB/B">8emeEB/B</option>
+                                                                <option value="8emeEB/C">8emeEB/C</option>
+                                                                <option value="IemeHP/A">IemeHP/A</option>
+                                                                <option value="IemeHP/B">IemeHP/B</option>
+                                                                <option value="IemeHTS">IemeHTS</option>
+                                                                <option value="IIemeHP">IIemeHP</option>
+                                                                <option value="IIemeHTS">IIemeHTS</option>
+                                                                <option value="IIIemeHP">IIIemeHP</option>
+                                                                <option value="IIIemeHTC">IIIemeHTS</option>
+                                                                <option value="IVemeHP">IVemeHP</option>
+                                                                <option value="IVemeHTC">IVemeHTS</option>
                                                          </select>
                                               </div><br>
                                               <div class="col-md-12 form-group">
@@ -222,32 +235,7 @@
                  
 
 
-                 <div class="col-sm-3">
-                     
-                     <div class="p-3 bg-white  shadow-lg d-flex justify-content-around align-items-center rounded">
-                         <div>
-                             <h4 class="fs-2">Frais scolaire par classe et par tranche(s) : </h4>
-                             <form method="POST" action="impressions/fichePaie.php" >
-                                              <div class="col-md-12 form-group">
-                                                        <label for="#agent"> Agent </label>
-                                                           <select class="form-select col-md-12" aria-label="" id="idFrais" name="idFrais">
-                                                              <option selected>Choix de l'agent concerne : </option>
-                                                                    <?php 
-                                                                        $resEns =  $db->selectalldata("enseignants");
-                                                                        while($ens = $resEns->fetch()){ ?>
-                                                                              <option value="<?php echo $ens['id']?>"> <?php echo $frais['noms']; ?></option>
-                                                                        <?php }   ?>
-                                                            </select>
-                                                 </div><br>
-                                                 <div class="col-md-12 form-group">
-                                                          <label for="#date">Mois  </label>
-                                                          <input type="month"  name="mois" class="form-control mb-6 mr-sm-2" placeholder="le mois"  required>    
-                                                    </div><br>
-                                                     <button type="submit" class="btn btn-success form-control  col-md-12" name="valider"><i class="fa fa-print"></i>Voir et imprimer</button>
-                                     </form>
-                         </div>
-                     </div>
-                 </div>
+                
                  <!-- fin depense -->
                 </div>
             </div>

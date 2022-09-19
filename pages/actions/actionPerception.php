@@ -28,7 +28,7 @@ if (isset($_POST['action']) && $_POST['action'] == "view") {
                 <td>' . $data['classe'] . '</td>
                 <td>
                         <a href="#" class="text-success infoBtn" title="Info"  id="' . $data['id'] . '">
-                            <i class="fa fa-info-circle fa-lg "> Solde</i>
+                            <i class="fa fa-info-circle fa-lg ">Solde</i>
                         </a>
                 </td>
                 <td>
@@ -82,14 +82,12 @@ if (isset($_POST['action']) && $_POST['action'] == "insert") {
 
 if (isset($_POST['info_id'])) {
     $id = $_POST['info_id'];
-    $sql="
-    SELECT *, count(perception.id) as mouvement, sum(perception.montant_percu) as somme FROM `perception` 
+    $sql="SELECT *count(perception.id) as mouvement, sum(perception.montant_percu) as somme FROM `perception` 
     inner JOIN frais on frais.id=idFrais 
     inner join eleves on eleves.id=idEleve and idEleve =1 
     GROUP by idFrais";
     $res = $db->selectalldata2($sql);
-    $rows = [];
-
+    
     while($row = $res->fetch()){
         array_push($rows, $row);
     }

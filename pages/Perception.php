@@ -274,15 +274,15 @@
 
             /** Info plus */
             $("body").on("click",'.infoBtn',function(e)
-            {
-                e.preventDefault();
+            {e.preventDefault();
                 info_id= $(this).attr('id');
                 $.ajax({
-                    url:"actions/actionPerception.php",
+                    url:"./actions/actionPerception.php",
                     type:"POST",
                     data:{info_id:info_id},
                     success:function(reponse){
                         data=JSON.parse(reponse);
+                        console.log(data)
                         let html= data.map((res)=>{
                                 return(
                                     '<b class="text-left">'+res.libelle+' : '
@@ -292,10 +292,10 @@
                             })
                         Swal.fire(
                             {
-                                    title:'<Strong class="text-left">'+data[0].nom+' '+data[0].postnom+' '+data[0].prenom+' '+data[0].classe+'</Strong><hr>',
+                                    title:'<Strong class="text-left"></Strong><hr>',
                                     type:"info",
                                     html:html ,
-                                    // showCancelButton:true,
+                                    showCancelButton:true,
                          }
                         )
                         showAllUser();
