@@ -283,21 +283,32 @@
                     data:{info_id:info_id},
                     success:function(reponse){
                         data=JSON.parse(reponse);
-                        let html= data.map((res)=>{
-                                return(
-                                    '<b class="text-left">'+res.libelle+' : '
-                                        +res.somme+' '+res.devise+' en '+res.mouvement+' versement(s)'+
-                                    '</b></br>'
-                                )
-                            })
-                        Swal.fire(
-                            {
-                                    title:'<Strong class="text-left">'+data[0].nom+' '+data[0].postnom+' '+data[0].prenom+' '+data[0].classe+'</Strong><hr>',
-                                    type:"info",
-                                    html:html ,
-                                    // showCancelButton:true,
-                         }
-                        )
+                     
+                        if(data.length > 0){
+                                let html=''+data[0].nom+' '+data[0].postnom+' '+data[0].prenom+' '+data[0].classe+'<br>'+ data.map((res)=>{
+                                let tr1= res.somme- (res.somme - res.tranche1);
+                                let tr2= (res.somme- tr1) - ((res.somme- tr1)-res.tranche2);
+                                    let tr3= res.somme - tr1 - tr2;
+                                    return(
+                                        '<b class="text-left">'+res.libelle+' : '
+                                            +res.somme+' '+res.devise+' en '+res.mouvement+' versement(s)'+
+                                        '</b></hr><ol>'+
+                                         '<li>Premiere tranche : '+tr1+' </li>'
+                                        +'<li>Deuxieme tranche : '+tr2+'</li>'
+                                        +'<li>Troisieme tranche : '+tr3+' </li>'
+                                        +'</ol>'
+                                    )
+                                })
+                            }
+                        // Swal.fire(
+                        //     {
+                        //             title:'<Strong class="text-left">La situation de l\'eleve </Strong><hr>',
+                        //             type:"info",
+                        //             html:html ,
+                        //             showCancelButton:true,
+                        //  }
+                        // )
+                        console.log(html)
                         showAllUser();
                     }
                 })

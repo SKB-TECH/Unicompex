@@ -12,6 +12,7 @@ class myPDF extends FPDF {
         $this->SetFont('Arial','',10);
          }
     function Table($pdo){
+
         $this->SetFont('Arial','B',24);
         $this->cell(270,6,'INSTIUT NYALUKEMBA',0,0,'C');
         $this->Ln();
@@ -42,8 +43,11 @@ class myPDF extends FPDF {
     function rowsPerception($db){
         $i = 0;
         $total = 0;
+        $debut = $_POST['debut'];
+        $fin = $_POST['fin'];
         $res=$db->selectalldata2("SELECT *, sum(montant_percu) as somme  FROM perception 
             inner join frais on frais.id = idFrais 
+            where date_perception between '$debut' and '$fin'
             group by idFrais 
             order by libelle asc");
         while($data = $res->fetch()){
@@ -58,7 +62,7 @@ class myPDF extends FPDF {
             $this->Ln();
         }
          $this->Cell(55,7,"TOTAL",1,0,'C', true);
-         $this->Cell(30,7,$total." ".$devise,1,0,'C', true);
+         $this->Cell(30,7,$total." ",1,0,'C', true);
     }
     // fin table perception
 
@@ -80,7 +84,9 @@ class myPDF extends FPDF {
    
     function rowsPaie($db){
         $i = 0;
-        $res=$db->selectalldata2("SELECT *, sum(montant)  as salaire, sum(avance)  as avance,sum(mituelle)  as mituelle    FROM paie ");
+        $debut = $_POST['debut'];
+        $fin = $_POST['fin'];
+        $res=$db->selectalldata2("SELECT *, sum(montant)  as salaire, sum(avance)  as avance,sum(mituelle)  as mituelle    FROM paie where dates between '$debut' and '$fin' ");
         $data = $res->fetch();
             $this->SetFont('times','',12);
             $this->SetFillColor(255, 255, 255);
@@ -118,7 +124,9 @@ class myPDF extends FPDF {
             function rowsAutresDepenses($db){
                 $i = 0;
                 $total = 0;
-                $res=$db->selectalldata2("SELECT *, sum(montant) as somme  FROM depense group by motif ");
+                $debut = $_POST['debut'];
+                $fin = $_POST['fin'];
+                $res=$db->selectalldata2("SELECT *, sum(montant) as somme  FROM depense where dates between '$debut' and '$fin' group by motif ");
                 while($data = $res->fetch()){
                     $i++;
                     $this->SetFont('times','',12);
