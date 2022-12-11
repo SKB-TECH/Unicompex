@@ -1,15 +1,14 @@
-<nav class="navbar navbar-expand-md  navbar-dark border-bottom w-100 box-shadow" style="z-index: 1;">
+<nav class="navbar navbar-expand-md  navbar-dark  border-bottom w-100 box-shadow" style="z-index: 10; position:fixed; margin-bottom:30px; background-color:#fff">
   <!-- Brand -->
   <span>
-    <i class="fa fa-cogs logo-icon text-primary" aria-hidden="true" style="font-size: 35px ;"></i>
+    <i class="fa fa-cogs logo-icon text-dark" aria-hidden="true" style="font-size: 35px ;"></i>
   </span>
-  <a class="navbar-brand text-dark" href="#">Unicompex Congo</a>
+  <a class="navbar-brand text-dark" id="entreprise" href="#">Unicompex Congo</a>
 
   <!-- Toggler/collapsibe Button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <!-- Navbar links -->
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav ml-auto">
@@ -42,13 +41,6 @@
         <a class="nav-link" style="font-size: 18px;">
           <i class="fa fa-user-secret text-dark" aria-hidden="true">
             Apropos
-          </i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" style="font-size: 18px;">
-          <i class="fa fa-sign-out   text-dark" aria-hidden="true">
-            Deconnexion
           </i>
         </a>
       </li>
